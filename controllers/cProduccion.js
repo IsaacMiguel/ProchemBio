@@ -1,9 +1,10 @@
-//requiriendo modelo mensaje.js:
+//requiriendo modelos:
 var mProduccion = require('../models/mProduccion');
 var mNovedades = require('../models/mNovedades');
 var mAyuda = require('../models/mAyuda');
 var mMatep = require('../models/mMatep');
-//requiriendo la conection string
+var mProgram1 = require('../models/mProgramacion');
+
 
 module.exports = {
   getLista: getLista,
@@ -81,14 +82,14 @@ function getImprimir(req, res){
   params = req.params;
   id = params.id;
 
-  mProduccion.getFormulado(id, function (form){
-    id_matep = form[0].id_matep_fk;
-    mMatep.getMatepPorId(id_matep, function (matep){
-      //console.log(form)
-      console.log(matep)
+  mProgram1.getProg1PorId_joined_w_Clientes_Reacto_Formulado_Tanque_and_Empleados(id, function (program1){
+    console.log(program1)
+    mProduccion.getFormulado(id, function (forms){
+      //console.log(forms)
       res.render('produccionimprimirform',{
-        form: form,
-        matep: matep
+        pagename: 'Imprimir Orden de Formulacion de Agroquímicos',
+        program1: program1[0],
+        forms: forms
       });
     });
   });

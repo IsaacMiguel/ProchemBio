@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title></title>
+	<title>{{ pagename }}</title>
 	<!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
@@ -9,14 +9,13 @@
 	<div class="container">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<div class="row">
-				  <div class="col-md-1">.col-md-1</div>
-				  <div class="col-md-1">.col-md-1</div>
-				  <div class="col-md-1">.col-md-1</div>
-				  <div class="col-md-6"><div class="panel-title"><h2>Orden de Formulacion Agroquimicos<br><small style="text-aligment: center;">"{{ form[0].mpnombre }}"</small></h2></div></div>
-				  <div class="col-md-1">.col-md-1</div>
-				  <div class="col-md-1">.col-md-1</div>
-				  <div class="col-md-1">.col-md-1</div>
+				<div class="row" style="text-align: center;">
+				  <div class="col-md-4">4</div>
+
+				  <div class="col-md-4"><div class="panel-title" style="text-align: center;"><h2>Orden de Formulacion Agroquimicos<br><small >"{{ forms[0].mpnombre }}"</small></h2></div></div>
+				  <!-- <div class="col-md-2">2</div> -->
+				  <div class="col-md-2"><table style="text-align: center; width: 100%"><tr colspan="2"><td>RE</td></tr><tr colspan="2"><td>Vigencia</td></tr><tr><td>Pag</td><td>Rev.</td></tr></table></div>
+				  <!-- <div class="col-md-1">.col-md-1</div> -->
 				</div>
 			    
 			</div>
@@ -26,28 +25,13 @@
 				<section>
 					<table class="table table-striped table-bordered table-hover">
 						<tr>
-							<td>Fecha</td>
-							<td>{{ fecha }}</td>
+							<th>Fecha</th><td>{{ program1.fechaP | date('d/m/Y') }}</td><th>O.F. N°</th><td>{{ program1.id }}</td>
 						</tr>
 						<tr>
-							<td>Reactor</td>
-							<td>{{ reactor }}</td>
+							<th>Reactor</th><td>{{ program1.nombrereacto }}</td><th>Lote N°</th><td>{{ forms[0].lote_mp }}</td>
 						</tr>
 						<tr>
-							<td>Formulador Inicial</td>
-							<td>{{ Formulador Inicial }}</td>
-						</tr>
-						<tr>
-							<td>O.F. N°</td>
-							<td>{{ nro_of }}</td>
-						</tr>
-						<tr>
-							<td>Lote N°</td>
-							<td>{{ nro_lote }}</td>
-						</tr>
-						<tr>
-							<td>Volumen</td>
-							<td>{{ volumen }}</td>
+							<th style="width: 250px">Formulador Inicial</th><td>{{ program1.nombreemple }}</td><th>Volumen</th><td>{{ program1.resultado }}</td>
 						</tr>
 					</table>			
 					<table class="table table-striped table-bordered table-hover">
@@ -68,7 +52,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								{% for r in form %}
+								{% for r in forms %}
 								<tr>
 									<td>
 										{{ r.id }}
@@ -86,7 +70,7 @@
 										{{ r.pulso_obj }}
 									</td>
 									<td>
-										{{r.pulso_real }}
+										{{ r.pulso_real }}
 									</td>
 									<td>
 										{{ r.hora_inicio }}

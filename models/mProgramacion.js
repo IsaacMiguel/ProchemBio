@@ -9,6 +9,7 @@ module.exports = {
 	getRemitos: getRemitos,
 	getPA: getPA,
 	getProgPorId: getProgPorId,
+	getProg1PorId_joined_w_Clientes_Reacto_Formulado_Tanque_and_Empleados: getProg1PorId_joined_w_Clientes_Reacto_Formulado_Tanque_and_Empleados,
 	postp2: postp2,
 	limpiarp2: limpiarp2,
 	getProgramaciones: getProgramaciones
@@ -33,6 +34,10 @@ function insert(fecha, fechar, turno, idcliente, formulado, formulador, equipo, 
 
 function getProgPorId(id, cb){
 	conn("select program1.*, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque from program1 left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid left join reacto on reacto.id = program1.reactoid where program1.id = "+ id, cb);
+}
+
+function getProg1PorId_joined_w_Clientes_Reacto_Formulado_Tanque_and_Empleados(id, cb){
+	conn("select program1.*, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque, emple.nombre as nombreemple from program1 left join emple on emple.codigo = program1.formulador left join reacto on reacto.id = program1.reactoid left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid where program1.id = "+ id, cb);
 }
 
 function del(id, cb){
