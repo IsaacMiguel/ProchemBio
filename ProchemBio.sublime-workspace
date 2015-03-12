@@ -1,0 +1,703 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"produ",
+				"produccionController"
+			],
+			[
+				"margin",
+				"margin-right"
+			],
+			[
+				"padding",
+				"padding-bottom"
+			],
+			[
+				"pad",
+				"padding-right"
+			],
+			[
+				"pro",
+				"proveedor"
+			],
+			[
+				"nro",
+				"nro_opago"
+			],
+			[
+				"id",
+				"id_medio_pago"
+			],
+			[
+				"fe",
+				"fechaFin"
+			],
+			[
+				"fec",
+				"fechaFin"
+			],
+			[
+				"fech",
+				"fechaInicio"
+			],
+			[
+				"f",
+				"finicio"
+			],
+			[
+				"margi",
+				"margin-left"
+			],
+			[
+				"ff",
+				"ffin"
+			],
+			[
+				"fi",
+				"finicio"
+			],
+			[
+				"pa",
+				"params"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"pul",
+				"pulsoreals"
+			],
+			[
+				"peso",
+				"pesoobjs"
+			],
+			[
+				"lotemp",
+				"lotemps"
+			],
+			[
+				"get",
+				"getElementById"
+			],
+			[
+				"txt",
+				"txtAbLote"
+			],
+			[
+				"Traer",
+				"TraerAbLote"
+			],
+			[
+				"traer",
+				"TraerPA"
+			],
+			[
+				"Refresca",
+				"RefrescaRemito"
+			],
+			[
+				"reac",
+				"reactores"
+			],
+			[
+				"matep",
+				"matepporid"
+			],
+			[
+				"mp",
+				"mpsenreactores"
+			],
+			[
+				"reactor",
+				"reactor"
+			],
+			[
+				"haberi",
+				"haberi"
+			],
+			[
+				"busqueda",
+				"busquedaController"
+			],
+			[
+				"re",
+				"result"
+			],
+			[
+				"retur",
+				"returnValue"
+			],
+			[
+				"maq",
+				"maqporid"
+			],
+			[
+				"de",
+				"Denominacion"
+			],
+			[
+				"charsLeftM",
+				"charsLeftMarca"
+			],
+			[
+				"nombre",
+				"nombresector1"
+			],
+			[
+				"tr",
+				"true"
+			],
+			[
+				"cant",
+				"cant"
+			],
+			[
+				"YYY",
+				"YYYY-MM-DD"
+			],
+			[
+				"day",
+				"dayWrapper"
+			],
+			[
+				"formu",
+				"formulador"
+			],
+			[
+				"idformu",
+				"idformulado"
+			],
+			[
+				"consu",
+				"consuController"
+			],
+			[
+				"btn-",
+				"btn-danger"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"te",
+				"template"
+			],
+			[
+				"lote",
+				"Lote"
+			],
+			[
+				"stock",
+				"stockactual"
+			],
+			[
+				"stocka",
+				"stockactualizado"
+			],
+			[
+				"stockac",
+				"stockactual"
+			],
+			[
+				"ca",
+				"calcularTotal"
+			],
+			[
+				"arts",
+				"arts"
+			],
+			[
+				"art",
+				"articulo"
+			],
+			[
+				"txtA",
+				"txtAbLote"
+			],
+			[
+				"form",
+				"formalta"
+			],
+			[
+				"getal",
+				"getAllActivos"
+			],
+			[
+				"sec",
+				"sectorbyid"
+			],
+			[
+				"mMa",
+				"mMpEnTanque"
+			],
+			[
+				"mpentanqueporid",
+				"mpentanqueporid"
+			],
+			[
+				"mpen",
+				"MPENTANQUEporIDMPyIDTANQUE"
+			],
+			[
+				"mM",
+				"mMpEnTanque"
+			],
+			[
+				"remitos",
+				"remitos"
+			],
+			[
+				"envase",
+				"envase"
+			],
+			[
+				"refres",
+				"RefrescaCombo"
+			],
+			[
+				"u",
+				"updateAcceso"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"getMatep",
+				"getMatepFromRemito"
+			],
+			[
+				"cliente",
+				"clienteFromProduc"
+			],
+			[
+				"a",
+				"a"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "models/mProgramacion.js",
+			"settings":
+			{
+				"buffer_size": 3474,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "controllers/cProduccion.js",
+			"settings":
+			{
+				"buffer_size": 2483,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/produccionimprimirform.html",
+			"settings":
+			{
+				"buffer_size": 2967,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 118.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/routes.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/produccionimprimirform.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mProduccion.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mMatep.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/produccionlista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/controllers/cProduccion.js",
+		"/C/Users/Administrador/Documents/Proyectos/Default-Structure/README.md",
+		"/C/Users/Administrador/Documents/Proyectos/Casport-Proveedores/.gitignore",
+		"/C/Users/Administrador/Documents/Proyectos/Casport-Proveedores/app.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport-Proveedores/routes.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport-Proveedores/views/imprimir4.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport-Proveedores/views/imprimir5.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport-Proveedores/views/imprimir6.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport-Proveedores/views/imprimir9.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport-Proveedores/views/contacto.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/ver.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/custom.css",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/impagas.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/retenciones.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/cta_cte.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/busqueda.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/admin2.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/template2.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/controllers/cIndex.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/routes.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/home.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/contacto.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/ayuda.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/js/contact/contact-form.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/models/mBusqueda.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/controllers/cBusqueda.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/js/contact/js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/js/contact/stats.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/js/contact/util.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/cssroboto.css",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/css1.css",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/imprimir9.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/imprimir6.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/imprimir4.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/imprimir5.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/proveedoreslista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/controllers/cAdmin.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/js/custom.js",
+		"/C/Users/Administrador/Documents/Proyectos/Landing PAge/Landing Page Template for Bootstrap.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/css.css",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/font-awesome.min.css",
+		"/C/Users/Administrador/Documents/Proyectos/Landing PAge/Landing Page Template for Bootstrap_files/custom.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/login.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/template.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/admin.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/inicio.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/style.css",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/form.css",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/login.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/login.css",
+		"/C/Users/Administrador/Documents/Proyectos/mucoop.com.ar/htdocs/css/form.css",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/js/main-functions.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/contacto.css",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/public/css/produccionver.css",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/produccionver.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/prog1alta2.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/controllers/cProgramacion.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mProgramacion.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/remitoslista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/cargosalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/cargosmodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/consumiblesalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/clientesalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/clientesmodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/mateplista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/template.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mReceta.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/matepalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/controllers/cMatep.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/matepmodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/prog2lista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/lab.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/formuladoalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/prodalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mMpEnReactor.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mRemitos.js",
+		"/C/Users/Administrador/Documents/Proyectos/NodeMaker/db/mysql.js",
+		"/C/Users/Administrador/Documents/Proyectos/NodeMaker/app.js",
+		"/C/Users/Administrador/Documents/Proyectos/NodeMaker/controller/cIndex.js",
+		"/C/Users/Administrador/Documents/Proyectos/NodeMaker/packaje.json",
+		"/C/Users/Administrador/Documents/Proyectos/NodeMaker/model/mIndex.js",
+		"/C/Users/Administrador/Documents/Proyectos/NodeMaker/writer/wIndex.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mAccesos.js",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/app.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/prog1alta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/controllers/cFormulados.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mFormulados.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/mpenreactorlista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/mpenreactoralta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/mpenreactormodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mReacto.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/controllers/cMpEnReactor.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/inicio.css",
+		"/C/Users/Administrador/Documents/Proyectos/Embryo.com.ar/web/index.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/normalize.css",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/views/error.html",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/icomoon.css",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/models/mProveedores.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/controllers/cProveedores.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/config/db.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/public/js/moment.js",
+		"/C/Users/Administrador/Documents/Proyectos/Casport/config/db2.js",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/remitosalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/controllers/cRemitos.js",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/emplealta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/usuariosalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/usuarioslista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/emplelista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/articulosconsulta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/sectoreslista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/valesalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/umedlista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/familialista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/articulosalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/valesconsulta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/maqlista.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/template.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/controllers/cVale.js",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/controllers/cArticulos.js",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/controllers/cFamilia.js",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/public/css/articulosalta.css",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/familiaalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/Maresa/controllers/cAdmin.js"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"{",
+			"{r.{r.",
+			"{",
+			"]]",
+			"[[",
+			"contact-form",
+			"./base page_files",
+			"]]",
+			"[[",
+			"tanques",
+			"tanque",
+			"Tanque",
+			"hab",
+			"}}",
+			"{{",
+			"Produc",
+			"mProduc",
+			"Receta",
+			" */;",
+			"			",
+			"=\"",
+			"Table"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"{{",
+			"{r.",
+			"}}",
+			"{{",
+			"/js/contact",
+			"}}",
+			"{{",
+			"Reactores/Mezcladores",
+			"reactor",
+			"Reactor/Mezclador",
+			"reactor",
+			"Reactor",
+			"reactor",
+			"Reactor",
+			"reactor",
+			"REACTOR",
+			"reactor",
+			"REACTOR",
+			"reactor",
+			"Reactor",
+			"reactor",
+			"REACTOR",
+			"reactor",
+			"Reactor",
+			"reactor",
+			"REACTOR",
+			"reactor",
+			"Reactor",
+			"REACTOR",
+			"Reactor",
+			"REACTOR",
+			"Reactor",
+			"]]",
+			"[[",
+			"Formulado",
+			"mFormulas",
+			"Formula",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "models/mProgramacion.js",
+					"settings":
+					{
+						"buffer_size": 3474,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1569,
+								1997
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 225.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "controllers/cProduccion.js",
+					"settings":
+					{
+						"buffer_size": 2483,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2416,
+								2416
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1035.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "views/produccionimprimirform.html",
+					"settings":
+					{
+						"buffer_size": 2967,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1354,
+								1354
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 405.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 218.0,
+	"status_bar_visible": true
+}
