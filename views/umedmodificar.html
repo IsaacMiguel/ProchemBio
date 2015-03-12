@@ -1,0 +1,46 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/umedmodificar.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+	<form method="post" id="formactualizar" action="/umedactualizar">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>ID:</td>
+				<td><input type="text" id="id" name="id" value="{{ umed.id }}" required readonly></td>
+			</tr>
+			<tr>
+				<td>Codigo:</td>
+				<td><input type="text" id="codigo" name="codigo" value="{{ umed.codigo }}" required></td>
+			</tr>
+			<tr>
+				<td>Nombre:</td>
+				<td><input type="text" id="nombre" name="nombre" value="{{ umed.nombre }}" required><div class="aviso">Quedan <span id="charsLeftNombre"></span> caraceteres.</div></td>
+			</tr>
+			<tr>
+				<td>Activo:</td>
+				{% if umed.activa == 1 %}
+					<td><input type="checkbox" id="activo" name="activo" checked="true"></td>
+				{% else %}
+					<td><input type="checkbox" id="activo" name="activo" checked="false"></td>
+				{% endif %}				
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Guardar"></td>
+			</tr>
+		</table>
+		 <br>
+		 <br>
+	</form>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#nombre').limit('15','#charsLeftNombre');
+</script>
+
+{% endblock %}

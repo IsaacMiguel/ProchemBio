@@ -1,0 +1,36 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/ubicaalta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+	<form method="post" id="formalta" action="/ubicaalta">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>Codigo:</td>
+				<td><input type="text" id="codigo" name="codigo" required><div class="aviso">Quedan <span id="charsLeftCodigo"></span> caracteres</div></td>
+			</tr>	
+			<tr>
+				<td>Nombre:</td>
+				<td><input type="text" id="nombre" name="nombre" required ><div class="aviso">Quedan <span id="charsLeftNombre"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+		 <br>
+		 <br>
+	</form>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#codigo').limit('5','#charsLeftCodigo');
+	$('#nombre').limit('20','#charsLeftNombre');
+	$("#formalta").validate();
+</script>
+
+{% endblock %}

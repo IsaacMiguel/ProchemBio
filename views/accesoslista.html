@@ -1,0 +1,73 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  	<div class="panel-heading">
+  	<!-- Table -->
+
+		<table>
+		<tr>	
+			<td><a href="/usuarioslista"> <button type="button" class="btn btn-primary">Atras</button></a></td>
+			
+		</tr>	
+		</table>
+	</div>
+		<div class="row">
+			<div class="col-xs-12">
+			<form  method="post" id="formacessos" action="/accesoslista">
+			<input type="hidden" name="idUsuario" value="{{idUsuario}}">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Menu</th>
+						{% for acceso in accesos %}
+							<th>{{acceso.descripcion}}</th>
+						{% endfor %}
+					</tr>
+				</thead>
+				<tbody>
+					{% for menu in menues %}
+						<tr>
+							<td>{{ menu.id }}</td>
+							<td>{{ menu.titulo }}</td>
+							{% for acceso in accesos %}
+								{% if usuario_accesos.length %}
+								<!-- {{acceso.short}} -->
+										<td>
+										{% if usuario_accesos[menu.id - 1][acceso.short] == 1 %}
+													<input type="checkbox" name="{{menu.id}}" checked="true">
+										{% else %}		
+													<input type="checkbox" name="{{menu.id}}" value="{{acceso.short}}">
+												
+										{% endif %}
+										</td>
+								{% else %}
+									<td>
+										<input type="checkbox" name="{{menu.id}}" value="{{acceso.short}}">
+									</td>
+								{% endif %}
+							{% endfor %}
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<td>
+							<input type="submit" value="Guardar">
+						</td>
+					</tr>
+				</tfoot>
+			  </table>
+			</form>				
+			</div><!--div col xs12 -->
+		</div><!--div row -->
+</div>
+
+{% endblock %}

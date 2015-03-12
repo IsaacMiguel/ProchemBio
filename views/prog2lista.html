@@ -1,0 +1,153 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  	<div class="panel-heading">
+  	<!-- Table -->
+		<table>
+		<tr>	
+			<td><a href="/inicio"> <button type="button" class="btn btn-primary">Atras</button></a></td>
+			<td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Ayuda</button></td>
+			<ul class="nav navbar-nav navbar-right">
+        		<li>Ingrese la fecha de programacion: <input type="textbox" id="fechaprog" name="fechaprog" class="datepicker" placeholder="Formato dd/mm/aaaa" readonly> <button class="btn btn-default" name="ok" ID="ok">OK</button> </li>
+      		</ul>
+		</tr>	
+		</table>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">{{ ayuda.titulo }}</h4>
+		      </div>
+		      <div class="modal-body">
+		        {{ ayuda.texto }}
+		        <img src="/uploads/formula.jpg">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+				<table class="table table-striped">
+			  		<thead>
+			  			<tr>
+			  				<th colspan="2">Opciones</th> 
+							<th>ID</th>
+							<th>Fecha Prog.</th>
+							<th>Turno</th>
+							<th>Cliente</th>
+							<th>Producto</th>
+							<th>Equipo</th>
+							<th>Resultado</th>
+							<th>Tanque Destino</th>
+						</tr>
+			  		</thead>
+			  		<tbody id="tbodyprogramacioneslisto">
+			  			
+			  		</tbody>
+			  		<script type="text/template" id="tablaprogramaciones">
+			  				[[#.]]
+			  				<tr>
+			  					<td>
+			  						<a href="prog1alta2/[[id]]" class="btn btn-success">Producir</a>
+			  					</td>
+			  					<td>
+			  						<a href="produccionborrarprogram/[[id]]" class="btn btn-danger" onclick="if (!confirm('¿Seguro desea eliminar?')) return false;">Borrar</a>
+			  					</td>
+			  					<td>
+			  						[[id]]
+			  					</td>
+			  					<td>
+			  						[[fechapf]]			  					
+			  					</td>
+			  					<td>
+			  						[[turno]]
+			  					</td>
+			  					<td>
+			  						[[nombrecliente]]
+			  					</td>
+			  					<td>
+			  						[[nombreformulado]]
+			  					</td>
+			  					<td>
+			  						[[nombrereacto]]
+			  					</td>
+			  					<td>
+			  						[[resultado]]
+			  					</td>
+			  					<td>
+			  						[[nombretanque]]
+			  					</td>
+			  				</tr>	
+			  				[[/.]]						
+			  			</script>	
+				  </table>				
+		</div><!--div col xs12 -->
+	</div><!--div row -->
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/js/mustache.js"></script>
+<script type="text/javascript" src="/js/mustache-wax.js"></script>
+<script type="text/javascript">
+	$('#fechaprog').datepicker({
+		language: 'es',
+		autoclose: 'true',
+		format: 'dd/mm/yyyy'
+	});
+
+	$(function(){
+		// Return today's date and time
+		var currentTime = new Date();
+		// returns the month (from 0 to 11)
+		var month = currentTime.getMonth() + 1;
+		// returns the day of the month (from 1 to 31)
+		var day = currentTime.getDate();
+		// returns the year (four digits)
+		var year = currentTime.getFullYear()
+		if (month<10){
+			month = "0" + month
+		}
+		if (day<10){
+			day = "0" + day
+		}
+		fecha = day+'/'+month+'/'+year;
+		var fecha = encodeURIComponent(fecha);
+		$.getJSON('/buscarprogramaciones/'+ fecha, function (data){
+			//console.log(data);
+			$('#tbodyprogramacioneslisto > tr').remove();
+			var template = $('#tablaprogramaciones').html();
+			Mustache.tags =['[[',']]'];
+			var html = Mustache.to_html(template, data);
+			//console.log(html);
+			$('#tbodyprogramacioneslisto').html(html);
+		});
+	});
+
+	$("#ok").on("click", function() {
+		var fecha  = encodeURIComponent(document.getElementById('fechaprog').value);
+		$.getJSON('/buscarprogramaciones/'+ fecha, function (data){
+			//console.log(data);
+			$('#tbodyprogramacioneslisto > tr').remove();
+			var template = $('#tablaprogramaciones').html();
+			Mustache.tags =['[[',']]'];
+			var html = Mustache.to_html(template, data);
+			//console.log(html);
+			$('#tbodyprogramacioneslisto').html(html);
+		});
+	});
+</script>
+{% endblock %}

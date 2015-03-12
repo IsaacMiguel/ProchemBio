@@ -1,0 +1,37 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+	
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1><b>Prochem Bio</b></h1>
+        <p>Esta es la pagina principal del sistema para ProchemBio</p>
+        
+      </div>
+    </div>
+    <div class="container">
+    <main>  
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2><b>Novedades</b></h2>
+          <p>{{ novedades.fecha|date('d/m/Y') }} - {{ novedades.descripcion }}</p>
+          <p><a class="btn btn-default" href="/listanovedades" role="button">Ver completo »</a></p>
+        </div>
+        <div class="col-md-4">
+          
+       </div>
+        <div class="col-md-4">
+          
+        </div>
+      </div>
+    </div>
+
+    </main>
+        <hr>
+{% endblock %}

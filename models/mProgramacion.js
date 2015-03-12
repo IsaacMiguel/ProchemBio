@@ -1,0 +1,60 @@
+var conn = require('../config/db').conn;
+
+module.exports = {
+	getAll: getAll,
+	getCodigo: getCodigo,
+	postResultado: postResultado,
+	insert: insert,
+	del: del,
+	getRemitos: getRemitos,
+	getPA: getPA,
+	getProgPorId: getProgPorId,
+	postp2: postp2,
+	limpiarp2: limpiarp2,
+	getProgramaciones: getProgramaciones
+}
+
+function getAll(cb){
+	conn("select program1.*, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque from program1 left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid left join reacto on reacto.id = program1.reactoid", cb);
+}
+
+function getCodigo(lote, anio, clienteid, formid, cb){
+	loteanio = lote + anio;
+	conn("select max(lote) as maxlote from program1 where left(lote, 5) = '"+loteanio+"' AND clienteid = "+clienteid+" and formuladoid = "+formid, cb)
+}
+
+function postResultado(id, resul, cb){
+	conn("UPDATE `program1` SET `resultado`="+resul+" WHERE id="+id, cb)
+}
+
+function insert(fecha, fechar, turno, idcliente, formulado, formulador, equipo, tanquedestino, lote, maximo, concepla, concepf, cb){
+	conn("INSERT INTO program1(fechap, fechar, turno, clienteid, formuladoid, formulador, reactoid, tanqueid, lote, maximo, concepla, concepf) VALUES('"+fecha+"', '"+fechar+"', '"+turno+"', "+idcliente+", "+formulado+", "+formulador+", "+equipo+", "+tanquedestino+", '"+lote+"', "+maximo+", "+concepla+", "+concepf+")", cb);
+}
+
+function getProgPorId(id, cb){
+	conn("select program1.*, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque from program1 left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid left join reacto on reacto.id = program1.reactoid where program1.id = "+ id, cb);
+}
+
+function del(id, cb){
+	conn("DELETE FROM program1 WHERE id = "+id, cb);
+}
+
+function getRemitos(idcliente, idmatep, cb){
+	conn("select remitomp.*, ubica.nombre as nubica from remitomp left join ubica on ubica.id = remitomp.ubicaid where tipo = 1 and clienteid = "+idcliente+" and matepid="+idmatep+" and concepla <> 0 order by fechar desc", cb)
+}
+
+function getPA(idform, cb){
+	conn("select receta.*, matep.nombre as mpnombre from receta left join matep on matep.id = receta.matepid where receta.producid = "+idform+" and matep.pactivo = 1" , cb);
+}
+
+function postp2(idprog, matepid, peso_obj, cb){
+	conn("insert into program2(id_p1_fk, id_matep_fk, lote_mp, peso_obj, pulso_obj, pulso_real, hora_inicio, hora_fin, t_inicio, t_fin, ph_inicio, ph_fin) values("+idprog+", "+matepid+", '', "+peso_obj+", 0, 0, '00:00', '00:00', 0, 0, 0, 0)", cb);
+}
+
+function limpiarp2(idprog1, cb){
+	conn("delete from program2 where id_p1_fk="+idprog1, cb);
+}
+
+function getProgramaciones(fecha, cb){
+	conn("select program1.*, DATE_FORMAT(program1.fechaP, '%d/%m/%Y') as fechapf, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque from program1 left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid left join reacto on reacto.id = program1.reactoid where program1.fechaP = '"+ fecha +"'", cb);
+}

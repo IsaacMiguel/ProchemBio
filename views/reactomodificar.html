@@ -1,0 +1,50 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/reactomodificar.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+<form method="POST" action="/reactomodificar">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>ID:</td>
+				<td><input type="text" id="id" name="id" value="{{ reactor.id }}" readonly></td>
+			</tr>
+			<tr>
+				<td>Codigo de Reactor: </td>
+				<td><input type="text" id="codigo" name="codigo" value="{{ reactor.codigo }}"></td>
+			</tr>	
+			<tr>
+				<td>Nombre de Reactor:</td>
+				<td><input type="text" id="empleado" name="nombre" value="{{ reactor.nombre }}"><div class="aviso">Quedan <span id="charsLeftNombre"></span> caraceteres.</div></td>
+			</tr>
+			<tr>
+				<td>Capacidad:</td>
+				<td><input type="text" id="capacidad" name="capacidad"  value="{{ reactor.capacidad }}"></td>
+			</tr>
+			<tr>
+				<td>Activo:</td>
+				{% if reactor.activa== 1 %}
+					<td><input type="checkbox" name="activa" checked></td>
+				{% else %}
+					<td><input type="checkbox" name="activa"></td>
+				{% endif %}	
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Guardar"></td>
+			</tr>
+		</table>
+		 <br>
+		 <br>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#nombre').limit('20','#charsLeftNombre');
+</script>
+{% endblock %}

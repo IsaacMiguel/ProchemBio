@@ -1,0 +1,70 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ pagename }} <b>{{ producto.nombre }}</b> de <b>{{ cliente.nombre }}</b></h2>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  	<div class="panel-heading">
+  	<!-- Table -->
+		<table>
+		<tr>	
+			<td><a href="/prodlista/{{ producto.cdcliente }}"> <button type="button" class="btn btn-primary">Atras</button></a></td>
+			<td><a href="/formulaalta/{{ producto.id }}"> <button type="button" class="btn btn-success">Agregar Nueva</button></a></td>
+		</tr>	
+		</table>
+	</div>
+		<div class="row">
+			<div class="col-xs-12">
+			  <table class="table table-striped">
+				<tr>
+					<th>ID</th>
+					<th>Nombre de Materia Prima</th>
+					<th>Es Principio Activo</th>
+					<th>Porcentaje</th>
+					<th>Solo %</th>
+					<th>Usa Lote</th>
+				</tr>
+				{% for receta in recetas %}
+				<tr>
+					<td>{{ receta.id }}</td>
+					{% for matep in mateps %}
+						{% if matep.id == receta.matepid %}
+							<td>{{ matep.nombre }}</td>
+						{% endif %}
+					{% endfor %}
+					{% for matep in mateps %}
+						{% if matep.id == receta.matepid %}
+							{% if matep.pactivo == 1 %}
+								<td><span>Si</span></td>
+							{% else %}
+								<td><span>No</span></td>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+					<td>{{ receta.porce }}</td>
+					{% if receta.soloporce == 1 %}
+						<td><span>Si</span></td>
+					{% else %}
+						<td><span>No</span></td>
+					{% endif %}
+					{% if receta.usalote == 1 %}
+						<td><span>Si</span></td>
+					{% else %}
+						<td><span>No</span></td>
+					{% endif %}
+					<td>
+						<a href='/formulaborrar/{{ formula.id }}' onclick="if (!confirm('¿Seguro desea eliminar?')) return false;"><button type="button" class="btn btn-danger">Eliminar</button><a/>
+					</td>
+				</tr>
+				{% endfor %}	 
+			  </table>				
+			</div><!--div col xs12 -->
+		</div><!--div row -->
+
+</div>
+
+{% endblock %}

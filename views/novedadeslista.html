@@ -1,0 +1,45 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  	<div class="panel-heading">
+  	<!-- Table -->
+		<table>
+		<tr>	
+			<td><a href="/inicio"> <button type="button" class="btn btn-primary">Atras</button></a></td>
+		</tr>	
+		</table>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+				<table class="table table-striped">
+			  		<thead>
+			  			<tr> 
+							<th>Version</th>
+							<th>Fecha</th>
+							<th>Novedad</th>
+						</tr>
+			  		</thead>
+			  		<tbody>
+			  			{% for novedad in novedades %}
+							<tr>
+								<td>{{ novedad.release }}</td>
+								<td>{{ novedad.fecha|date('d/m/Y') }}</td>
+								<td>{{ novedad.descripcion }}</td>
+							</tr>
+							{% endfor %}
+			  		</tbody>
+				  </table>				
+		</div><!--div col xs12 -->
+	</div><!--div row -->
+
+</div>
+
+{% endblock %}

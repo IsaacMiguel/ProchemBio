@@ -1,0 +1,63 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/consumiblesalta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="post" id="formalta" action="/consumiblesalta">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>ID Producto:</td>
+				<td><input type="text" id="idproducto" name="idproducto" value="{{ producto.id }}" readonly required ></td>
+			</tr>
+			<tr>
+				<td>Materia Prima:</td>
+				<td><select class="form-control" id="matep" name="matep">
+					{% for matep in mateps %}
+						<option value="{{ matep.id }}">{{ matep.nombre }}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Cantidad:</td>
+				<td><input type="text" id="cantidad" name="cantidad" required placeholder="Para decimales utilice punto." onkeypress="return NumCheck(event, this)"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#formula').limit('30','#charsLeftFormula');
+	$("#formalta").validate();
+	function NumCheck(e, field) {
+	  key = e.keyCode ? e.keyCode : e.which
+	  // backspace
+	  if (key == 8) return true
+	  // 0-9
+	  if (key > 47 && key < 58) {
+	    if (field.value == "") return true
+	    regexp = /.[0-9]{3}$/
+	    return !(regexp.test(field.value))
+	  }
+	  // .
+	  if (key == 46) {
+	    if (field.value == "") return false
+	    regexp = /^[0-9]+$/
+	    return regexp.test(field.value)
+	  }
+	  // other key
+	  return false
+	}
+</script>
+
+{% endblock %}

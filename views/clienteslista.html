@@ -1,0 +1,116 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  	<div class="panel-heading">
+  	<!-- Table -->
+		<table>
+		<tr>	
+			<td><a href="/inicio"> <button type="button" class="btn btn-primary">Atras</button></a></td>
+			<td><a href="/clientesalta"><button type="button" class="btn btn-success">Agregar Nuevo</button></a></td>
+			<td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Ayuda</button></td>
+		</tr>	
+		</table>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">{{ ayuda.titulo }}</h4>
+		      </div>
+		      <div class="modal-body">
+		        {{ ayuda.texto }}
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div style="overflow: scroll;">
+				<table class="table table-striped">
+			  		<thead>
+			  			<tr>
+			  				<th colspan="5">Opciones</th>
+							<th>ID</th>
+							<th><div style="width: 250px">Nombre</div></th>
+							<th>Direccion</th>
+							<th>Localidad</th>
+							<th>Provincia</th>
+							<th>Telefonos</th>
+							<th>Mail</th>
+							<th>Contacto</th>
+							<th>Tel. de Contacto</th>
+							<th>Cel. de Contacto</th>
+							<th><div style="width: 80px">Nextel de Contacto</div></th>
+							<th>Mail de Contacto</th>
+							<th><div style="width: 80px">Activa</div></th>
+							<th>CUIT</th>
+							<th><div style="width: 120px">IVA</div></th>
+							<th>Clave Web</th>
+							
+						</tr>
+			  		</thead>
+			  		<tbody>
+			  			{% for cliente in clientes %}
+							<tr>
+								<td><a href="/clientesmodificar/{{ cliente.codigo }}"><button class="btn btn-warning">Modificar</button></a></td>
+								<td><a href='/clientesborrar/{{ cliente.codigo }}' onclick="if (!confirm('¿Seguro desea eliminar?')) return false;"><button type="button" class="btn btn-danger">Eliminar</button><a/></td>
+								<td><a href="/mateplista/{{ cliente.codigo }}"><button type="button" class="btn btn-default">M. Primas</button></a></td>								
+								<td><a href="/formuladolista/{{ cliente.codigo }}"><button type="button" class="btn btn-default">Formulados</button></a></td>
+								<td><a href="/prodlista/{{ cliente.codigo }}"><button type="button" class="btn btn-default">Productos</button></a></td>
+								<td>{{ cliente.codigo }}</td>
+								<td>{{ cliente.nombre }}</td>
+								<td>{{ cliente.direc }}</td>
+								<td>{{ cliente.local }}</td>
+								<td>
+									{% for provincia in provincias %}
+										{% if provincia.id == cliente.prov %}
+											{{ provincia.descripcion }}
+										{% endif %}
+									{% endfor %}
+								</td>
+								<td>{{ cliente.telefonos }}</td>
+								<td>{{ cliente.mail }}</td>
+								<td>{{ cliente.contacto }}</td>
+								<td>{{ cliente.contel }}</td>
+								<td>{{ cliente.concel }}</td>
+								<td>{{ cliente.connex }}</td>
+								<td>{{ cliente.conmail }}</td>
+								{% if cliente.activa == 1 %}
+									<td><span>Activo</span></td>
+								{% else %}
+									<td><span>No activo</span></td>
+								{% endif %}
+								<td>{{ cliente.cuit }}</td>
+								<td>
+									{% for iv in iva %}
+										{% if iv.id == cliente.iva %}
+											{{ iv.descripcion }}
+										{% endif %}
+									{% endfor %}
+								</td>
+								<td>{{ cliente.claveweb }}</td>
+							</tr>
+							{% endfor %}
+			  		</tbody>
+				  </table>				
+			</div>
+		</div><!--div col xs12 -->
+	</div><!--div row -->
+
+</div>
+
+{% endblock %}

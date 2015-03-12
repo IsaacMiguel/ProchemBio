@@ -1,0 +1,77 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/prodalta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="post" id="formalta" action="/prodalta">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>Codigo:</td>
+				<td><input type="text" id="codigo" name="codigo" required><div class="aviso">Quedan <span id="charsLeftCodigo"></span> caraceteres.</div></td>
+			</tr>
+			<tr>
+				<td>Codigo de Cliente:</td>
+				<td><input type="text" id="cdcliente" name="cdcliente" value="{{ cdcliente }}" required readonly></td>
+			</tr>
+			<tr>
+				<td>Nombre:</td>
+				<td><input type="text" id="nombre" name="nombre" required><div class="aviso">Quedan <span id="charsLeftNombre"></span> caraceteres.</div></td>
+			</tr>
+			<tr>
+				<td>Encabezado de Lote:</td>
+				<td><input type="text" id="lote" name="lote" required><div class="aviso">Quedan <span id="charsLeftLote"></span> caraceteres.</div></td>
+			</tr>
+			<tr>
+				<td>Unidad de Medida:</td>
+				<td>
+					<select class="form-control" id="umed" name="umed">
+					{% for umed in umeds %}
+						<option value="{{ umed.codigo }}">{{ umed.nombre }}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Usa Formulado:</td>
+				<td>
+					<select class="form-control" id="idformulado" name="idformulado">
+					{% for formulado in formulados %}
+						<option value="{{ formulado.id }}">{{ formulado.nombre }}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>	
+				<td>Cantidad:</td>
+				<td><input type="text" id="cantidad" name="cantidad" required onkeypress="return numbersonly(event);"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#nombre').limit('40','#charsLeftNombre');
+	$('#lote').limit('3','#charsLeftLote');
+	$('#codigo').limit('12','#charsLeftCodigo');
+	function numbersonly(e)  {
+        var unicode = e.charCode ? e.charCode : e.keyCode
+        if (unicode != 8 && unicode != 44) {
+            if (unicode < 48 || unicode > 57) //if not a number
+            {
+                return false
+            } //disable key press    
+        }
+    } 
+</script>
+
+{% endblock %}

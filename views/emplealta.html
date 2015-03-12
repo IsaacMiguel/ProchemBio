@@ -1,0 +1,68 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/emplealta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+	<form method="post" id="formalta" action="/emplealta">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>Codigo de Empleado:</td>
+				<td><input type="text" id="codigo" name="codigo" value="{{ cdmax }}" required readonly></td>
+			</tr>
+			<tr>
+				<td>Nombre:</td>
+				<td><input type="text" id="nombre" name="nombre" required><div class="aviso">Quedan <span id="charsLeftNombre"></span> caraceteres.</div></td>
+			</tr>
+			<tr>
+				<td>Fecha de Alta:</td>
+				<td><input type="text" class="datepicker" id="falta" name="falta" readonly></td>
+			</tr>
+			<tr>
+				<td>Fecha de Baja:</td>
+				<td><input type="text" class="datepicker" id="falta" name="fbaja" readonly></td>
+			</tr>
+			<tr>
+				<td>Cargo:</td>
+				<td>
+					<select class="form-control" id="cargo" name="cargo">
+					{% for cargo in cargos %}
+						<option value="{{ cargo.id }}">{{ cargo.descripcion }}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+		 <br>
+		 <br>
+	</form>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#nombre').limit('30','#charsLeftNombre');
+	$(".datepicker").datepicker({
+		autoclose: true,
+		format: 'dd/mm/yyyy',
+		language: 'es'
+	});
+	var myDate = new Date(); 
+	myDate.setFullYear(myDate.getFullYear() + 5);
+	day = myDate.getDate();
+	if (day<10)
+		day = "0"+day;
+	month = myDate.getMonth();
+	if (month<10)
+		month = "0"+month
+	myDate = day + "/" + month + "/" + myDate.getFullYear();
+	$("#fbaja").val(myDate)
+</script>
+
+{% endblock %}

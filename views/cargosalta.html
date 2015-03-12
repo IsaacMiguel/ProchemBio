@@ -1,0 +1,29 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/cargosalta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="post" id="formalta" action="/cargosalta">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>Descripcion:</td>
+				<td><input type="text" id="descripcion" name="descripcion" required ></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+	$("#formalta").validate();
+</script>
+
+{% endblock %}

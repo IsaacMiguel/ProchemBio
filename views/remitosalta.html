@@ -1,0 +1,169 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/css/selectize.css">
+<link href="/css/remitosalta.css" rel="stylesheet">	
+<h2>{{ pagename }}</h2>
+	<form method="post" id="formalta" action="/remitosalta">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>Tipo:</td>
+				<td>
+					<select class="form-control" id="tipo" name="tipo">
+						<option value="1">Ingreso</option>
+						<option value="2">Egreso</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Fecha Remito:</td>
+				<td><input type="text" class="datepicker" id="fechar" name="fechar" required readonly></td>
+			</tr>
+			<tr>
+				<td>Fecha Movimiento:</td>
+				<td><input type="text"  class="datepicker2" id="fecham" name="fecham" required readonly></td>
+			</tr>
+			<tr>
+				<td>Nro. Remito:</td>
+				<td><input type="text" id="nroremito" name="nroremito" required><div class="aviso">Quedan <span id="charsLeftNroRemito"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Cliente:</td>
+				<td>
+					<select class="form-control" id="cmbCliente" name="cliente" >
+						{% for cliente in clientes %}
+							<option value="{{ cliente.codigo }}">{{ cliente.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Materia Prima:</td>
+				<td>
+					<select class="form-control" id="cmbMatep" name="cmbMatep">
+						<option value="{{ matep.id }}">{{ matep.nombre }}</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Lote:</td>
+				<td><input type="text" name="lote" required></td>
+			</tr>
+			<tr>
+				<td>Envase:</td>
+				<td>
+					<select class="form-control" id="envase" name="envase">
+						{% for envase in envases %}
+							<option value="{{ envase.id }}">{{ envase.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Cantidad:</td>
+				<td><input type="text" id="cantidad" name="cantidad"  required onkeypress="return validar(event)" onchange="calcula();"></td>
+			</tr>
+			<tr>
+				<td>Neto (Cant. Resultante):</td>
+				<td><input type="text" id="neto" name="neto" readonly ></td>
+			</tr>
+			<tr>
+				<td>Concentracion en origen:</td>
+				<td><input type="text" name="conceori" placeholder="Se ingresa en Laboratorio" readonly></td>
+			</tr>
+			<tr>
+				<td>Concentracion en planta:</td>
+				<td><input type="text" name="concepla" placeholder="Se ingresa en Laboratorio" readonly></td>
+			</tr>
+			<tr>
+				<td>Ubicacion:</td>
+				<td>
+					<select class="form-control" id="ubicacion" name="ubicacion">
+						{% for ubicacion in ubicaciones %}
+							<option value="{{ ubicacion.id }}">{{ ubicacion.nombre }}</option>
+						{% endfor %}
+					</select></td>
+			</tr>
+			<tr>
+				<td>Observaciones:</td>
+				<td><textarea name="observaciones" id="observaciones" rows="4" cols="40" placeholder="Escribe aquí tus comentarios"></textarea></td>
+			</tr>	
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+		 <br>
+		 <br>
+	</form>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<!-- <script src="/js/selectize.js"></script> -->
+<script type="text/javascript">
+	function validar(e) {
+	    tecla = (document.all) ? e.keyCode : e.which;
+	    if (tecla==8) return true;
+	    patron =/\d/;
+	    te = String.fromCharCode(tecla);
+	    return patron.test(te);
+	} 
+	$('#nroremito').limit('13','#charsLeftNroRemito');
+	$(".datepicker").datepicker({
+		format: 'dd/mm/yyyy',
+		autoclose: true,
+		language: 'es'
+	});
+	$(".datepicker2").datepicker({
+		format: 'dd/mm/yyyy',
+		autoclose: true,
+		language: 'es'
+	});
+	// $("#formalta").validate();
+	var capacidad = null;
+
+	function calcula(){
+		var b = Number( document.getElementById('cantidad').value );
+		var c = capacidad * b;
+		document.getElementById('neto').value = c;	
+	}
+
+	$('#cmbCliente').on('change', function() {
+		RefrescaCombo(this.value);
+	});
+	$('#envase').on('change', function(){
+		TraerCapacidad(this.value, function (err, data){
+			capacidad = data.capacidad;
+			calcula();
+		});
+	});
+
+	function TraerCapacidad(value, cb){
+		$.getJSON('/capacidadenvase/'+ value, function (data){
+				return cb(null, data)
+		});
+	}
+
+	function RefrescaCombo(value){
+		$('#cmbMatep').empty();
+		$.getJSON('/'+ value + '/materiasprimas', function (data){
+			$.each(data, function(i, value){
+				$('#cmbMatep').append('<option value=' + value.id + '>' + value.nombre + '</option>' );
+			});
+		});
+	}
+
+	$(function(){
+		RefrescaCombo($('#cmbCliente').val());
+		TraerCapacidad($('#envase').val(),function (err, data){
+			capacidad = data.capacidad;
+			calcula();
+		});
+	});
+</script>
+
+{% endblock %}

@@ -1,0 +1,122 @@
+<html>
+<head>
+	<title></title>
+	<!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+</head>
+<body>
+	<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="row">
+				  <div class="col-md-1">.col-md-1</div>
+				  <div class="col-md-1">.col-md-1</div>
+				  <div class="col-md-1">.col-md-1</div>
+				  <div class="col-md-6"><div class="panel-title"><h2>Orden de Formulacion Agroquimicos<br><small style="text-aligment: center;">"{{ form[0].mpnombre }}"</small></h2></div></div>
+				  <div class="col-md-1">.col-md-1</div>
+				  <div class="col-md-1">.col-md-1</div>
+				  <div class="col-md-1">.col-md-1</div>
+				</div>
+			    
+			</div>
+			<div class="panel-body">
+				<!-- <header class="container">		
+			</header> -->
+				<section>
+					<table class="table table-striped table-bordered table-hover">
+						<tr>
+							<td>Fecha</td>
+							<td>{{ fecha }}</td>
+						</tr>
+						<tr>
+							<td>Reactor</td>
+							<td>{{ reactor }}</td>
+						</tr>
+						<tr>
+							<td>Formulador Inicial</td>
+							<td>{{ Formulador Inicial }}</td>
+						</tr>
+						<tr>
+							<td>O.F. N°</td>
+							<td>{{ nro_of }}</td>
+						</tr>
+						<tr>
+							<td>Lote N°</td>
+							<td>{{ nro_lote }}</td>
+						</tr>
+						<tr>
+							<td>Volumen</td>
+							<td>{{ volumen }}</td>
+						</tr>
+					</table>			
+					<table class="table table-striped table-bordered table-hover">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Formulados</th>
+									<th>Lote (M.P.)</th>
+									<th>Peso Obj.</th>
+									<th>Pulso Obj.</th>
+									<th>Pulso Real</th>
+									<th>HRs Inicio</th>
+									<th>HRs Fin</th>
+									<th>Temp Inicio</th>
+									<th>Temp Final</th>
+									<th>PH Inicial</th>
+									<th>PH Final</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for r in form %}
+								<tr>
+									<td>
+										{{ r.id }}
+									</td>	
+									<td>
+										{{ r.mpnombre }}
+									</td>
+									<td>
+										{{ r.lote_mp }}
+									</td>
+									<td>
+										{{ r.peso_obj }}			  					
+									</td>
+									<td>
+										{{ r.pulso_obj }}
+									</td>
+									<td>
+										{{r.pulso_real }}
+									</td>
+									<td>
+										{{ r.hora_inicio }}
+									</td>
+									<td>
+										{{ r.hora_fin }}
+									</td>
+									<td>
+										{{ r.t_inicio }}
+									</td>
+									<td>
+										{{ r.t_fin }}
+									</td>
+									<td>
+										{{ r.ph_inicio }}
+									</td>
+									<td>
+										{{ r.ph_fin }}
+									</td>
+								</tr>
+								{% endfor %}
+							</tbody>	
+					</table>			
+				</section>
+			</div>
+			<div class="panel-footer">
+				<h2>Prochem Footer</h2>
+				<button class="btn btn-info" onclick="window.print()"><span class="glyphicon glyphicon-print"></span></button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

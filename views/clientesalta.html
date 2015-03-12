@@ -1,0 +1,149 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/clientesalta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="post" id="formalta" action="/clientesalta">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>Nombre:</td>
+				<td><input type="text" id="nombre" name="nombre" required><div class="aviso">Quedan <span id="charsLeftNombre"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Direccion:</td>
+				<td><input type="text" id="direccion" name="direccion"><div class="aviso">Quedan <span id="charsLeftDireccion"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Localidad:</td>
+				<td><input type="text" id="localidad" name="localidad"><div class="aviso">Quedan <span id="charsLeftLocalidad"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Provincia:</td>
+				<td>
+					<select class="form-control" id="provincia" name="provincia">
+					{% for provincia in provincias %}
+						<option value="{{ provincia.id }}">{{ provincia.descripcion }}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Telefono:</td>
+				<td><input type="text" id="telefono" name="telefono"><div class="aviso">Quedan <span id="charsLeftTelefono"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>E-Mail:</td>
+				<td><input type="text" id="mail" name="mail"><div class="aviso">Quedan <span id="charsLeftMail"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Contacto:</td>
+				<td><input type="text" id="contacto" name="contacto"><div class="aviso">Quedan <span id="charsLeftContacto"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Telefono de Contacto:</td>
+				<td><input type="text" id="contel" name="contel"><div class="aviso">Quedan <span id="charsLeftContel"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Celular de Contacto:</td>
+				<td><input type="text" id="concel" name="concel"><div class="aviso">Quedan <span id="charsLeftConcel"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Nextel de Contacto:</td>
+				<td><input type="text" id="connex" name="connex" ><div class="aviso">Quedan <span id="charsLeftConnex"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Mail de Contacto:</td>
+				<td><input type="text" id="conmail" name="conmail"><div class="aviso">Quedan <span id="charsLeftConmail"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Activo:</td>
+				<td><input type="checkbox" name="activa" ></td>
+			</tr>
+			<tr>
+				<td>C.U.I.T.:</td>
+				<td><input type="text" id="cuit" name="cuit" ><div class="aviso">Quedan <span id="charsLeftCuit"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>I.V.A.:</td>
+				<td>
+					<select class="form-control" id="iva" name="iva">
+					{% for iv in iva %}
+						<option value="{{ iv.id }}">{{ iv.descripcion }}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Clave Web:</td>
+				<td><input type="text" id="claveweb" name="claveweb"><div class="aviso">Quedan <span id="charsLeftClaveweb"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+	</form>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#nombre').limit('40','#charsLeftNombre');
+	$('#direccion').limit('50','#charsLeftDireccion');
+	$('#localidad').limit('20','#charsLeftLocalidad');
+	$('#telefono').limit('40','#charsLeftTelefono');
+	$('#mail').limit('80','#charsLeftMail');
+	$('#contacto').limit('30','#charsLeftContacto');
+	$('#contel').limit('30','#charsLeftContel');
+	$('#concel').limit('30','#charsLeftConcel');
+	$('#connex').limit('30','#charsLeftConnex');
+	$('#conmail').limit('50','#charsLeftConmail');
+	$('#cuit').limit('13','#charsLeftCuit');
+	$('#claveweb').limit('20','#charsLeftClaveweb');
+	$("#formalta").validate({
+		rules: {
+			nombre: {
+				maxlength: 40
+			},
+			direccion: {
+				maxlength: 50
+			},
+			localidad: {
+				maxlength: 20
+			},
+			telefono:{
+				maxlength: 40
+			},
+			mail: {
+				email:true,
+				maxlength: 80
+			},
+			contacto: {
+				maxlength: 30
+			},
+			contel: {
+				maxlength: 30
+			},
+			concel: {
+				maxlength: 30
+			},
+			connex: {
+				maxlength: 30
+			},
+			conmail: {
+				maxlength: 50
+			},
+			cuit: {
+				maxlength: 13
+			},
+			claveweb: {
+				maxlength: 20
+			}
+		}
+	});
+</script>

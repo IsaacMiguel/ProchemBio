@@ -1,0 +1,71 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/formuladomodificar.css" rel="stylesheet">	
+<h2>{{ pagename }}</h2>
+	<form method="post" id="formactualizar" action="/formuladomodificar">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>ID:</td>
+				<td><input type="text" id="id" name="id" value="{{ produ.id }}" required readonly></td>
+			</tr>
+			<tr>
+				<td>Codigo de Producto:</td>
+				<td><input type="text" id="codigo" name="codigo" value="{{ produ.codigo }}" required><div class="aviso">Quedan <span id="charsLeftCodigo"></span> caraceteres.</div></td>
+			</tr>
+			<tr>
+				<td>Codigo de Cliente:</td>
+				<td><input type="text" id="cdcliente" name="cdcliente" value="{{ produ.cdcliente }}" required></td>
+			</tr>
+			<tr>
+				<td>Nombre de Producto:</td>
+				<td><input type="text" id="nombre" name="nombre" value="{{ produ.nombre }}" required><div class="aviso">Quedan <span id="charsLeftNombre"></span> caraceteres.</div></td>
+			</tr>
+			<tr>
+				<td>Lote:</td>
+				<td><input type="text" id="lote" name="lote" value="{{ produ.ablote }}"><div class="aviso">Quedan <span id="charsLeftLote"></span> caraceteres.</div></td>
+			</tr>
+			<tr>
+				<td>Unidad de Medida:</td>
+				<td>
+					<select class="form-control" name="umed">
+					{% for umed in umeds %}
+						{% if produ.umed == umed.codigo %}
+     						<option value="{{ umed.codigo }}" selected> {{ umed.nombre }}</option>
+   						{% else %}
+      						<option value="{{ umed.codigo }}">{{ umed.nombre }}</option>
+      					{% endif %}
+					{% endfor %}
+					</select>
+				</td>	
+			</tr>
+			<tr>
+				<td>Activo:</td>
+				{% if produ.activa == 1 %}
+					<td><input type="checkbox" id="activo" name="activo" checked="true"></td>
+				{% else %}
+					<td><input type="checkbox" id="activo" name="activo"></td>
+				{% endif %}				
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Guardar"></td>
+			</tr>
+		</table>
+		 <br>
+		 <br>
+	</form>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#nombre').limit('40','#charsLeftNombre');
+	$('#lote').limit('3','#charsLeftLote');
+	$('#codigo').limit('12', '#charsLeftCodigo');
+	$("#formalta").validate();
+</script>
+
+{% endblock %}

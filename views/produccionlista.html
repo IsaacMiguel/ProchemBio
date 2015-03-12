@@ -1,0 +1,134 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  	<div class="panel-heading">
+  	<!-- Table -->
+		<table>
+		<tr>	
+			<td><a href="/inicio"> <button type="button" class="btn btn-primary">Atras</button></a></td>
+			<td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Ayuda</button></td>
+			<ul class="nav navbar-nav navbar-right">
+        		<li>BUSCAR por fecha de Programacion: <input type="textbox" id="fechainicio" name="fechainicio" class="datepicker" placeholder="Formato dd/mm/aaaa" readonly> al <input type="textbox" id="fechafin" name="fechafin" class="datepicker" placeholder="Formato dd/mm/aaaa" readonly> <button class="btn btn-default" name="ok" ID="ok">OK</button> </li>
+      		</ul>
+		</tr>
+		</table>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">{{ ayuda.titulo }}</h4>
+		      </div>
+		      <div class="modal-body">
+		        {{ ayuda.texto }}
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+				<table class="table table-striped">
+			  		<thead>
+			  			<tr>
+			  				<th colspan="4">Opciones</th> 
+							<th>ID</th>
+							<th>Fecha Prog.</th>
+							<th>Turno</th>
+							<th>Cliente</th>
+							<th>Producto</th>
+							<th>Equipo</th>
+							<th>Resultado</th>
+							<th>Tanque Destino</th>
+						</tr>
+			  		</thead>
+			  		<tbody id="tbodyprogramacioneslisto">
+			  			
+			  		</tbody>
+			  		<script type="text/template" id="tablaprogramaciones">
+			  				[[#.]]
+			  				<tr>
+			  					<td>
+			  						<a href="/produccionver/[[id]]" class="btn btn-success">Ver Formulado</a>
+			  					</td>
+			  					<td>
+			  						<a href="/produccionmodificar/[[id]]" class="btn btn-warning">Modificar</a>
+			  					</td>
+			  					<td>
+			  						<a href="/produccionborrar/[[id]]" class="btn btn-danger" onclick="if (!confirm('¿Seguro desea eliminar?')) return false;">Borrar</a>
+			  					</td>
+			  					<td>
+			  						<a href="/produccionimprimir/[[id]]" class="btn btn-info"><span class="glyphicon glyphicon-print"></span></a>
+			  					</td>
+			  					<td>
+			  						[[id]]
+			  					</td>
+			  					<td>
+			  						[[fechapf]]			  					
+			  					</td>
+			  					<td>
+			  						[[turno]]
+			  					</td>
+			  					<td>
+			  						[[nombrecliente]]
+			  					</td>
+			  					<td>
+			  						[[nombreformulado]]
+			  					</td>
+			  					<td>
+			  						[[nombrereacto]]
+			  					</td>
+			  					<td>
+			  						[[resultado]]
+			  					</td>
+			  					<td>
+			  						[[nombretanque]]
+			  					</td>
+			  				</tr>	
+			  				[[/.]]						
+			  			</script>	
+				  </table>				
+		</div><!--div col xs12 -->
+	</div><!--div row -->
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript" src="/js/mustache.js"></script>
+<script type="text/javascript" src="/js/mustache-wax.js"></script>
+<script type="text/javascript">
+	$('.datepicker').datepicker({
+		language: 'es',
+		autoclose: 'true',
+		format: 'dd/mm/yyyy'
+	});
+
+	$(function(){
+	});
+
+	$("#ok").on("click", function() {
+		var fi  = encodeURIComponent(document.getElementById('fechainicio').value);
+		var ff = encodeURIComponent(document.getElementById('fechafin').value);
+		$.getJSON('/buscarprogramaciones2/'+ fi+"/"+ff, function (data){
+			console.log(data);
+			$('#tbodyprogramacioneslisto > tr').remove();
+			var template = $('#tablaprogramaciones').html();
+			Mustache.tags =['[[',']]'];
+			var html = Mustache.to_html(template, data);
+			//console.log(html);
+			$('#tbodyprogramacioneslisto').html(html);
+		});
+	});
+</script>
+{% endblock %}

@@ -1,0 +1,69 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/emplemodificar.css" rel="stylesheet">		
+<h2>{{ pagename }}</h2>
+<form method="POST" action="/emplemodificar">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>Codigo: </td>
+				<td><input type="text" id="codigo" name="codigo" value="{{ emple.codigo }}" readonly="readonly"></td>
+			</tr>	
+			<tr>
+				<td>Nombre:</td>
+				<td><input type="text" id="nombre" name="nombre" value="{{ emple.nombre }}"><div class="aviso">Quedan <span id="charsLeftNombre"></span> caraceteres.</div></td>
+			</tr>
+			<tr>
+				<td>Fecha de alta:</td>
+				<td><input type="text" id="falta" name="falta" class="datepicker" readonly="readonly" value="{{ emple.falta|date('d/m/Y') }}"></td>
+			</tr>
+			<tr>
+				<td>Fecha de baja:</td>
+				<td><input type="text" id="fbaja" name="fbaja" class="datepicker" readonly="readonly" value="{{ emple.fbaja|date('d/m/Y') }}"></td>
+			</tr>
+			<tr>
+				<td>Cargo:</td>
+				<td>
+					<select class="form-control" id="cargo" name="cargo">
+					{% for cargo in cargos %}
+						{% if emple.cargo == cargo.id %}
+      						<option value="{{ cargo.id }}" selected> {{ cargo.descripcion }}</option>
+   						{% else %}
+      						<option value="{{ cargo.id }}">{{ cargo.descripcion }}</option>
+      					{% endif %}
+					{% endfor %}
+					</select>
+				</td>
+			</tr>	
+			<tr>
+				<td>Activo:</td>
+				{% if emple.activa== 1 %}
+					<td><input type="checkbox" name="activa" checked></td>
+				{% else %}
+					<td><input type="checkbox" name="activa"></td>
+				{% endif %}	
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Guardar"></td>
+			</tr>
+		</table>
+		 <br>
+		 <br>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#nombre').limit('30','#charsLeftNombre');
+	$('.datepicker').datepicker({
+		format: 'dd/mm/yyyy',
+		autoclose: true,
+		language: 'es'
+	})
+	</script>
+{% endblock %}

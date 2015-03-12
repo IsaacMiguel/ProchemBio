@@ -1,0 +1,43 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  	<div class="panel-heading">
+  	<!-- Table -->
+		<table>
+		<tr>	
+			<td><a href="/ayuda"> <button type="button" class="btn btn-primary">Atras</button></a></td>
+		</tr>	
+		</table>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+				<table class="table table-striped">
+			  		<thead>
+			  			<tr> 
+							<th>ID</th>
+							<th>Menu</th>
+							<th>Ver Ayuda</th>
+						</tr>
+			  		</thead>
+			  		<tbody>
+							<tr>
+								<td>{{ ayuda.id }}</td>
+								<td>{{ ayuda.titulo }}</td>
+								<td>{{ ayuda.texto }}</td>
+							</tr>
+			  		</tbody>
+				  </table>				
+		</div><!--div col xs12 -->
+	</div><!--div row -->
+
+</div>
+
+{% endblock %}

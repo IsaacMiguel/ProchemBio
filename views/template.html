@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://getbootstrap.com/examples/jumbotron/# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://i60.tinypic.com/a598ix.png">
+
+    <title>ProchemBio</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link href="http://getbootstrap.com/examples/signin/signin.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+    <!-- Custom styles for this template-->
+    <link href="http://getbootstrap.com/examples/jumbotron/jumbotron.css" rel="stylesheet"> 
+  </head>
+  <body>
+<!--COMIENZO BARRA NAVEGACION-->
+<nav class="navbar navbar-default navbar-static-top navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/inicio"><img src="http://i60.tinypic.com/a598ix.png"></a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archivos <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/clienteslista">Clientes (Mat.Primas / Productos / Fórmulas ) [ABM]</a></li>
+            <li><a href="/emplelista">Empleados [ABM]</a></li>
+            <li><a href="/usuarioslista">Usuarios [ABM]</a></li>
+            <li class="divider"></li>
+            <li><a href="/envaseslista">Envases (Remitos In/Out) [ABM]</a></li>
+            <li><a href="/umedlista">Unidades de Medida [ABM]</a></li>
+            <li><a href="/ubicalista">Ubicaciones [ABM]</a></li>
+            <li class="divider"></li>
+            <li><a href="/lineaslista">Lineas de Produccion [ABM]</a></li>           
+            <li><a href="/reactolista">Reactores y Mezcladores [ABM]</a></li>
+            <li><a href="/tanqueslista">Tanques [ABM]</a></li>
+            
+             
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Operaciones<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="/remitoslista">Remitos (In-Out)</a></li>
+            <li><a href="/prog1lista">Programacion 1</a></li>
+            <li><a href="/prog2lista">Programacion 2</a></li> 
+            <li><a href="/produccionlista">Produccion</a></li>
+            <li><a href="/fraccionado">Fraccionado</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reportes<span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            
+          </ul>
+        </li>
+        <li class="dropdown"><a href="/ayuda" >Ayuda</a></li>
+        <li class="dropdown"><a href="/logout" >Logout</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a>Usuario: <strong>{% if user %} {{ user.usuario }} - {{ usuario.horaLogin }} {% else %} guest {% endif %}</strong></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!--FIN BARRA NAVEGACION-->
+
+	<div class="container">
+			{% block content %}
+			{% endblock %}
+	
+	    <footer>
+        <p>©2014 <a href="http://www.leandrodapello.com">www.LeandroDapello.com</a></p>
+      </footer>
+  </div> <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->    
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery-inputmask.js" ></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
+
+
+</body>
+</html>

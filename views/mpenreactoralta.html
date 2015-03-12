@@ -1,0 +1,49 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/mpenreactoralta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="post" id="formalta" action="/mpenreactoralta">
+		<table align="center" class="table table-striped">
+			<input type="hidden" name="idmp" id="idmp" value="{{ matep.id }}">	
+			<tr>
+				<td>Reactor/Mezclador:</td>
+				<td>
+					<select class="form-control" id="reactor" name="reactor">
+					{% for r in reactores %}
+						<option value="{{ r.id }}">{{ r.nombre }}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Capacidad Maxima:</td>
+				<td><input type="text" id="maxima" name="maxima" onkeypress="return numbersonly(event);" required ></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script type="text/javascript">
+	$("#formalta").validate();
+	function numbersonly(e)  {
+        var unicode = e.charCode ? e.charCode : e.keyCode
+        if (unicode != 8 && unicode != 44) {
+            if (unicode < 48 || unicode > 57) //if not a number
+            {
+                return false
+            } //disable key press    
+        }
+    } 
+</script>
+
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/usuariosalta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+	<form method="post" id="formalta" action="/usuariosalta">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>Usuario:</td>
+				<td><input type="text" id="usuario" name="usuario" required><div class="aviso">Quedan <span id="charsLeftUsuario"></span> caracteres.</div></td>
+			</tr>
+			<tr>
+				<td>Clave:</td>
+				<td><input type="password" id="clave" name="clave" required><div class="aviso">Quedan <span id="charsLeftClave"></span> caracteres.</div></td>
+			</tr>
+			<tr>
+				<td>Repetir clave:</td>
+				<td><input type="password" id="repetirclave" name="repetirclave" required><div class="aviso">Quedan <span id="charsLeftRepetirClave"></span> caracteres.</div></td>
+			</tr>
+			<tr>
+				<td>E-Mail:</td>
+				<td><input type="text" id="mail" name="mail" required><div class="aviso">Quedan <span id="charsLeftMail"></span> caracteres.</div></td>
+			</tr>
+			<tr>
+				<td>Niveles:</td>
+				<td><input type="text" id="niveles" name="niveles"><div class="aviso">Quedan <span id="charsLeftNiveles"></span> caracteres.</div></td>
+			</tr>
+			<tr>
+				<td>Fecha de alta:</td>
+				<td><input type="text" class="datepicker" readonly name="alta" required></td>
+			</tr>
+			<tr>
+				<td>Fecha de baja:</td>
+				<td><input type="text" class="datepicker" readonly id="baja" name="baja"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+		 <br>
+		 <br>
+		
+	</form>	
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script src="/js/moment.js"></script>
+<script type="text/javascript">
+	$('#usuario').limit('20','#charsLeftUsuario');
+	$('#clave').limit('20','#charsLeftClave');
+	$('#repetirclave').limit('20','#charsLeftRepetirClave');
+	$('#mail').limit('80','#charsLeftMail');
+	$('#niveles').limit('200','#charsLeftNiveles');
+	$(".datepicker").datepicker({
+		format: 'dd/mm/yyyy',
+		language: 'es',
+		autoclose: true
+	});
+	var myDate = new Date(); 
+	myDate.setFullYear(myDate.getFullYear() + 5);
+	day = myDate.getDate();
+	if (day<10)
+		day = "0"+day;
+	month = myDate.getMonth();
+	if (month<10)
+		month = "0"+month
+	myDate = day + "/" + month + "/" + myDate.getFullYear();
+	$("#baja").val(myDate)
+</script>
+
+{% endblock %}

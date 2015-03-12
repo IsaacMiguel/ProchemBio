@@ -1,0 +1,124 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/clientesmodificar.css" rel="stylesheet">		
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="POST" action="/clientesmodificar">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td> ID: </td>
+				<td><input type="text" name="id" value="{{ cliente.codigo }}" readonly="readonly"></td>
+			</tr>	
+			<tr>
+				<td>Nombre:</td>
+				<td><input type="text" id="nombre" name="nombre" value="{{ cliente.nombre }}"><div class="aviso">Quedan <span id="charsLeftNombre"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Direccion:</td>
+				<td><input type="text" id="direccion" name="direccion" value="{{ cliente.direc }}"><div class="aviso">Quedan <span id="charsLeftDireccion"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Localidad:</td>
+				<td><input type="text" id="localidad" name="localidad" value="{{ cliente.local }}"><div class="aviso">Quedan <span id="charsLeftLocalidad"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Provincia:</td>
+				<td>
+					<select class="form-control" id="provincia" name="provincia">
+					{% for provincia in provincias %}
+						{% if cliente.prov == provincia.id %}
+      						<option value="{{ provincia.id }}" selected> {{ provincia.descripcion }}</option>
+   						{% else %}
+      						<option value="{{ provincia.id }}">{{ provincia.descripcion }}</option>
+      					{% endif %}
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Telefonos:</td>
+				<td><input type="text" id="telefonos" name="telefonos" value="{{ cliente.telefonos }}"><div class="aviso">Quedan <span id="charsLeftTelefono"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Mail:</td>
+				<td><input type="text" id="mail" name="mail" value="{{ cliente.mail }}"><div class="aviso">Quedan <span id="charsLeftMail"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Contacto:</td>
+				<td><input type="text" id="contacto" name="contacto" value="{{ cliente.contacto }}"><div class="aviso">Quedan <span id="charsLeftContacto"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Telefono de Contacto:</td>
+				<td><input type="text" id="contel" name="contel" value="{{ cliente.contel }}"><div class="aviso">Quedan <span id="charsLeftContel"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Celular de Contacto:</td>
+				<td><input type="text" id="concel" name="concel" value="{{ cliente.concel }}"><div class="aviso">Quedan <span id="charsLeftConcel"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Nextel de Contacto::</td>
+				<td><input type="text" id="connex" name="connex" value="{{ cliente.connex }}"><div class="aviso">Quedan <span id="charsLeftConnex"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Mail de Contacto::</td>
+				<td><input type="text" id="conmail" name="conmail" value="{{ cliente.conmail }}"><div class="aviso">Quedan <span id="charsLeftConmail"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Activo:</td>
+				{% if cliente.activa == 1 %}
+					<td><input type="checkbox" name="activa" checked></td>
+				{% else %}
+					<td><input type="checkbox" name="activa"></td>
+				{% endif %}					
+			</tr>
+			<tr>
+				<td>C.U.I.T.:</td>
+				<td><input type="text" id="cuit" name="cuit" value="{{ cliente.cuit }}"><div class="aviso">Quedan <span id="charsLeftCuit"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>I.V.A.:</td>
+				<td>
+					<select class="form-control" id="iva" name="iva">
+					{% for iv in iva %}
+						{% if cliente.iva == iv.id %}
+      						<option value="{{ iv.id }}" selected> {{ iv.descripcion }}</option>
+   						{% else %}
+      						<option value="{{ iv.id }}">{{ iv.descripcion }}</option>
+      					{% endif %}
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Clave Web:</td>
+				<td><input type="text" id="claveweb" name="claveweb" value="{{ cliente.claveweb }}"><div class="aviso">Quedan <span id="charsLeftClaveweb"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Guardar"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#nombre').limit('40','#charsLeftNombre');
+	$('#direccion').limit('50','#charsLeftDireccion');
+	$('#localidad').limit('20','#charsLeftLocalidad');
+	$('#telefonos').limit('40','#charsLeftTelefono');
+	$('#mail').limit('80','#charsLeftMail');
+	$('#contacto').limit('30','#charsLeftContacto');
+	$('#contel').limit('30','#charsLeftContel');
+	$('#concel').limit('30','#charsLeftConcel');
+	$('#connex').limit('30','#charsLeftConnex');
+	$('#conmail').limit('50','#charsLeftConmail');
+	$('#cuit').limit('13','#charsLeftCuit');
+	$('#claveweb').limit('20','#charsLeftClaveweb');
+</script>
+{% endblock %}

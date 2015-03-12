@@ -1,0 +1,190 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/remitosmodificar.css" rel="stylesheet">		
+<h2>{{ pagename }}</h2>
+<form method="POST" action="/remitosmodificar">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>ID:</td>
+				<td><input type="text" name="id" value="{{ remito.id }}" readonly></td>
+			</tr>
+			<tr>
+				<td>Tipo de Movimiento:</td>
+				<td>
+					<select class="form-control" name="tipo">
+					{% for tipo in tipos %}
+						{% if remito.tipo == tipo.id %}
+      						<option value="{{ tipo.id }}" selected> {{ tipo.descripcion }}</option>
+   						{% else %}
+      						<option value="{{ tipo.id }}">{{ tipo.descripcion }}</option>
+      					{% endif %}
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Fecha R: </td>
+				<td><input type="text" name="fechar" class="datepicker" value="{{ remito.fechar|date('d/m/Y') }}" required></td>
+			</tr>
+			<tr>
+				<td>Fecha M:</td>
+				<td><input type="text" name="fecham" class="datepicker" value="{{ remito.fecham|date('d/m/Y') }}" required></td>
+			</tr>
+			<tr>
+				<td>Nro. Remito:</td>
+				<td><input type="text" id="nroremito" name="nremito" value="{{ remito.nremito }}" required><div class="aviso">Quedan <span id="charsLeftNroRemito"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Materia Prima:</td>
+				<td>
+					<select class="form-control" name="matep">
+					{% for matep in mateps %}
+						{% if remito.matepid == matep.id %}
+      						<option value="{{ matep.id }}" selected> {{ matep.nombre }}</option>
+   						{% else %}
+      						<option value="{{ matep.id }}">{{ matep.nombre }}</option>
+      					{% endif %}
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Cliente:</td>
+				<td>
+					<select class="form-control" name="cliente">
+					{% for cliente in clientes %}
+						{% if remito.clienteid == cliente.id %}
+      						<option value="{{ cliente.codigo }}" selected> {{ cliente.nombre }}</option>
+   						{% else %}
+      						<option value="{{ cliente.codigo }}">{{ cliente.nombre }}</option>
+      					{% endif %}
+					{% endfor %}
+					</select>
+				</td>	
+			</tr>
+			<tr>
+				<td>Lote:</td>
+				<td><input type="text" name="lote" value="{{ remito.lote }}" required></td>
+			</tr>
+			<tr>
+				<td>Envase:</td>
+				<td>
+					<select class="form-control" name="envase" id="envase">
+					{% for envase in envases %}
+						{% if remito.envaseid == envase.id %}
+      						<option value="{{ envase.id }}" selected> {{ envase.nombre }}</option>
+   						{% else %}
+      						<option value="{{ envase.id }}">{{ envase.nombre }}</option>
+      					{% endif %}
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Cantidad:</td>
+				<td><input type="text" name="cantidad" id="cantidad" required onkeypress="return validar(event)" onchange="calcula();" value="{{ remito.cantidad }}"></td>
+			</tr>	
+			<tr>
+				<td>Neto:</td>
+				<td><input type="text" name="neto" id="neto" value="{{ remito.neto }}" readonly></td>
+			</tr>
+			<tr>
+				<td>Concentracion en origen:</td>
+				<td><input type="text" name="conceori" value="{{ remito.conceori }}" readonly></td>
+			</tr>
+			<tr>
+				<td>Concentracion en planta:</td>
+				<td><input type="text" name="concepla" value="{{ remito.concepla }}" readonly></td>
+			</tr>
+			<tr>	
+				<td>Ubicacion:</td>
+				<td>
+					<select class="form-control" name="ubicacion">
+					{% for ubicacion in ubicaciones %}
+						{% if remito.ubicaid == ubicacion.id %}
+      						<option value="{{ ubicacion.id }}" selected> {{ ubicacion.nombre }}</option>
+   						{% else %}
+      						<option value="{{ ubicacion.id }}">{{ ubicacion.nombre }}</option>
+      					{% endif %}
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Observaciones:</td>
+				<td><textarea name="observaciones" id="observaciones" rows="4" cols="40" value="{{ remito.observaciones }}" placeholder="Escribe aquí tus comentarios"></textarea></td>
+			</tr>		
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Guardar"></td>
+			</tr>
+		</table>
+		 <br>
+		 <br>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery-ui-1.10.4.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	function validar(e) {
+	    tecla = (document.all) ? e.keyCode : e.which;
+	    if (tecla==8) return true;
+	    patron =/\d/;
+	    te = String.fromCharCode(tecla);
+	    return patron.test(te);
+	} 	
+
+	$('#nroremito').limit('13','#charsLeftNroRemito');
+	$(".datepicker").datepicker({
+		format: 'dd/mm/yyyy',
+		autoclose: true,
+		language: 'es'
+	});
+	var capacidad = null;
+
+	function calcula(){
+		var b = Number( document.getElementById('cantidad').value );
+		var c = capacidad * b;
+		document.getElementById('neto').value = c;	
+	}
+	
+
+	function TraerCapacidad(value, cb){
+		$.getJSON('/capacidadenvase/'+ value, function (data){
+				return cb(null, data)
+		});
+	}
+
+	function RefrescaCombo(value){
+		$('#cmbMatep').empty();
+		$.getJSON('/'+ value + '/materiasprimas', function (data){
+			$.each(data, function(i, value){
+				$('#cmbMatep').append('<option value=' + value.id + '>' + value.nombre + '</option>' );
+			});
+		});
+	}
+
+	$(function(){
+		RefrescaCombo($('#cmbCliente').val());
+		TraerCapacidad($('#envase').val(),function (err, data){
+			capacidad = data.capacidad;
+			calcula();
+		});
+	});
+	$('#cmbCliente').on('change', function() {
+			RefrescaCombo(this.value);
+		});
+		$('#envase').on('change', function(){
+			TraerCapacidad(this.value, function (err, data){
+				capacidad = data.capacidad;
+				calcula();
+			});
+		});
+</script>
+{% endblock %}

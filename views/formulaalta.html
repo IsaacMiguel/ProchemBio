@@ -1,0 +1,53 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/formulaalta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+	<form method="post" id="formalta" action="/formulaalta">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>ID Producto:</td>
+				<td><input type="text" id="idproducto" name="idproducto" value="{{ producto.id }}" readonly required ></td>
+			</tr>
+			<tr>
+				<td>Materia Prima:</td>
+				<td>
+					<select class="form-control" id="matep" name="matep">
+					{% for matep in mateps %}
+						<option value="{{ matep.id }}">{{ matep.nombre }}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Porcentaje (si es principio activo coloque cero):</td>
+				<td><input type="text" id="porcentaje" name="porcentaje" required></td>
+			</tr>
+			<tr>
+				<td>Solo Porcentaje:</td>
+				<td><input type="checkbox" name="soloporce"></td>
+			</tr>
+			<tr>:
+				<td>Usa Lote:</td>
+				<td><input type="checkbox" name="usalote"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+		 <br>
+		 <br>
+	</form>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#formula').limit('30','#charsLeftFormula');
+	$("#formalta").validate();
+</script>
+
+{% endblock %}

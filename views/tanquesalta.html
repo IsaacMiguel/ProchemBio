@@ -1,0 +1,60 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/tanquesalta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+	<form method="post" id="formalta" action="/tanquesalta">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>Codigo:</td>
+				<td><input type="text" id="codigo" name="codigo" onkeypress="return numbersonly(event);" required ></td>
+			</tr>
+			<tr>
+				<td>Nombre:</td>
+				<td><input type="text" id="nombre" name="nombre" required ><div class="aviso">Quedan <span id="charsLeftNombre"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Unidad de Medida:</td>
+				<td>
+					<select class="form-control" id="umed" name="umed">
+					{% for umed in umeds %}
+						<option value="{{ umed.codigo }}">{{ umed.nombre }}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Capacidad:</td>
+				<td><input type="text" id="capacidad" name="capacidad" required onkeypress="return numbersonly(event);"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+		 <br>
+		 <br>
+	</form>
+<script src="js/jquery.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#nombre').limit('20','#charsLeftNombre');
+	$("#formalta").validate();
+
+	function numbersonly(e)  {
+        var unicode = e.charCode ? e.charCode : e.keyCode
+        if (unicode != 8 && unicode != 44) {
+            if (unicode < 48 || unicode > 57) //if not a number
+            {
+                return false
+            } //disable key press    
+        }
+    } 
+
+</script>
+
+{% endblock %}

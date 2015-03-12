@@ -1,0 +1,22 @@
+#tipo{
+	width:60%;
+}
+#nroremito{
+	width:60%;
+}
+#cmbCliente{
+	width:60%;
+}
+#cmbMatep{
+	width: 60%;
+}
+#envase{
+	width:60%;
+}
+#ubicacion{
+	width: 60%;
+}
+
+.aviso{
+	font-size: 8px;
+}

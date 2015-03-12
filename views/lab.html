@@ -1,0 +1,128 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/lab.css" rel="stylesheet">		
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="POST" action="/lab">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>ID:</td>
+				<td><input type="text" name="id" value="{{ remito.id }}" readonly></td>
+			</tr>
+			<tr>
+				<td>Tipo de Movimiento:</td>
+				<td>
+					{% for tipo in tipos %}
+						{% if remito.tipo == tipo.id %}
+      						<input type="text" value="{{ tipo.descripcion }}" readonly>
+      					{% endif %}
+					{% endfor %}
+				</td>
+			</tr>
+			<tr>
+				<td>Fecha R: </td>
+				<td><input type="text" name="fechar" value="{{ remito.fechar|date('d/m/Y') }}" readonly></td>
+			</tr>
+			<tr>
+				<td>Fecha M:</td>
+				<td><input type="text" name="fecham" value="{{ remito.fecham|date('d/m/Y') }}" readonly></td>
+			</tr>
+			<tr>
+				<td>Nro. Remito:</td>
+				<td><input type="text" id="nroremito" name="nremito" value="{{ remito.nremito }}" readonly></td>
+			</tr>
+			<tr>
+				<td>Materia Prima:</td>
+				<td>
+					{% for matep in mateps %}
+						{% if remito.matepid == matep.id %}
+      						<input type="text" value="{{ matep.nombre }}" readonly>
+      					{% endif %}
+					{% endfor %}
+				</td>
+			</tr>
+			<tr>
+				<td>Cliente:</td>
+				<td>
+					{% for cliente in clientes %}
+						{% if remito.clienteid == cliente.codigo %}
+      						<input type="text"  value="{{ cliente.nombre }}" readonly>
+      					{% endif %}
+					{% endfor %}
+				</td>	
+			</tr>
+			<tr>
+				<td>Lote:</td>
+				<td><input type="text" name="lote" value="{{ remito.lote }}"  readonly></td>
+			</tr>
+			<tr>
+				<td>Envase:</td>
+				<td>
+					{% for envase in envases %}
+						{% if remito.envaseid == envase.id %}
+      						<input type="text" value="{{ envase.nombre }}"  readonly>
+      					{% endif %}
+					{% endfor %}
+				</td>
+			</tr>
+			<tr>
+				<td>Cantidad:</td>
+				<td><input type="text" name="cantidad" value="{{ remito.cantidad }}"  readonly></td>
+			</tr>	
+			<tr>
+				<td>Neto:</td>
+				<td><input type="text" name="neto" value="{{ remito.neto }}"  readonly></td>
+			</tr>
+			<tr>
+				<td><b>Concentracion en origen:</b></td>
+				<td><input type="text" name="conceori" value="{{ remito.conceori }}" required onkeypress="return isNumberKey(event)"></td>
+			</tr>
+			<tr>
+				<td><b>Concentracion en planta:</b></td>
+				<td><input type="text" name="concepla" value="{{ remito.concepla }}" required onkeypress="return isNumberKey(event)"></td>
+			</tr>
+			<tr>
+				<td>Ubicacion:</td>
+				<td>
+					{% for ubicacion in ubicaciones %}
+						{% if remito.ubicaid == ubicacion.id %}
+      						<input type="text" value="{{ ubicacion.nombre }}" readonly>
+      					{% endif %}
+					{% endfor %}
+				</td>
+			</tr>	
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Guardar"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery-ui-1.10.4.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#nroremito').limit('13','#charsLeftNroRemito');
+	$(".datepicker").datepicker({
+		format: 'dd/mm/yyyy',
+		autoclose: true,
+		language: 'es'
+	});
+
+	function isNumberKey(evt)
+       {
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+          if (charCode != 46 && charCode > 31 
+            && (charCode < 48 || charCode > 57))
+             return false;
+
+          return true;
+       }
+</script>
+{% endblock %}

@@ -1,0 +1,272 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/prog1alta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="post" id="formalta" action="/prog1alta">
+		<table align="center" class="table table-striped" id="tabla1">
+			<tr>
+				<td>Fecha:</td>
+				<td><input type="text" id="fecha" name="fecha" class="datepicker" required readonly></td>
+			</tr>
+			<tr>
+				<td>Turno:</td>
+				<td>
+					<select name="turno" id="turno" class="form-control">
+						<option value="A">A</option>
+						<option value="B">B</option>
+						<option value="C">C</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Cliente:</td>
+				<td>
+					<select name="cliente" id="cmbCliente" class="form-control">
+						{% for cliente in clientes %}
+							<option value="{{ cliente.codigo }}">{{ cliente.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Formulado:</td>
+				<td>
+					<select name="cmbForm" id="cmbForm" class="form-control">
+						<option>Seleccione un cliente</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Principio Activo del Formulado:</td>
+				<td>ID M.P.: <input type="text" id="iddelpa" readonly style="width:30px"> Nombre: <input type="text" id="padelform" readonly></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" id="btnAtras" onclick="history.back()"></td>
+				<td><input type="button" id="btnOK" value="OK"></td>
+			</tr>
+		</table>
+</div>
+<div class="panel panel-default">
+	<table align="center" class="table table-striped" id="tabla2" style="display: none">
+		<tr>
+			<td>Remito del Principio Activo:</td>
+			<td>
+				<select name="cmbRemito" id="cmbRemito" class="form-control">
+					<option>Seleccione un Remito</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Formulador:</td>
+			<td>
+				<select name="formulador" id="cmbFormulador" class="form-control">
+					{% for empleado in empleados %}
+					<option value="{{ empleado.codigo }}">{{ empleado.nombre }}</option>
+					{% endfor %}
+				</select>	
+			</td>
+		</tr>
+		<tr>
+			<td>Equipo (Mezc/Reac):</td>
+			<td>
+				<select name="equipo" id="equipo" class="form-control">
+					{% for equipo in equipos %}
+						<option value="{{ equipo.id }}">{{ equipo.nombre }}</option>
+					{% endfor %}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Tanque Destino:</td>
+			<td>
+				<select name="tanquedestino" id="tanquedestino" class="form-control">
+					{% for tanque in tanques %}
+						<option value="{{ tanque.id }}">{{ tanque.nombre }}</option>
+					{% endfor %}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Lote:</td>
+			<td><input type="text" name="txtAbLote" id="txtAbLote" readonly  style="width:40px"><input type="text" name="anio" id="txtAnio" readonly  style="width:40px"><input type="text" name="codigo" id="txtCodigo" style="width:40px"> <button type="button" id="btnAutoCalculo">Auto-Calculo</button></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="Atras" onclick="history.back()"></td>
+			<td><input type="submit" id="btnAgregar" value="Agregar"></td>
+		</tr>
+	</table>
+</div>
+	</form>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+	$('#fecha').datepicker({
+		language: 'es',
+		autoclose: true,
+		format: 'dd/mm/yyyy'
+	});
+	
+	$(function() {
+		RefrescaCombo($('#cmbCliente').val());
+	});
+	
+	$('#cmbCliente').on('change', function() {
+	   	var self = this;
+		RefrescaCombo(this.value);
+		TraerPA($('#cmbForm').val());
+	});
+
+	$('#cmbForm').on('change', function() {
+	    var self = this;
+	    TraerPA($('#cmbForm').val())
+	});
+
+	function setAnio(){
+		var dat = document.getElementById("fecha").value;
+		var year = dat.substr(8,2);
+		$('#txtAnio').val(year);
+	}
+
+	function setCodigo(value1, value2, value3, value4){
+		$.getJSON('/prog1/'+value1+'/'+value2+'/'+value3+'/'+value4, function (data){
+			console.log(data.maxlote)
+			if(data.maxlote==null)
+				$('#txtCodigo').val('0001');
+			else
+				n = (data.maxlote).toString();
+				ad = n.substring(5,9); 
+				ad = parseInt(ad) + 1;
+				ad = CompletarCeros(ad);
+				console.log(ad)
+				$('#txtCodigo').val(ad);
+		});
+	}
+
+	function CompletarCeros(str){
+		str = str.toString();//2
+		str = str.trim();//2
+		switch (str.length){
+			case 1:
+				return "000"+str;
+				break;
+			case 2:
+				return "00"+str;
+				break;
+			case 3:
+				return "0"+str;
+				break;
+			default:
+				return str;
+		}
+	}
+
+	function TraerAbLote(value){
+		$('#txtAbLote').val("");
+	    $.getJSON('/'+value+'/ablotee', function (data){
+            $('#txtAbLote').val(data[0].ablote);
+	    });
+	}
+
+	function RefrescaCombo(value){
+		$('#cmbForm').empty();
+		$.getJSON('/'+ value + '/formulados', function (data){
+			$('#cmbForm').append("<option value='0' >Seleccione un Formulado</option>");
+			$.each(data, function(i, value){
+				$('#cmbForm').append('<option value=' + value.id + '>' + value.nombre + '</option>');
+			});
+		});
+	}
+
+	function RefrescaRemito(idcliente){
+		$('#cmbRemito').empty();
+		idmatep = $('#iddelpa').val();
+		$.getJSON('/refrescaremito/'+idcliente+'/'+idmatep, function (data){
+			$('#cmbRemito').append("<option value='0' >Seleccione un Remito</option>");
+			$.each(data, function(i, value){
+				$('#cmbRemito').append("<option value=" + value.id + '>' +value.id+' - '+value.fechar+' - '+value.nremito+' - '+value.lote+' - '+value.concepla+' - '+value.nubica +'</option>');
+			});
+		});
+	}
+
+	function TraerPA(idform, cb){
+		$('#iddelpa').val('')
+		$('#padelform').val('');
+		$.getJSON('traerpa/'+idform, function (data){
+		    if (data[0]!=null){
+		        $('#iddelpa').val(data[0].matepid)
+		        $('#padelform').val(data[0].mpnombre);
+			    if (cb)
+			        return cb();
+			}
+		});
+	}
+
+	
+	$('#btnOK').on("click", function(){
+		if ( $('#fecha').val().length > 0 && $('#cmbForm').val() != 0 ){
+			//$('#fecha').css('readonly', true);
+			//$('#turno').prop('disabled', 'disabled');
+			//$('#cmbCliente').prop('disabled', 'disabled');
+			//$('#cmbForm').prop('disabled', 'disabled');
+			$('#tabla1').css('display', 'none');
+			$('#tabla2').css('display', 'inline-table');
+			RefrescaRemito($('#cmbCliente').val());
+			TraerAbLote($('#cmbForm').val());
+			$('#btnOK').prop('disabled', 'disabled');
+			$('#btnAtras').prop('disabled', true);
+		}else{
+			alert('Faltan completar datos.')
+		}
+	});
+
+	function validacion(){
+		flag = true;
+		if ($('#txtAnio').val() == ""){
+			alert('Falta agregar los ultimos 2 digitos del año.');
+			flag = false;
+		}else{
+			if ($('#txtCodigo').val() == ""){
+				alert('Falta agregar el codigo.');
+				flag = false;
+			}else{
+				if ($('#txtAbLote').val() == ""){
+					alert('Falta agregar el Lote.');
+					flag = false;
+				}else{
+					if ($('#cmbRemito').val() == '0'){
+						alert("Seleccione un Remito.");
+						flag = false;
+					}
+				}			
+			}			
+		}
+		return flag
+	}
+
+	$("#formalta").submit(function( event ) {
+  		flag = validacion();
+  		if ( flag ) {
+    		return;
+  		}else{
+  			event.preventDefault();
+  		}  		
+	});
+
+	$('#btnAutoCalculo').on('click', function(){
+		setAnio();
+		if (document.getElementById('txtAbLote').value == null)
+		{
+			console.log("Ablote.val == null");
+		}
+		else
+			setCodigo(document.getElementById('txtAbLote').value, document.getElementById("txtAnio").value, document.getElementById("cmbCliente").value, document.getElementById("cmbForm").value );
+	});
+</script>
+
+{% endblock %}

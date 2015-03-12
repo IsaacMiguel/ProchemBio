@@ -1,0 +1,91 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<!-- <link href="/css/prog1alta2.css" rel="stylesheet"> -->
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="post" id="formalta" action="/prog1alta2">
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		        <h4 class="modal-title" id="myModalLabel">{{ ayuda.titulo }}</h4>
+		      </div>
+		      <div class="modal-body">
+		        {{ ayuda.texto }}
+		        <img src="/uploads/formula.jpg">
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<table align="center" class="table table-striped" >
+		<tr>
+			<td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Ayuda</button></td>
+		</tr>	
+		</table>
+		<table align="center" class="table table-striped" >
+			<input type="hidden" id="id" name="id" value="{{ id }}">
+			<tr>
+				<td>Cantidad de Principio Activo:</td>
+				<td><input type="text" id="cant" name="cant" value="{{ prog.maximo }}" readonly ></td>
+			</tr>
+			<tr>
+				<td>Titulo del Principio Activo:</td>
+				<td><input type="text" id="titulo" name="titulo" value="{{ prog.concepla }}" readonly ></td>
+			</tr>
+			<tr>
+				<td>% del Principio Activo:</td>
+				<td><input type="text" id="porce" name="porce" value="{{ prog.concepf }}" readonly ></td>
+			</tr>
+			<tr>
+				<td>Volumen Final:</td>
+				<td><input type="text" id="volfinal" name="volfinal" readonly> <!--<button type="button" id="btnAutoCalculo">Auto-Calculo</button>--></td>
+			</tr>			
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Guardar"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><span>*Al guardar se generarán los datos para la planilla Orden de Formulacion de Agroquimicos.</span></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+	function justNumbers(e){
+		var keynum = window.event ? window.event.keyCode : e.which;
+		if ((keynum == 8) || (keynum == 46))
+		return true; 
+		return /\d/.test(String.fromCharCode(keynum));
+	}
+
+	$("#btnAutoCalculo").on("click", function() {
+		cant = $('#cant').val();
+		titulo = $('#titulo').val();
+		porce = $('#porce').val();
+		volfinal = (cant*titulo)/porce;
+		$('#volfinal').val(volfinal.toFixed(2));
+	});
+
+	$(function(){
+		cant = $('#cant').val();
+		titulo = $('#titulo').val();
+		porce = $('#porce').val();
+		volfinal = (cant*titulo)/porce;
+		$('#volfinal').val(volfinal.toFixed(2));
+	});
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<h2>{{ pagename }} <b>{{ produc.nombre }}</b> de <b>{{ cliente.nombre }}</b></h2>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  	<div class="panel-heading">
+  	<!-- Table -->
+		<table>
+		<tr>	
+			<td><a href="/prodlista/{{ produc.cdcliente }}"> <button type="button" class="btn btn-primary">Atras</button></a></td>
+			<td><a href="/consumiblesalta/{{ produc.id }}"> <button type="button" class="btn btn-success">Agregar Nueva</button></a></td>
+		</tr>
+		</table>
+	</div>
+		<div class="row">
+			<div class="col-xs-12">
+			  <table class="table table-striped">
+				<tr>
+					<th>ID</th>
+					<th>Producto</th>
+					<th>Materia Prima</th>
+					<th>Cantidad</th>
+				</tr>
+				{% for consumible in consumibles %}
+				<tr>
+					<td>{{ consumible.id }}</td>
+						{% for producto in productos %}
+							{% if producto.id == consumible.producid %}
+								<td>{{ producto.nombre }}</td>
+							{% endif %}
+						{% endfor %}								
+					{% for matep in mateps %}
+						{% if matep.id == consumible.matepid %}
+							<td>{{ matep.nombre }}</td>
+						{% endif %}
+					{% endfor %}
+					<td>{{ consumible.cantidad }}</td>
+					<td>
+						<a href='/consumiblesborrar/{{ consumible.id }}' onclick="if (!confirm('¿Seguro desea eliminar?')) return false;"><button type="button" class="btn btn-danger">Eliminar</button><a/>
+					</td>
+				</tr>
+				{% endfor %}	 
+			  </table>				
+			</div><!--div col xs12 -->
+		</div><!--div row -->
+
+</div>
+
+{% endblock %}
