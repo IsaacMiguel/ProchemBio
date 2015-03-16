@@ -83,13 +83,16 @@ function getImprimir(req, res){
   id = params.id;
 
   mProgram1.getProg1PorId_joined_w_Clientes_Reacto_Formulado_Tanque_and_Empleados(id, function (program1){
-    console.log(program1)
+    //console.log(program1)
     mProduccion.getFormulado(id, function (forms){
-      //console.log(forms)
-      res.render('produccionimprimirform',{
-        pagename: 'Imprimir Orden de Formulacion de Agroquímicos',
-        program1: program1[0],
-        forms: forms
+      mProduccion.getSuma(id, function (suma){
+        console.log(suma)
+        res.render('produccionimprimirform',{
+          pagename: 'Imprimir Orden de Formulacion de Agroquímicos',
+          program1: program1[0],
+          forms: forms,
+          suma: suma[0]
+        });
       });
     });
   });

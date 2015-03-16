@@ -287,7 +287,7 @@
 			"file": "models/mProgramacion.js",
 			"settings":
 			{
-				"buffer_size": 3474,
+				"buffer_size": 4219,
 				"line_ending": "Windows"
 			}
 		},
@@ -295,7 +295,15 @@
 			"file": "controllers/cProduccion.js",
 			"settings":
 			{
-				"buffer_size": 2483,
+				"buffer_size": 2525,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "models/mProduccion.js",
+			"settings":
+			{
+				"buffer_size": 1287,
 				"line_ending": "Windows"
 			}
 		},
@@ -303,7 +311,7 @@
 			"file": "views/produccionimprimirform.html",
 			"settings":
 			{
-				"buffer_size": 2967,
+				"buffer_size": 3016,
 				"line_ending": "Windows"
 			}
 		}
@@ -554,7 +562,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 3,
 			"sheets":
 			[
 				{
@@ -562,15 +570,15 @@
 					"file": "models/mProgramacion.js",
 					"settings":
 					{
-						"buffer_size": 3474,
+						"buffer_size": 4219,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1569,
-								1997
+								2730,
+								2730
 							]
 						],
 						"settings":
@@ -578,8 +586,8 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 225.0,
+						"translation.x": 2733.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -589,15 +597,15 @@
 					"file": "controllers/cProduccion.js",
 					"settings":
 					{
-						"buffer_size": 2483,
+						"buffer_size": 2525,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2416,
-								2416
+								2318,
+								2318
 							]
 						],
 						"settings":
@@ -607,25 +615,51 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1035.0,
+						"translation.y": 225.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 2,
-					"file": "views/produccionimprimirform.html",
+					"file": "models/mProduccion.js",
 					"settings":
 					{
-						"buffer_size": 2967,
+						"buffer_size": 1287,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1354,
-								1354
+								796,
+								796
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "views/produccionimprimirform.html",
+					"settings":
+					{
+						"buffer_size": 3016,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								998,
+								998
 							]
 						],
 						"settings":
@@ -634,7 +668,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 405.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

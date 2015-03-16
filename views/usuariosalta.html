@@ -7,6 +7,7 @@
 {% block content %}
 <link href="/css/usuariosalta.css" rel="stylesheet">
 <h2>{{ pagename }}</h2>
+<div class="panel panel-default">
 	<form method="post" id="formalta" action="/usuariosalta">
 		<table align="center" class="table table-striped">
 			<tr>
@@ -42,11 +43,8 @@
 				<td><input type="submit" value="Agregar"></td>
 			</tr>
 		</table>
-		 <br>
-		 <br>
-		
 	</form>	
-
+</div>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script src="/js/jquery.limit-1.2.js"></script>

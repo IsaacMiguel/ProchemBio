@@ -7,7 +7,8 @@
 {% block content %}
 <link href="/css/reactomodificar.css" rel="stylesheet">
 <h2>{{ pagename }}</h2>
-<form method="POST" action="/reactomodificar">
+<div class="panel panel-default">
+	<form method="POST" action="/reactomodificar">
 		<table align="center" class="table table-striped">
 			<tr>
 				<td>ID:</td>
@@ -38,8 +39,8 @@
 				<td><input type="submit" value="Guardar"></td>
 			</tr>
 		</table>
-		 <br>
-		 <br>
+	</form>
+</div>
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>

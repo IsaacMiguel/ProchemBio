@@ -3,7 +3,8 @@ var conn = require('../config/db').conn;
 module.exports = {
 	getProgramaciones: getProgramaciones,
 	getFormulado: getFormulado,
-	updateDatosFormulado: updateDatosFormulado
+	updateDatosFormulado: updateDatosFormulado,
+	getSuma: getSuma
 }
 
 function getProgramaciones(fi, ff, cb){
@@ -12,6 +13,10 @@ function getProgramaciones(fi, ff, cb){
 
 function getFormulado(id, cb){
 	conn("SELECT program2.*, matep.nombre as mpnombre from program2 left join matep on matep.id=program2.id_matep_fk where program2.id_p1_fk="+id, cb);
+}
+
+function getSuma(id, cb){
+	conn("select sum(peso_obj) as suma from program2 where program2.id_p1_fk="+id, cb);	
 }
 
 function updateDatosFormulado(id, lotemp, pesoobj, pulsoobj, pulsoreal, hri, hrf, tempi, tempf, phi, phf, cb){

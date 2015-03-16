@@ -7,7 +7,8 @@
 {% block content %}
 <link href="/css/remitosmodificar.css" rel="stylesheet">		
 <h2>{{ pagename }}</h2>
-<form method="POST" action="/remitosmodificar">
+<div class="panel panel-default">
+	<form method="POST" action="/remitosmodificar">
 		<table align="center" class="table table-striped">
 			<tr>
 				<td>ID:</td>
@@ -124,8 +125,8 @@
 				<td><input type="submit" value="Guardar"></td>
 			</tr>
 		</table>
-		 <br>
-		 <br>
+	</form>
+</div>
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery-ui-1.10.4.min.js"></script>
