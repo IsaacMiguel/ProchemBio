@@ -295,7 +295,7 @@
 			"file": "controllers/cProduccion.js",
 			"settings":
 			{
-				"buffer_size": 2525,
+				"buffer_size": 2618,
 				"line_ending": "Windows"
 			}
 		},
@@ -303,7 +303,7 @@
 			"file": "models/mProduccion.js",
 			"settings":
 			{
-				"buffer_size": 1287,
+				"buffer_size": 1421,
 				"line_ending": "Windows"
 			}
 		},
@@ -311,7 +311,7 @@
 			"file": "views/produccionimprimirform.html",
 			"settings":
 			{
-				"buffer_size": 3016,
+				"buffer_size": 4305,
 				"line_ending": "Windows"
 			}
 		}
@@ -340,6 +340,29 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/emplealta.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/emplemodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/envasesmodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/formulaalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/formuladomodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/lineasmodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/prodmodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/produccionver.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/reactomodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/remitosmodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/tanquesmodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/ubicamodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/umedmodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/usuariosmodificar.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/tanquesalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/lineasalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/usuariosalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/umedalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/recetaalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/remitosalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/ubicaalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/envasesalta.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/reactoalta.html",
 		"/C/Users/Administrador/Documents/Proyectos/Prochem001/routes.js",
 		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/produccionimprimirform.html",
 		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mProduccion.js",
@@ -444,30 +467,7 @@
 		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/icomoon.css",
 		"/C/Users/Administrador/Documents/Proyectos/Casport/models/mProveedores.js",
 		"/C/Users/Administrador/Documents/Proyectos/Casport/controllers/cProveedores.js",
-		"/C/Users/Administrador/Documents/Proyectos/Casport/config/db.js",
-		"/C/Users/Administrador/Documents/Proyectos/Casport/public/js/moment.js",
-		"/C/Users/Administrador/Documents/Proyectos/Casport/config/db2.js",
-		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/remitosalta.html",
-		"/C/Users/Administrador/Documents/Proyectos/Prochem001/controllers/cRemitos.js",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/emplealta.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/usuariosalta.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/usuarioslista.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/emplelista.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/articulosconsulta.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/sectoreslista.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/valesalta.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/umedlista.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/familialista.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/articulosalta.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/valesconsulta.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/maqlista.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/template.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/controllers/cVale.js",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/controllers/cArticulos.js",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/controllers/cFamilia.js",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/public/css/articulosalta.css",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/views/familiaalta.html",
-		"/C/Users/Administrador/Documents/Proyectos/Maresa/controllers/cAdmin.js"
+		"/C/Users/Administrador/Documents/Proyectos/Casport/config/db.js"
 	],
 	"find":
 	{
@@ -577,8 +577,8 @@
 						"selection":
 						[
 							[
-								2730,
-								2730
+								2268,
+								2268
 							]
 						],
 						"settings":
@@ -586,8 +586,8 @@
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 2733.0,
-						"translation.y": 0.0,
+						"translation.x": 0.0,
+						"translation.y": 135.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -597,15 +597,15 @@
 					"file": "controllers/cProduccion.js",
 					"settings":
 					{
-						"buffer_size": 2525,
+						"buffer_size": 2618,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2318,
-								2318
+								2239,
+								2239
 							]
 						],
 						"settings":
@@ -615,7 +615,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 225.0,
+						"translation.y": 1035.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -625,15 +625,15 @@
 					"file": "models/mProduccion.js",
 					"settings":
 					{
-						"buffer_size": 1287,
+						"buffer_size": 1421,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								796,
-								796
+								1001,
+								1001
 							]
 						],
 						"settings":
@@ -651,15 +651,15 @@
 					"file": "views/produccionimprimirform.html",
 					"settings":
 					{
-						"buffer_size": 3016,
+						"buffer_size": 4305,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								998,
-								998
+								1085,
+								1085
 							]
 						],
 						"settings":
@@ -668,7 +668,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 180.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

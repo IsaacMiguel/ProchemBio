@@ -37,8 +37,8 @@ function changeDate(date){
 
 function getAll(req, res) {
 	req.session.nromenu = 11;
-  	mAyuda.getAyudaTexto(req.session.nromenu, function(ayuda){
-	  	mProgramacion.getAll(function(progs){
+  	mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
+	  	mProgramacion.getAll(function (progs){
 			res.render('prog1lista', {
 				pagename: 'Programacion',
 				progs: progs,
@@ -68,7 +68,7 @@ function getAlta(req, res){
 
 function postAlta(req, res){
 	params = req.body;
-	console.log(req.body)
+	//console.log(req.body)
 	fechap = params.fecha;
 	turno = params.turno;
 	idcliente = params.cliente;
@@ -108,9 +108,13 @@ function postAlta(req, res){
 
 
 function getLista(req, res){
-  res.render('prog2lista', {
-    pagename: 'Programacion Parte 2'
-  });
+	req.session.nromenu = 14;
+  	mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
+		res.render('prog2lista', {
+		    pagename: 'Programacion Parte 2',
+		    ayuda: ayuda[0]
+		});
+	});
 }
 
 function getAlta2(req, res){
@@ -119,6 +123,7 @@ function getAlta2(req, res){
 	id = params.idprog;
   	mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
   		mProgramacion.getProgPorId(id, function (prog){
+  			//console.log(prog)
   			res.render('prog1alta2',{
 				pagename:"Programacion Parte 2",
 				ayuda: ayuda[0],

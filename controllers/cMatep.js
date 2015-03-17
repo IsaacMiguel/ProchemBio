@@ -4,6 +4,7 @@ var mClientes = require('../models/mClientes');
 var mUmed = require('../models/mUmed');
 var mBorro = require('../models/mBorro');
 var mVerificacion = require('../models/mVerificacion');
+var mAyuda = require('../models/mAyuda');
 
 module.exports = {
 	getAllMatepPorCliente: getAllMatepPorCliente,
@@ -15,17 +16,21 @@ module.exports = {
 };
 
 function getAllMatepPorCliente(req, res) {
+	req.session.nromenu = 15;
 	params = req.params;
 	cdcliente = params.cdcliente
 	mMatep.getAllMatepPorCliente(cdcliente, function (allmatepporcliente){
 		mClientes.getNombreDeClientePorId(cdcliente, function (nombredecliente){
-			res.render('mateplista',{
-				pagename: 'Archivo de Materias Primas ',
-				mateps: allmatepporcliente,
-				cdcliente2: cdcliente,
-				nombredecliente: nombredecliente[0]
+			mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
+				res.render('mateplista',{
+					pagename: 'Archivo de Materias Primas ',
+					mateps: allmatepporcliente,
+					cdcliente2: cdcliente,
+					nombredecliente: nombredecliente[0],
+					ayuda: ayuda[0]
+				});
 			});
-		})
+		});
 		
 	});
 }

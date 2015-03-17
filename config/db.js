@@ -3,7 +3,7 @@ function conn(query, cb){
  
   var connection = mysql.createConnection({
     user: 'root',
-    password: 'root',
+    password: '',
     host: '127.0.0.1',
     port: '3306',
     database: 'Prochem001',

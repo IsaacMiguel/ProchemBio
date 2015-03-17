@@ -26,9 +26,10 @@ function changeDate(date){
 
 function getLista(req, res){
   req.session.nromenu = 13;
-  mAyuda.getAyudaTexto(req.session.nromenu, function(ayuda){
+  mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
     res.render('produccionlista',{
-      pagename: 'Lista de Produciones'
+      pagename: 'Lista de Produciones',
+      ayuda: ayuda[0]
     });
   });
 }
@@ -48,6 +49,7 @@ function getVerFormulado(req, res){
   params = req.params;
   id = params.id;
   mProduccion.getFormulado(id, function (form){
+    console.log(form)
     res.render('produccionver',{
       pagename: 'Ver Datos Formulado',
       form: form
