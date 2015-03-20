@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"getB",
+				"getBusq"
+			],
+			[
 				"produ",
 				"produccionController"
 			],
@@ -284,34 +288,50 @@
 	"buffers":
 	[
 		{
-			"file": "models/mProgramacion.js",
+			"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/views/busqueda.html",
 			"settings":
 			{
-				"buffer_size": 4219,
+				"buffer_size": 4322,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "controllers/cProduccion.js",
+			"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/routes.js",
 			"settings":
 			{
-				"buffer_size": 2618,
+				"buffer_size": 755,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "models/mProduccion.js",
+			"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/controllers/cIndex.js",
 			"settings":
 			{
-				"buffer_size": 1421,
+				"buffer_size": 2583,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "views/produccionimprimirform.html",
+			"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/models/mBusqueda.js",
 			"settings":
 			{
-				"buffer_size": 4305,
+				"buffer_size": 576,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/config/db.js",
+			"settings":
+			{
+				"buffer_size": 1647,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/controllers/cAdmin.js",
+			"settings":
+			{
+				"buffer_size": 1098,
 				"line_ending": "Windows"
 			}
 		}
@@ -340,6 +360,21 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Administrador/Documents/Proyectos/Shell-demo/controllers/cAdmin.js",
+		"/C/Users/Administrador/Documents/Proyectos/Shell-demo/views/template2.html",
+		"/C/Users/Administrador/Documents/Proyectos/Shell-demo/config/db.js",
+		"/C/Users/Administrador/Documents/Proyectos/Shell-demo/app.js",
+		"/C/Users/Administrador/Documents/Proyectos/Shell-demo/views/contacto.html",
+		"/C/Users/Administrador/Documents/Proyectos/Shell-demo/views/admin2.html",
+		"/C/Users/Administrador/Documents/Proyectos/Shell-demo/routes.js",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/models/mProduccion.js",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/models/mProgramacion.js",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/produccionimprimirform.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/config/db.js",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/controllers/cProduccion.js",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/mateplista.html",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/controllers/cProgramacion.js",
+		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/controllers/cMatep.js",
 		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/emplealta.html",
 		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/emplemodificar.html",
 		"/C/Users/Administrador/Documents/Proyectos/ProchemBio/views/envasesmodificar.html",
@@ -452,22 +487,7 @@
 		"/C/Users/Administrador/Documents/Proyectos/NodeMaker/writer/wIndex.js",
 		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mAccesos.js",
 		"/C/Users/Administrador/Documents/Proyectos/Maresa/app.js",
-		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/prog1alta.html",
-		"/C/Users/Administrador/Documents/Proyectos/Prochem001/controllers/cFormulados.js",
-		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mFormulados.js",
-		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/mpenreactorlista.html",
-		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/mpenreactoralta.html",
-		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/mpenreactormodificar.html",
-		"/C/Users/Administrador/Documents/Proyectos/Prochem001/models/mReacto.js",
-		"/C/Users/Administrador/Documents/Proyectos/Prochem001/controllers/cMpEnReactor.js",
-		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/inicio.css",
-		"/C/Users/Administrador/Documents/Proyectos/Embryo.com.ar/web/index.html",
-		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/normalize.css",
-		"/C/Users/Administrador/Documents/Proyectos/Casport/views/error.html",
-		"/C/Users/Administrador/Documents/Proyectos/Casport/public/css/icomoon.css",
-		"/C/Users/Administrador/Documents/Proyectos/Casport/models/mProveedores.js",
-		"/C/Users/Administrador/Documents/Proyectos/Casport/controllers/cProveedores.js",
-		"/C/Users/Administrador/Documents/Proyectos/Casport/config/db.js"
+		"/C/Users/Administrador/Documents/Proyectos/Prochem001/views/prog1alta.html"
 	],
 	"find":
 	{
@@ -562,23 +582,50 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "models/mProgramacion.js",
+					"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/views/busqueda.html",
 					"settings":
 					{
-						"buffer_size": 4219,
+						"buffer_size": 4322,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2268,
-								2268
+								3902,
+								3902
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1305.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/routes.js",
+					"settings":
+					{
+						"buffer_size": 755,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								517,
+								517
 							]
 						],
 						"settings":
@@ -587,25 +634,25 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 135.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "controllers/cProduccion.js",
+					"buffer": 2,
+					"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/controllers/cIndex.js",
 					"settings":
 					{
-						"buffer_size": 2618,
+						"buffer_size": 2583,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2239,
-								2239
+								1658,
+								2023
 							]
 						],
 						"settings":
@@ -615,30 +662,31 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1035.0,
+						"translation.y": 315.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "models/mProduccion.js",
+					"buffer": 3,
+					"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/models/mBusqueda.js",
 					"settings":
 					{
-						"buffer_size": 1421,
+						"buffer_size": 576,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1001,
-								1001
+								535,
+								535
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -647,28 +695,56 @@
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "views/produccionimprimirform.html",
+					"buffer": 4,
+					"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/config/db.js",
 					"settings":
 					{
-						"buffer_size": 4305,
+						"buffer_size": 1647,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1085,
-								1085
+								1450,
+								1450
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 450.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/Administrador/Documents/Proyectos/Shell-demo/controllers/cAdmin.js",
+					"settings":
+					{
+						"buffer_size": 1098,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								673,
+								673
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 180.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
