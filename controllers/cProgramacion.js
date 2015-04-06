@@ -40,7 +40,7 @@ function getAll(req, res) {
   	mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
 	  	mProgramacion.getAll(function (progs){
 			res.render('prog1lista', {
-				pagename: 'Programacion',
+				pagename: 'Lista de Programaciones',
 				progs: progs,
 				ayuda: ayuda[0]
 			});
@@ -49,10 +49,10 @@ function getAll(req, res) {
 }
 
 function getAlta(req, res){
-  	mClientes.getAllActivos(function(clientes){
-    	mEmple.getAllActivos(function(empleados){
-      		mReacto.getAllActivos(function(reactores){
-        		mTanques.getAllActivos(function(tanques){
+  	mClientes.getAllActivos(function (clientes){
+    	mEmple.getAllActivos(function (empleados){
+      		mReacto.getAllActivos(function (reactores){
+        		mTanques.getAllActivos(function (tanques){
           			res.render('prog1alta',{
 			            pagename:"Alta de Programacion Parte 1",
 			            tanques: tanques,
