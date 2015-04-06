@@ -33,7 +33,7 @@
 			<tr>
 				<td>Unidad de Medida:</td>
 				<td>
-					<select class="form-control" name="umed">
+					<select class="form-control" id="umed" name="umed">
 					{% for umed in umeds %}
 						{% if produ.umed == umed.codigo %}
      						<option value="{{ umed.codigo }}" selected> {{ umed.nombre }}</option>
@@ -55,7 +55,7 @@
 			<tr>
 				<td>Usa Formulado:</td>
 				<td>
-					<select class="form-control" name="idformulado">
+					<select class="form-control" name="idformulado" id="idformulado">
 					{% for form in formulados %}
 						{% if produ.idFormulado == form.id %}
      						<option value="{{ form.id }}" selected> {{ form.nombre }}</option>
@@ -67,7 +67,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td>Cantidad</td>
+				<td>Cantidad de Formulado:</td>
 				<td><input type="text" id="cantidad" name="cantidad" value="{{ produ.canFormulado }}"> </td>
 			</tr>
 			<tr>
@@ -83,7 +83,6 @@
 	$('#nombre').limit('40','#charsLeftNombre');
 	$('#lote').limit('3','#charsLeftLote');
 	$('#codigo').limit('12', '#charsLeftCodigo');
-	$("#formalta").validate();
 </script>
 
 {% endblock %}

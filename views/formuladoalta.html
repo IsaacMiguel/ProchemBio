@@ -23,8 +23,12 @@
 				<td><input type="text" id="nombre" name="nombre" required><div class="aviso">Quedan <span id="charsLeftNombre"></span> caraceteres.</div></td>
 			</tr>
 			<tr>
-				<td>Encabezado de Lote:</td>
+				<td>Abreviacion de Lote:</td>
 				<td><input type="text" id="lote" name="lote" required><div class="aviso">Quedan <span id="charsLeftLote"></span> caraceteres.</div></td>
+			</tr>
+			<tr>
+				<td>Concentracion P.F.:</td>
+				<td><input type="text" id="concentracion" name="concentracion" required onkeypress="return Numy1Punto(event, this)"></td>
 			</tr>
 			<tr>
 				<td>Unidad de Medida:</td>
@@ -57,7 +61,27 @@
                 return false
             } //disable key press    
         }
-    } 
+    }
+    function Numy1Punto(e, field) {
+	  key = e.keyCode ? e.keyCode : e.which
+	  // backspace
+	  if (key == 8) return true
+	  // 0-9
+	  if (key > 47 && key < 58) {
+	    if (field.value == "") return true
+	    regexp = /.[0-9]{2}$/
+	    return !(regexp.test(field.value))
+	  }
+	  // .
+	  if (key == 46) {
+	    if (field.value == "") return false
+	    regexp = /^[0-9]+$/
+	    return regexp.test(field.value)
+	  }
+	  // other key
+	  return false
+	}
+	//onkeypress="return Numy1Punto(event, this)" 
 </script>
 
 {% endblock %}

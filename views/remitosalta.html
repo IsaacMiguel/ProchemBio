@@ -87,8 +87,29 @@
 						{% for ubicacion in ubicaciones %}
 							<option value="{{ ubicacion.id }}">{{ ubicacion.nombre }}</option>
 						{% endfor %}
-					</select></td>
+					</select>
+				</td>
 			</tr>
+			<tr>
+				<td>Color Cinta 1</td>
+				<td>
+					<select class="form-control" id="cinta1" name="cinta1">
+						{% for color in colores %}
+							<option value="{{ color.id }}">{{ color.color }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Color Cinta 2</td>
+				<td>
+					<select class="form-control" id="cinta2" name="cinta2">
+						{% for color in colores %}
+							<option value="{{ color.id }}">{{ color.color }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>	
 			<tr>
 				<td>Observaciones:</td>
 				<td><textarea name="observaciones" id="observaciones" rows="4" cols="40" placeholder="Escribe aquí tus comentarios"></textarea></td>
@@ -151,7 +172,7 @@
 	function RefrescaCombo(value){
 		$('#cmbMatep').empty();
 		$.getJSON('/'+ value + '/materiasprimas', function (data){
-			$.each(data, function(i, value){
+			$.each(data, function (i, value){
 				$('#cmbMatep').append('<option value=' + value.id + '>' + value.nombre + '</option>' );
 			});
 		});

@@ -35,10 +35,6 @@
 			<tr>
 				<td>Es Principio Activo:</td>
 				<td><input type="checkbox" id="pactivo" name="pactivo" onclick="ShowContent();"></td>
-			</tr> 
-			<tr id="content" style="display:none">
-				<td>Concentracion del Producto Final:</td>
-				<td><input type="textbox" name="concentracion" id="concentracion" onkeypress="return Numy1Punto(event, this)"></td>
 			</tr>
 			<tr>
 				<td><input type="button" value="Atras" onclick="history.back()"></td>
@@ -54,15 +50,6 @@
 	$('#nombre').limit('40','#charsLeftNombre');
 	$('#codigo').limit('12', '#charsLeftCodigo');
 	
-	function ShowContent(){
-		content = document.getElementById('content');
-		chk = document.getElementById('pactivo');
-		if (chk.checked)
-			content.style.display='table-row';
-		else
-			content.style.display='none';
-	}
-
     function Numy1Punto(e, field) {
 	  key = e.keyCode ? e.keyCode : e.which
 	  // backspace

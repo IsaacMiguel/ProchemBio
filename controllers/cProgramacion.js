@@ -8,7 +8,7 @@ var mTanques = require('../models/mTanques');
 var mEmple = require('../models/mEmple');
 var mReacto = require('../models/mReacto');
 var mAyuda = require('../models/mAyuda');
-var mMpEnReactor = require('../models/mMpEnReactor');
+var mFormEnReactor = require('../models/mFormEnReactor');
 var mRemitos = require('../models/mRemitos');
 var mMatep = require('../models/mMatep');
 var mReceta = require('../models/mReceta');
@@ -89,21 +89,25 @@ function postAlta(req, res){
 	fechar =currentTime.getFullYear() + '/' + month + '/' + day  ;
 	fechap = changeDate(fechap);
 
-	mProgramacion.getPA(formulado, function (PA){
-  		mMpEnReactor.getMPENREACTORporIDREACTOyIDMP(equipo, PA[0].matepid, function (mpenreactor){
-  			maximo = mpenreactor[0].maximo;
-  			mRemitos.getRemitoPorId(idremito, function (remito){
-  				concepla = remito[0].concepla;
-  				mMatep.getMatepPorId(remito[0].matepid, function (matep){
-  					concepf = matep[0].concentracion;
-  					mProgramacion.insert(fechap, fechar, turno, idcliente, formulado, formulador, equipo, tanquedestino, lote, maximo, concepla, concepf, function(){
-						res.redirect('prog1lista');
-					});
-  				});
-  			});
-  			
-  		});
-  	});
+	mFormEnReactor.getFORMENREACTORporIDREACTOyIDFORM(equipo, formulado, function (formenreactor){
+		if (formenreactor[0]==null){
+				res.render('error', {
+			    pagename: 'Error',
+			    error: 'El Formulado debe tener un máximo seteado en el reactor seleccionado. Hágalo y vuelva a intentar.'
+			});
+		}else{
+			maximo = formenreactor[0].maximo;
+			mRemitos.getRemitoPorId(idremito, function (remito){
+				concepla = remito[0].concepla;
+				mFormulados.getFormuladoPorId(formulado, function (form){
+					concepf = form[0].concentracion;
+					mProgramacion.insert(fechap, fechar, turno, idcliente, formulado, formulador, equipo, tanquedestino, lote, maximo, concepla, concepf, function(){
+					res.redirect('prog1lista');
+				});
+				});
+			});
+		}
+	});
 }
 
 

@@ -21,9 +21,9 @@ function changeDate(date){
 
 function getEmpleados(req, res) {
 	req.session.nromenu = 4;
-  	mAyuda.getAyudaTexto(req.session.nromenu, function(ayuda){
-	  	mCargos.getAll(function(docs){
-	  		mEmple.getAllActivos(function(docs2){
+  	mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
+	  	mCargos.getAll(function (docs){
+	  		mEmple.getAllActivos(function (docs2){
 	  			res.render('emplelista', {
 					pagename: 'Archivo de Empleados',
 					cargos: docs,
@@ -36,8 +36,8 @@ function getEmpleados(req, res) {
 }
 
 function getAlta(req, res){
-	mCargos.getAllActivos(function(docs){
-		mEmple.getUltimo(function(docs2){
+	mCargos.getAllActivos(function (docs){
+		mEmple.getUltimo(function (docs2){
 			if(docs[0].max==null)
 				res.render('emplealta', {
 					pagename: 'Alta de Empleados',
@@ -72,8 +72,8 @@ function postAlta(req, res){
 function getModificar(req, res){
 	params = req.params;
 	codigo= params.codigo;
-	mEmple.getEmplePorCodigo(codigo, function(docs){
-		mCargos.getAll(function(cargos){
+	mEmple.getEmplePorCodigo(codigo, function (docs){
+		mCargos.getAll(function (cargos){
 			res.render('emplemodificar', {
 				pagename: 'Modificar Empleado',
 				emple: docs[0],
@@ -85,7 +85,7 @@ function getModificar(req, res){
 
 function postModificar(req, res){
 	params = req.body;
-	console.log(params)
+	//console.log(params)
 	codigo = params.codigo;
 	nombre = params.nombre;
 	falta = params.falta;
@@ -107,7 +107,7 @@ function getDelEmple(req, res){
   var params = req.params;
   var codigo = params.codigo;
 
-  mEmple.getEmplePorCodigo(codigo, function(docs){
+  mEmple.getEmplePorCodigo(codigo, function (docs){
   	emple = docs[0];
   	mBorro.add(req.session.user.usuario,"Empleados", "Borra Nombre de Empleado: "+ emple.nombre + ", id: "+ emple.codigo, function(){
   		mEmple.delEmple(codigo, function(){

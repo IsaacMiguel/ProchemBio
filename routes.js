@@ -16,7 +16,7 @@ var ubicaController = require('./controllers/cUbica');
 var recetaController = require('./controllers/cReceta');
 var remitosController = require('./controllers/cRemitos');
 var progController = require('./controllers/cProgramacion');
-var MpEnReactorController = require('./controllers/cMpEnReactor');
+var FormEnReactorController = require('./controllers/cFormEnReactor');
 var labController = require('./controllers/cLab');
 var formController = require('./controllers/cFormulados');
 var moment = require("moment");
@@ -94,12 +94,12 @@ module.exports = function(app) {
 	app.post('/matepmodificar', auth, matepController.postModificar);
 	app.get('/matepborrar/:id', auth, matepController.getDelMatep);
 	//cantidad maxima en tanque por matep
-	app.get('/mpenreactor/:id', auth, MpEnReactorController.getMpEnReactor);
-	app.get('/mpenreactoralta/:idmp', auth, MpEnReactorController.getAlta);
-	app.post('/mpenreactoralta', auth, MpEnReactorController.postAlta);
-	app.get('/mpenreactormodificar/:id', auth, MpEnReactorController.getModificar);
-	app.post('/mpenreactormodificar', auth, MpEnReactorController.postModificar);
-	app.get('/mpenreactorborrar/:id', auth, MpEnReactorController.del);
+	app.get('/formenreactor/:id', auth, FormEnReactorController.getFormEnReactor);
+	app.get('/formenreactoralta/:idform', auth, FormEnReactorController.getAlta);
+	app.post('/formenreactoralta', auth, FormEnReactorController.postAlta);
+	app.get('/formenreactormodificar/:id', auth, FormEnReactorController.getModificar);
+	app.post('/formenreactormodificar', auth, FormEnReactorController.postModificar);
+	app.get('/formenreactorborrar/:id', auth, FormEnReactorController.del);
 	//producto por clientereactor
 	app.get('/prodlista/:cdcliente', auth, prodController.getAllProdPorCliente);
 	app.get('/prodalta/:cdcliente', auth, prodController.getAlta);

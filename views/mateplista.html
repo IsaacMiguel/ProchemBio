@@ -46,9 +46,8 @@
 					<th>Nombre</th>
 					<th>Unidad de Medida</th>
 					<th>Principio Activo</th>
-					<th>Concentracion P.F.</th>
 					<th>Activa</th>
-					<th colspan="3">Opciones</th>
+					<th colspan="2">Opciones</th>
 				</tr>
 				{% for matep in mateps %}
 				<tr>
@@ -62,7 +61,6 @@
 					{% else %}
 						<td><span>No</span></td>
 					{% endif %}
-					<td>{{ matep.concentracion }}</td>
 					{% if matep.activa == 1 %}
 						<td><span>Activo</span></td>
 					{% else %}
@@ -70,10 +68,9 @@
 					{% endif %}
 					<td>
 						<a href="/matepmodificar/{{ matep.id }}"><button class="btn btn-warning">Modificar</button></a>
+					</td>
+					<td>
 						<a href='/matepborrar/{{ matep.id }}' onclick="if (!confirm('¿Seguro desea eliminar?')) return false;"><button type="button" class="btn btn-danger">Eliminar</button><a/>
-						{% if matep.pactivo == 1 %}	
-							<a href="/mpenreactor/{{ matep.id }}"><button type="button" class="btn btn-default">Max/Reactor</button></a>
-						{% endif %}
 					</td>
 				</tr>
 				{% endfor %}	 

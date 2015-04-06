@@ -6,12 +6,13 @@ module.exports = {
 	insert: insert,
 	getUltimo: getUltimo,
 	getEmplePorCodigo: getEmplePorCodigo,
+	getEmplePorLegajo: getEmplePorLegajo,
 	update: update,
 	delEmple: delEmple
 }
 
 function getAll(cb){
-	conn('select * from emple', cb);
+	conn('select * from emple order by codigo', cb);
 }
 
 function getAllActivos(cb){
@@ -19,7 +20,7 @@ function getAllActivos(cb){
 }
 
 function insert(codigo, nombre, falta, fbaja, cargo, activa, cb){
-	conn("insert into emple(nombre, falta, fbaja, cargo, activa) values('"+nombre+"', '"+falta+"', '"+fbaja+"', '"+cargo+"',"+ activa+")", cb)
+	conn("insert into emple(nombre, falta, fbaja, cargo, activa) values('"+nombre+"','"+falta+"', '"+fbaja+"', '"+cargo+"',"+ activa+")", cb)
 }
 
 function getUltimo(cb){
@@ -28,6 +29,10 @@ function getUltimo(cb){
 
 function getEmplePorCodigo(codigo, cb){
 	conn("select * from emple where codigo="+ codigo, cb);
+}
+
+function getEmplePorLegajo(legajo, cb){
+	conn("select * from emple where legajo="+ legajo, cb);
 }
 
 function update(codigo, nombre, falta, fbaja, cargo, activa, cb){

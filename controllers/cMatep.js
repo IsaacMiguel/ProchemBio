@@ -49,7 +49,7 @@ function getAlta(req, res){
 
 function postAlta(req, res){
 	params = req.body;
-	console.log(params)
+	//console.log(params)
 	codigo = params.codigo;
 	umed = params.umed;
 	cdcliente = params.cdcliente;
@@ -60,47 +60,41 @@ function postAlta(req, res){
 		pactivo = 1;
 	else
 		pactivo=0;
-	if(pactivo==1)
-		concentracion = params.concentracion;
-	else
-		concentracion = 0;
-	if (concentracion<100.01){
-		mMatep.getMatepPorCodigoParaCadaCliente(codigo, cdcliente, function (docs){
-	    	if(docs[0]==null){
-	      		//si no hay coincidencias
-	      		mMatep.getMatepPorNombreParaCadaCliente(nombre, cdcliente, function (docs2){
-	      			if (docs2[0]==null){
-		      			mMatep.insertMatep(codigo, cdcliente, umed, nombre, pactivo, concentracion, function(){
-							res.redirect('mateplista/'+ cdcliente);
-						});
-		      		}
-	      			else{
-	      				res.render('error', {
-	      					error: "Nombre de Materia Prima existente para este cliente. Intente con otro Nombre de Materia Prima."
-	      				});
-	      			}
-	      		});      		
-	   		}else{
-		      	//si hay coincidencias ->error
-		      	res.render('error', {
-		       		error: "Codigo de Materia Prima existente para este cliente. Intente con otro Codigo de Materia Prima."
-		      	});
-	    	}
-	  	});
-	}else{
-		res.render('error',{
-			error: "La concentracion no puede ser mayor a 100."
-		});
-	}	
+
+	mMatep.getMatepPorCodigoParaCadaCliente(codigo, cdcliente, function (docs){
+    	if(docs[0]==null){
+      		//si no hay coincidencias
+      		mMatep.getMatepPorNombreParaCadaCliente(nombre, cdcliente, function (docs2){
+      			if (docs2[0]==null){
+	      			mMatep.insertMatep(codigo, cdcliente, umed, nombre, pactivo, function(){
+						res.redirect('mateplista/'+ cdcliente);
+					});
+	      		}
+      			else{
+      				res.render('error', {
+      					error: "Nombre de Materia Prima existente para este cliente. Intente con otro Nombre de Materia Prima."
+      				});
+      			}
+      		});      		
+   		}else{
+	      	//si hay coincidencias ->error
+	      	res.render('error', {
+	       		error: "Codigo de Materia Prima existente para este cliente. Intente con otro Codigo de Materia Prima."
+	      	});
+    	}
+  	});	
 }
 
 function getModificar(req, res){
 	params = req.params;
 	id = params.id;
-	mMatep.getMatepPorId(id, function (docs){
-		res.render('matepmodificar',{
-			pagename: 'Modificar Materia Prima',
-			matep: docs[0]
+	mMatep.getMatepPorId(id, function (matep){
+		mUmed.getAllActivas(function (umeds){
+			res.render('matepmodificar',{
+				pagename: 'Modificar Materia Prima',
+				matep: matep[0],
+				umeds: umeds
+			});
 		});
 	});
 }
@@ -113,7 +107,7 @@ function postModificar(req, res){
 	nombre = params.nombre;
 	activo = params.activo;
 	pactivo = params.pactivo;
-	concentracion = params.concentracion;
+	umed = params.umed;
 
 	if (pactivo == "on")
 		pactivo = 1;
@@ -124,25 +118,18 @@ function postModificar(req, res){
 		activo = 1;
 	else
 		activo = 0;
-	if (concentracion.length == 0)
-		concentracion = 0;
-	if (concentracion<100.01){
-		mMatep.verificacionCodigos(id, codigo, function (verificacion){
-			if (verificacion[0]==null){
-				mMatep.updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, concentracion, function(){
-					res.redirect('mateplista/'+ cdcliente);
-				});
-			}else{
-				res.render('error', {
-	       			error: "Codigo de Materia Prima existente para este cliente. Intente con otro Codigo de Materia Prima."
-	      		});
-			}
-		});
-	}else{
-		res.render('error', {
-			error: 'La Concentracion no puede ser mayor a 100.'
-		});
-	}	
+
+	mMatep.verificacionCodigos(id, codigo, function (verificacion){
+		if (verificacion[0]==null){
+			mMatep.updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, umed, function(){
+				res.redirect('mateplista/'+ cdcliente);
+			});
+		}else{
+			res.render('error', {
+       			error: "Codigo de Materia Prima existente para este cliente. Intente con otro Codigo de Materia Prima."
+      		});
+		}
+	});	
 }
 
 function getDelMatep(req, res){

@@ -30,8 +30,8 @@ function getUltimo(cdcliente, cb){
 	conn("select max(codigo) as max from Formulados where cdcliente="+ cdcliente, cb)
 }
 
-function insertFormulado(codigo, cdcliente, lote, umed, nombre, cb){
-	conn("insert into Formulados(codigo, cdcliente, AbLote, umed, nombre, activa) values('"+codigo+"',"+cdcliente+", '"+ lote +"',  '"+umed+"', '"+nombre+"', 1) ", cb);
+function insertFormulado(codigo, cdcliente, lote, umed, nombre, concentracion, cb){
+	conn("insert into Formulados(codigo, cdcliente, AbLote, umed, nombre, activa, concentracion) values('"+codigo+"',"+cdcliente+", '"+ lote +"',  '"+umed+"', '"+nombre+"', 1, "+concentracion+") ", cb);
 }
 
 function getFormuladoPorCodigoParaCadaCliente(codigo, cdcliente, cb){
@@ -51,8 +51,8 @@ function getFormuladoPorId(id, cb){
 	conn("select * from Formulados where id="+id, cb);
 }
 
-function updateFormulado(id, cdcliente, codigo, nombre, lote, umed, activo, cb){
-	conn("update Formulados set cdcliente="+cdcliente+", codigo='"+codigo+"', nombre='"+nombre+"', AbLote='"+lote+"', umed='"+umed+"', activa="+activo+" where id="+id, cb);
+function updateFormulado(id, cdcliente, codigo, nombre, lote, umed, activo, concentracion, cb){
+	conn("update Formulados set cdcliente="+cdcliente+", codigo='"+codigo+"', nombre='"+nombre+"', AbLote='"+lote+"', umed='"+umed+"', activa="+activo+", concentracion="+concentracion+" where id="+id, cb);
 }
 
 function delFormulado(id, cb){

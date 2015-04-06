@@ -31,8 +31,8 @@ function getUltimo(cdcliente, cb){
 	conn("select max(codigo) as max from matep where cdcliente="+ cdcliente, cb)
 }
 
-function insertMatep(codigo, cdcliente, umed, nombre, pactivo, concentracion, cb){
-	conn("insert into matep(codigo, cdcliente, umed, nombre, activa, pactivo, concentracion) values('"+codigo+"', "+cdcliente+", '"+umed+"', '"+nombre+"', 1, "+pactivo+", "+concentracion+") ", cb);
+function insertMatep(codigo, cdcliente, umed, nombre, pactivo, cb){
+	conn("insert into matep(codigo, cdcliente, umed, nombre, activa, pactivo) values('"+codigo+"', "+cdcliente+", '"+umed+"', '"+nombre+"', 1, "+pactivo+") ", cb);
 }
 
 function getMatepPorCodigoParaCadaCliente(codigo, cdcliente, cb){
@@ -47,11 +47,11 @@ function getMatepPorId(id, cb){
 	conn("select * from matep where id="+id, cb);
 }
 
-function updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, concentracion, cb){
+function updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, umed, cb){
 	if (activo == 1)
-		conn("update matep set cdcliente="+cdcliente+", codigo='"+codigo+"', nombre='"+nombre+"', activa=1, pactivo="+pactivo+", concentracion="+concentracion+" where id="+id, cb);
+		conn("update matep set cdcliente="+cdcliente+", codigo='"+codigo+"', nombre='"+nombre+"', activa=1, pactivo="+pactivo+", umed="+umed+" where id="+id, cb);
 	else
-		conn("update matep set cdcliente="+cdcliente+", codigo='"+codigo+"', nombre='"+nombre+"', activa=0, pactivo="+pactivo+", concentracion="+concentracion+" where id="+id, cb);
+		conn("update matep set cdcliente="+cdcliente+", codigo='"+codigo+"', nombre='"+nombre+"', activa=0, pactivo="+pactivo+", umed="+umed+" where id="+id, cb);
 }
 
 function delMatep(id, cb){

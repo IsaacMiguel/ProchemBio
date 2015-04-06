@@ -28,6 +28,7 @@
 					<th width="220px">Nombre</th>
 					<th>Unidad de Medida</th>
 					<th>Abreviacion de Lote</th>
+					<th>Concentracion P.F.</th>
 					<th>Activa</th>
 					<th colspan="3">Opciones</th>
 				</tr>
@@ -39,6 +40,7 @@
 					<td>{{ form.nombre }}</td>
 					<td>{{ form.umed }}</td>
 					<td>{{ form.ablote }}</td>
+					<td>{{ form.concentracion }}</td>
 					{% if form.activa == 1 %}
 						<td><span>Activo</span></td>
 					{% else %}
@@ -52,6 +54,9 @@
 					</td>
 					<td>
 						<a href="/recetalista/{{ form.id }}"><button class="btn btn-default">Formula</button></a>
+					</td>
+					<td>
+						<a href="/formenreactor/{{ form.id }}"><button type="button" class="btn btn-default">Max/Reactor</button></a>
 					</td>
 				</tr>
 				{% endfor %}	 

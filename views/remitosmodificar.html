@@ -41,32 +41,26 @@
 				<td><input type="text" id="nroremito" name="nremito" value="{{ remito.nremito }}" required><div class="aviso">Quedan <span id="charsLeftNroRemito"></span> caracteres</div></td>
 			</tr>
 			<tr>
-				<td>Materia Prima:</td>
-				<td>
-					<select class="form-control" name="matep">
-					{% for matep in mateps %}
-						{% if remito.matepid == matep.id %}
-      						<option value="{{ matep.id }}" selected> {{ matep.nombre }}</option>
-   						{% else %}
-      						<option value="{{ matep.id }}">{{ matep.nombre }}</option>
-      					{% endif %}
-					{% endfor %}
-					</select>
-				</td>
-			</tr>
-			<tr>
 				<td>Cliente:</td>
 				<td>
-					<select class="form-control" name="cliente">
-					{% for cliente in clientes %}
-						{% if remito.clienteid == cliente.id %}
-      						<option value="{{ cliente.codigo }}" selected> {{ cliente.nombre }}</option>
-   						{% else %}
-      						<option value="{{ cliente.codigo }}">{{ cliente.nombre }}</option>
-      					{% endif %}
+					<input type="text" id="idcliente" name="idcliente" hidden value="{{ remito.clienteid }}">
+					{% for cliente in clientes%}	
+						{% if remito.clienteid == cliente.codigo %}
+							<span id="cliente" name="cliente">{{ cliente.nombre }}</span>
+						{% endif %}
 					{% endfor %}
-					</select>
 				</td>	
+			</tr>
+			<tr>
+				<td>Materia Prima:</td>
+				<td>
+					<input type="text" id="idmatep" name="idmatep" hidden value="{{ remito.matepid }}">
+					{% for matep in mateps %}	
+						{% if remito.matepid == matep.id %}
+							<span id="matep" name="matep">{{ matep.nombre }}</span>
+						{% endif %}
+					{% endfor %}
+				</td>
 			</tr>
 			<tr>
 				<td>Lote:</td>
@@ -117,6 +111,34 @@
 				</td>
 			</tr>
 			<tr>
+				<td>Color Cinta 1</td>
+				<td>
+					<select class="form-control" name="cinta1">
+					{% for color in colores %}
+						{% if remito.cinta1 == color.id %}
+      						<option value="{{ color.id }}" selected> {{ color.color }}</option>
+   						{% else %}
+      						<option value="{{ color.id }}">{{ color.color }}</option>
+      					{% endif %}
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Color Cinta 2</td>
+				<td>
+					<select class="form-control" name="cinta2">
+					{% for color in colores %}
+						{% if remito.cinta2 == color.id %}
+      						<option value="{{ color.id }}" selected> {{ color.color }}</option>
+   						{% else %}
+      						<option value="{{ color.id }}">{{ color.color }}</option>
+      					{% endif %}
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
 				<td>Observaciones:</td>
 				<td><textarea name="observaciones" id="observaciones" rows="4" cols="40" value="{{ remito.observaciones }}" placeholder="Escribe aquí tus comentarios"></textarea></td>
 			</tr>		
@@ -153,8 +175,7 @@
 		var b = Number( document.getElementById('cantidad').value );
 		var c = capacidad * b;
 		document.getElementById('neto').value = c;	
-	}
-	
+	}	
 
 	function TraerCapacidad(value, cb){
 		$.getJSON('/capacidadenvase/'+ value, function (data){
@@ -162,30 +183,33 @@
 		});
 	}
 
-	function RefrescaCombo(value){
-		$('#cmbMatep').empty();
-		$.getJSON('/'+ value + '/materiasprimas', function (data){
-			$.each(data, function(i, value){
-				$('#cmbMatep').append('<option value=' + value.id + '>' + value.nombre + '</option>' );
-			});
-		});
-	}
+	// function RefrescaCombo(value){
+	// 	$('#cmbMatep').empty();
+	// 	$.getJSON('/'+ value + '/materiasprimas', function (data){
+	// 		$.each(data, function (i, value){
+
+	// 			$('#cmbMatep').append('<option value=' + value.id + '>' + value.nombre + '</option>' );
+	// 		});
+	// 	});
+	// }
 
 	$(function(){
-		RefrescaCombo($('#cmbCliente').val());
+		//RefrescaCombo($('#cmbCliente').val());
 		TraerCapacidad($('#envase').val(),function (err, data){
 			capacidad = data.capacidad;
 			calcula();
 		});
 	});
-	$('#cmbCliente').on('change', function() {
-			RefrescaCombo(this.value);
+
+	// $('#cmbCliente').on('change', function() {
+	// 	RefrescaCombo(this.value);
+	// });
+
+	$('#envase').on('change', function(){
+		TraerCapacidad(this.value, function (err, data){
+			capacidad = data.capacidad;
+			calcula();
 		});
-		$('#envase').on('change', function(){
-			TraerCapacidad(this.value, function (err, data){
-				capacidad = data.capacidad;
-				calcula();
-			});
-		});
+	});
 </script>
 {% endblock %}

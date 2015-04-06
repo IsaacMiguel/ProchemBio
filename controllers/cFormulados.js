@@ -51,13 +51,15 @@ function postAlta(req, res){
 	cdcliente = params.cdcliente;
 	nombre = params.nombre;
 	lote = params.lote;
+	concentracion = params.concentracion;
+
 	mFormulado.getFormuladoPorCodigoParaCadaCliente(codigo, cdcliente, function (docs){
 		console.log(docs[0].cantidad)
     	if(docs[0].cantidad==0){
       		//si no hay coincidencias
       		mFormulado.getFormuladoPorNombreParaCadaCliente(nombre, cdcliente, function (docs2){
       			if (docs2[0]==null)
-      			mFormulado.insertFormulado(codigo, cdcliente, lote, umed, nombre, function(){
+      			mFormulado.insertFormulado(codigo, cdcliente, lote, umed, nombre, concentracion, function(){
 					res.redirect('formuladolista/'+ cdcliente);
 				});
       			else
@@ -97,14 +99,15 @@ function postModificar(req, res){
 	activo = params.activo;
 	lote = params.lote;
 	umed = params.umed;
-
+	concentracion = params.concentracion;
+	
 	if (activo =="on")
 		activo = 1
 	else
 		activo = 0
 	mFormulado.verificacionCodigo(id, codigo, function (verificacion){
 		if (verificacion[0]==null){
-			mFormulado.updateFormulado(id, cdcliente, codigo, nombre, lote, umed, activo, function(){
+			mFormulado.updateFormulado(id, cdcliente, codigo, nombre, lote, umed, activo, concentracion, function(){
 					res.redirect('formuladolista/'+ cdcliente);
 				});
 		}else{
