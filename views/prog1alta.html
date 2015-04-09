@@ -210,10 +210,6 @@
 	
 	$('#btnOK').on("click", function(){
 		if ( $('#fecha').val().length > 0 && $('#cmbForm').val() != 0 ){
-			//$('#fecha').css('readonly', true);
-			//$('#turno').prop('disabled', 'disabled');
-			//$('#cmbCliente').prop('disabled', 'disabled');
-			//$('#cmbForm').prop('disabled', 'disabled');
 			$('#tabla1').css('display', 'none');
 			$('#tabla2').css('display', 'inline-table');
 			RefrescaRemito($('#cmbCliente').val());

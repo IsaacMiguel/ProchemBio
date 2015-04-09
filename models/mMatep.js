@@ -49,9 +49,9 @@ function getMatepPorId(id, cb){
 
 function updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, umed, cb){
 	if (activo == 1)
-		conn("update matep set cdcliente="+cdcliente+", codigo='"+codigo+"', nombre='"+nombre+"', activa=1, pactivo="+pactivo+", umed="+umed+" where id="+id, cb);
+		conn("update matep set cdcliente="+cdcliente+", codigo='"+codigo+"', nombre='"+nombre+"', activa=1, pactivo="+pactivo+", umed='"+umed+"' where id="+id, cb);
 	else
-		conn("update matep set cdcliente="+cdcliente+", codigo='"+codigo+"', nombre='"+nombre+"', activa=0, pactivo="+pactivo+", umed="+umed+" where id="+id, cb);
+		conn("update matep set cdcliente="+cdcliente+", codigo='"+codigo+"', nombre='"+nombre+"', activa=0, pactivo="+pactivo+", umed='"+umed+"' where id="+id, cb);
 }
 
 function delMatep(id, cb){
