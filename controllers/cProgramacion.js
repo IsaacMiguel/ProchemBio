@@ -127,12 +127,15 @@ function getAlta2(req, res){
 	id = params.idprog;
   	mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
   		mProgramacion.getProgPorId(id, function (prog){
-  			//console.log(prog)
-  			res.render('prog1alta2',{
-				pagename:"Programacion Parte 2",
-				ayuda: ayuda[0],
-				prog: prog[0]
-			});	
+  			mFormEnReactor.getFORMENREACTORporIDREACTOyIDFORM(prog[0].reactoid, prog[0].formuladoid, function (formenreactor){
+  				//console.log(prog)
+	  			res.render('prog1alta2',{
+					pagename:"Programacion Parte 2",
+					ayuda: ayuda[0],
+					prog: prog[0],
+					formenreactor: formenreactor[0]
+				});
+  			});  				
   		});			
 	});
 }
@@ -145,31 +148,41 @@ function postAlta2(req, res){
 	resultado = params.volfinal;
 	id = params.id;
 
+
 	mProgramacion.getProgPorId(id, function (prog){
-		console.log(prog)
-		if(prog[0].resultado!=0){
-			res.render('error',{
-				error: "Esta Programacion ya tiene un Resultado guardado."
-			});
-		}else{
-			mProgramacion.postResultado(id, resultado, function (){
-				//busco la receta de ese formulado, me devuelve un objeto "receta" 
-				idformulado = prog[0].formuladoid;
-				mReceta.getRecetaPorIdFormulado(idformulado, function (receta){
-					//para cada "matep" de "receta", calcular "porce" x "resultado"
-					mProgramacion.limpiarp2(id, function(){
-						receta.forEach(function (matep){
-							peso_obj = (matep.porce*resultado)/100;
-							console.log(matep.porce+'*'+resultado+'='+peso_obj);
-							mProgramacion.postp2(id, matep.matepid, peso_obj, function(){
-								//se agregaron los datos a program2
+		//console.log(prog)
+		if (cantidad <= prog[0].maximo){
+			//if(prog[0].resultado!=0){
+			//	res.render('error',{
+			//		error: "Esta Programacion ya tiene un Resultado guardado."
+			//	});
+			//}else{
+			mProgramacion.update(id, cantidad, function(){
+				mProgramacion.postResultado(id, resultado, function (){
+					//busco la receta de ese formulado, me devuelve un objeto "receta" 
+					idformulado = prog[0].formuladoid;
+					mReceta.getRecetaPorIdFormulado(idformulado, function (receta){
+						//para cada "matep" de "receta", calcular "porce" x "resultado"
+						mProgramacion.limpiarp2(id, function(){
+							receta.forEach(function (matep){
+								peso_obj = (matep.porce*resultado)/100;
+								//console.log(matep.porce+'*'+resultado+'='+peso_obj);
+								mProgramacion.postp2(id, matep.matepid, peso_obj, function(){
+									//se agregaron los datos a program2
+								});
 							});
-						});
-					});					
-					res.redirect('prog2lista');
-				});								
+						});					
+						res.redirect('prog2lista');
+					});								
+				});
+			});	
+			//}
+		}else{
+			res.render('error',{
+				error: "La cantidad de Principio Activo no puede superar el máximo seteado para ese Reactor/Mezclador."
 			});
 		}
+		
 	});	
 }
 

@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block content %}
-<!-- <link href="/css/prog1alta2.css" rel="stylesheet"> -->
+<link href="/css/prog1alta2.css" rel="stylesheet">
 <h2>{{ pagename }}</h2>
 <div class="panel panel-default">
 	<form method="post" id="formalta" action="/prog1alta2">
@@ -30,32 +30,39 @@
 		<table align="center" class="table table-striped" >
 		<tr>
 			<td><button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Ayuda</button></td>
+			{% if prog.resultado != 0 %}
+				<td><span><b>Aclaración:</b> Esta programacion ya tiene un resultado guardado.</span></td>
+			{% endif %}
 		</tr>	
 		</table>
 		<table align="center" class="table table-striped" >
 			<input type="hidden" id="id" name="id" value="{{ id }}">
 			<tr>
-				<td>Cantidad de Principio Activo:</td>
-				<td><input type="text" id="cant" name="cant" value="{{ prog.maximo }}" readonly ></td>
+				<td>Cantidad de Principio Activo:<br><small>Ingrese la cantidad de P.A.<br><b>Máximo: {{formenreactor.maximo}}</b></small></td>
+				<td><input type="text" id="cant" name="cant" value="{{ prog.maximo }}" class="form-control"></td>
 			</tr>
 			<tr>
 				<td>Titulo del Principio Activo:</td>
-				<td><input type="text" id="titulo" name="titulo" value="{{ prog.concepla }}" readonly ></td>
+				<td><input type="text" id="titulo" name="titulo" value="{{ prog.concepla }}" readonly class="form-control"></td>
 			</tr>
 			<tr>
 				<td>% del Principio Activo:</td>
-				<td><input type="text" id="porce" name="porce" value="{{ prog.concepf }}" readonly ></td>
+				<td><input type="text" id="porce" name="porce" value="{{ prog.concepf }}" readonly class="form-control"></td>
 			</tr>
 			<tr>
 				<td>Volumen Final:</td>
-				<td><input type="text" id="volfinal" name="volfinal" readonly> <!--<button type="button" id="btnAutoCalculo">Auto-Calculo</button>--></td>
+				<td><input type="text" id="volfinal" name="volfinal" readonly class="form-control"> <!--<button type="button" id="btnAutoCalculo">Re</button>--></td>
 			</tr>			
 			<tr>
 				<td><input type="button" value="Atras" onclick="history.back()"></td>
-				<td><input type="submit" value="Guardar"></td>
+				{% if prog.resultado == 0 %}
+					<td><input type="submit" value="Guardar"></td>
+				{% else %}
+					<td><input type="submit" value="Guardar" onclick="if (!confirm('¿Seguro guardar el nuevo resultado?')) return false;"></td>
+				{% endif %}
 			</tr>
 			<tr>
-				<td colspan="2"><span>*Al guardar se generarán los datos para la planilla Orden de Formulacion de Agroquimicos.</span></td>
+				<td colspan="2"><span>*Al guardar se generarán los datos para la planilla de Orden de Formulacion de Agroquimicos.</span></td>
 			</tr>
 		</table>
 	</form>
@@ -77,6 +84,14 @@
 		volfinal = (cant*titulo)/porce;
 		$('#volfinal').val(volfinal.toFixed(2));
 	});
+	
+	$('#cant').on("change", function(){
+		cant = $('#cant').val();
+		titulo = $('#titulo').val();
+		porce = $('#porce').val();
+		volfinal = (cant*titulo)/porce;
+		$('#volfinal').val(volfinal.toFixed(2));
+	});
 
 	$(function(){
 		cant = $('#cant').val();
@@ -84,6 +99,7 @@
 		porce = $('#porce').val();
 		volfinal = (cant*titulo)/porce;
 		$('#volfinal').val(volfinal.toFixed(2));
+		$('#cant').focus();
 	});
 
 </script>

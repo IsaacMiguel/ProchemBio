@@ -12,7 +12,8 @@ module.exports = {
 	getProg1PorId_joined_w_Clientes_Reacto_Formulado_Tanque_and_Empleados: getProg1PorId_joined_w_Clientes_Reacto_Formulado_Tanque_and_Empleados,
 	postp2: postp2,
 	limpiarp2: limpiarp2,
-	getProgramaciones: getProgramaciones
+	getProgramaciones: getProgramaciones,
+	update: update
 }
 
 function getAll(cb){
@@ -22,6 +23,10 @@ function getAll(cb){
 function getCodigo(lote, anio, clienteid, formid, cb){
 	loteanio = lote + anio;
 	conn("select max(lote) as maxlote from program1 where left(lote, 5) = '"+loteanio+"' AND clienteid = "+clienteid+" and formuladoid = "+formid, cb)
+}
+
+function update(id, maximo, cb){
+	conn("UPDATE program1 SET maximo ="+maximo+" where id="+id, cb);
 }
 
 function postResultado(id, resul, cb){
