@@ -17,11 +17,11 @@ module.exports = {
 
 function getAll(req, res) {
 	req.session.nromenu = 5;
-  	mAyuda.getAyudaTexto(req.session.nromenu, function(ayuda){
-  		mEnvases.getAll(function(envases){
-			mUmed.getAllActivas(function(umeds){
+  	mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
+  		mEnvases.getAll(function (envases){
+			mUmed.getAllActivas(function (umeds){
 				res.render('envaseslista', {
-					pagename: 'Archivo de Envases Remitos In/Out',
+					pagename: 'Archivo de Envases',
 					envases: envases,
 					umeds: umeds,
 					ayuda: ayuda[0]
@@ -32,7 +32,7 @@ function getAll(req, res) {
 }
 
 function getAlta(req, res){
-	mUmed.getAllActivas(function(umeds){
+	mUmed.getAllActivas(function (umeds){
 		res.render('envasesalta', {
 			pagename: 'Alta de Envases',
 			umeds: umeds
@@ -58,8 +58,8 @@ function postAlta(req, res){
 function getModificar(req, res){
 	params = req.params;
 	id = params.id;
-	mUmed.getAllActivas(function(umeds){
-		mEnvases.getEnvasePorId(id, function(envase){
+	mUmed.getAllActivas(function (umeds){
+		mEnvases.getEnvasePorId(id, function (envase){
 			res.render('envasesmodificar', {
 				pagename: 'Modificar Envase',
 				envase: envase[0],
@@ -91,13 +91,13 @@ function getDel(req, res){
 	params = req.params;
 	id = params.id;
 
-	mVerificacion.getEnvaseFromRemito(id, function(envaseFromRemito){
+	mVerificacion.getEnvaseFromRemito(id, function (envaseFromRemito){
 		if (envaseFromRemito[0] != null){
 			res.render('error', {
 		        error: "No puede eliminar este envase, posee movimientos."
 		      });
 		}else{
-			mEnvases.getEnvasePorId(id, function(envase){
+			mEnvases.getEnvasePorId(id, function (envase){
 				envase = envase[0];
 				mBorro.add(req.session.user.usuario, "Envases", "Borra nombre: "+ envase.nombre+", id: "+id, function(){
 					mEnvases.del(id, function(){
@@ -112,7 +112,7 @@ function getDel(req, res){
 function getCapacidad(req, res){
 	params = req.params;
   	idenvase = params.id;
-  	mEnvases.getEnvasePorId(idenvase, function(envase){
+  	mEnvases.getEnvasePorId(idenvase, function (envase){
     	res.send(envase[0]);
 	});
 }

@@ -157,7 +157,7 @@ function postAlta2(req, res){
 			//		error: "Esta Programacion ya tiene un Resultado guardado."
 			//	});
 			//}else{
-			mProgramacion.update(id, cantidad, function(){
+			mProgramacion.updateMaximo(id, cantidad, function(){
 				mProgramacion.postResultado(id, resultado, function (){
 					//busco la receta de ese formulado, me devuelve un objeto "receta" 
 					idformulado = prog[0].formuladoid;

@@ -46,9 +46,32 @@
 								</tr>
 								{% endfor %}
 								<tr>
+									<td>Formulador Final:</td>
+									<td colspan="12">
+										<select class="form-control" id="formuladorfinal" name="formuladorfinal">
+											{% for e in emple %}
+												{% if prog1.formuladorfinal == e.codigo %}
+													<option value="{{ e.codigo }}" selected>{{ e.nombre }}</option>	
+												{% else %}
+													<option value="{{ e.codigo }}">{{ e.nombre }}</option>
+												{% endif %}
+											{% endfor %}
+										</select>	
+									</td>	
+								</tr>
+								<tr>
 									<td><h4><b>Opciones:</b></h4></td>
 									<td><input type="button" value="Atras" onclick="history.back()"></td>
 									<td><input type="submit" value="Guardar"></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
 								</tr>
 							</table>
 						</form>

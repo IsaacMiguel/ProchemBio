@@ -4,7 +4,7 @@ var mNovedades = require('../models/mNovedades');
 var mAyuda = require('../models/mAyuda');
 var mMatep = require('../models/mMatep');
 var mProgram1 = require('../models/mProgramacion');
-
+var mEmple = require('../models/mEmple');
 
 module.exports = {
   getLista: getLista,
@@ -49,11 +49,17 @@ function getVerFormulado(req, res){
   params = req.params;
   id = params.id;
   mProduccion.getFormulado(id, function (form){
-    console.log(form)
-    res.render('produccionver',{
-      pagename: 'Ver Datos Formulado',
-      form: form
-    });
+    mEmple.getAllActivos(function (emple){
+      mProgram1.getProgPorId(id, function (prog1){
+        console.log(emple)
+        res.render('produccionver',{
+          pagename: 'Ver Datos Formulado',
+          form: form,
+          emple: emple,
+          prog1: prog1[0]
+        });
+      });
+    });    
   });
 }
 
@@ -71,13 +77,17 @@ function postDatosFormulado(req, res){
   tempfs = params.tempf;
   phis = params.phi;
   phfs = params.phf;
+  formFinal = params.formuladorfinal;
   for (var i = 0; i < ids.length; i++) {
     i2 = i; 
     mProduccion.updateDatosFormulado(ids[i], lotemps[i], pesoobjs[i], pulsoobjs[i], pulsoreals[i], hris[i], hrfs[i], tempis[i], tempfs[i], phis[i], phfs[i], function(){
       console.log("grabado nro "+i2);
     });
   }
-  res.redirect('produccionlista');
+
+  mProgram1.updateFormuladorFinal(id, formFinal, function(){
+    res.redirect('produccionlista');
+  });  
 }
 
 function getImprimir(req, res){

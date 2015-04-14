@@ -13,7 +13,8 @@ module.exports = {
 	postp2: postp2,
 	limpiarp2: limpiarp2,
 	getProgramaciones: getProgramaciones,
-	update: update
+	updateMaximo: updateMaximo,
+	updateFormuladorFinal: updateFormuladorFinal
 }
 
 function getAll(cb){
@@ -25,8 +26,12 @@ function getCodigo(lote, anio, clienteid, formid, cb){
 	conn("select max(lote) as maxlote from program1 where left(lote, 5) = '"+loteanio+"' AND clienteid = "+clienteid+" and formuladoid = "+formid, cb)
 }
 
-function update(id, maximo, cb){
+function updateMaximo(id, maximo, cb){
 	conn("UPDATE program1 SET maximo ="+maximo+" where id="+id, cb);
+}
+
+function updateFormuladorFinal(id, formfinal, cb){
+	conn("UPDATE program1 SET formuladorfinal="+formfinal+" where id="+id, cb);
 }
 
 function postResultado(id, resul, cb){
