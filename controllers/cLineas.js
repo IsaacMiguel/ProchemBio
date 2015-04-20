@@ -17,7 +17,7 @@ function getAll(req, res) {
   	mAyuda.getAyudaTexto(req.session.nromenu, function(ayuda){
 	  	mLineas.getAll(function(lineas){
 	  		res.render('lineaslista', {
-				pagename: 'Archivo de Lineas de Produccion',
+				pagename: 'Archivo de Lineas de Fraccionado',
 				lineas: lineas,
 				ayuda: ayuda[0]
 			});

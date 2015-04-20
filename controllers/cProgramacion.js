@@ -130,7 +130,7 @@ function getAlta2(req, res){
   			mFormEnReactor.getFORMENREACTORporIDREACTOyIDFORM(prog[0].reactoid, prog[0].formuladoid, function (formenreactor){
   				//console.log(prog)
 	  			res.render('prog1alta2',{
-					pagename:"Programacion Parte 2",
+					pagename:"Programacion Parte 2 - Producir",
 					ayuda: ayuda[0],
 					prog: prog[0],
 					formenreactor: formenreactor[0]

@@ -34,7 +34,7 @@
 									<td hidden><input type="text" name="id" value="{{ f.id }}"></input></td>
 									<td>{{f.mpnombre}}</td>
 									<td><input type="text" class="lotemp" id="lotemp" name="lotemp" value="{{ f.lote_mp }}"></td>
-									<td><input type="text" class="pesoobj" id="pesoobj" name="pesoobj" value="{{ f.peso_obj }}" onkeypress="return Numy1Punto(event, this)"></td>
+									<td><input type="text" class="pesoobj" id="pesoobj" name="pesoobj" value="{{ f.peso_obj }}"  onkeyup="checkDec(this);"></td>
 									<td><input type="text" class="pulsoobj" id="pulsoobj" name="pulsoobj" value="{{ f.pulso_obj }}" onkeypress="return Numy1Punto(event, this)"></td>
 									<td><input type="text" class="pulsoreal" id="pulsoreal" name="pulsoreal" value="{{ f.pulso_real }}" onkeypress="return Numy1Punto(event, this)"></td>
 									<td><input type="time" class="hri" id="hri" name="hri" value="{{ f.hora_inicio }}"></td>
@@ -103,5 +103,11 @@
 	  return false
 	}
 	//onkeypress="return Numy1Punto(event, this)"
+	function checkDec(el){
+		var ex = /^[0-9]+\.?[0-9]*$/;
+		if(ex.test(el.value)==false){
+		   	el.value = el.value.substring(0,el.value.length - 1);
+		}
+	}
 	</script>
 {% endblock %}
