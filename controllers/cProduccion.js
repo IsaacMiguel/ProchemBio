@@ -64,6 +64,7 @@ function getVerFormulado(req, res){
 }
 
 function postDatosFormulado(req, res){
+  var check = 0;
   params = req.body;
   //console.log(params);
   ids = params.id;
@@ -78,16 +79,31 @@ function postDatosFormulado(req, res){
   phis = params.phi;
   phfs = params.phf;
   formFinal = params.formuladorfinal;
-  for (var i = 0; i < ids.length; i++) {
-    i2 = i; 
-    mProduccion.updateDatosFormulado(ids[i], lotemps[i], pesoobjs[i], pulsoobjs[i], pulsoreals[i], hris[i], hrfs[i], tempis[i], tempfs[i], phis[i], phfs[i], function(){
-      console.log("grabado nro "+i2);
+   
+  for (var i = 0; i <= ids.length; i++) {
+    if (pesoobjs[i]<100000){
+      check = check + 1;
+    }else{
+      break;
+    }
+  }
+  if (check ===  ids.length) {
+    //render ok
+    for (var i = 0; i < ids.length; i++) {
+      i2 = i;
+      mProduccion.updateDatosFormulado(ids[i], lotemps[i], pesoobjs[i], pulsoobjs[i], pulsoreals[i], hris[i], hrfs[i], tempis[i], tempfs[i], phis[i], phfs[i], function(){
+        console.log("grabado nro "+i2);
+      });
+    }
+    mProgram1.updateFormuladorFinal(id, formFinal, function(){
+      res.redirect('produccionlista');
+    });
+  }else {
+    //render ko
+    res.render('error',{
+      error: 'El peso objetivo no puede ser mayor a 100.000'
     });
   }
-
-  mProgram1.updateFormuladorFinal(id, formFinal, function(){
-    res.redirect('produccionlista');
-  });  
 }
 
 function getImprimir(req, res){

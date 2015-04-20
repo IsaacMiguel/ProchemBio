@@ -163,6 +163,8 @@ module.exports = function(app) {
 	app.get('/recetaalta/:id', auth, recetaController.getAlta);
 	app.post('/recetaalta', auth, recetaController.postAlta);
 	app.get('/recetaborrar/:id', auth, recetaController.getDel);
+	app.get('/recetamodificar/:id', auth, recetaController.getModificar);
+	app.post('/recetamodificar', auth, recetaController.postModificar);
 	//remitos
 	app.get('/remitoslista', auth, remitosController.getAll);
 	app.get('/remitosalta', auth, remitosController.getAlta);
@@ -207,5 +209,6 @@ module.exports = function(app) {
 	app.get('/produccionver/:id', auth, produccionController.getVerFormulado);
 	app.post('/produccionver', auth, produccionController.postDatosFormulado);
 	app.get('/produccionimprimir/:id', auth, produccionController.getImprimir);
+
 	
 }; 

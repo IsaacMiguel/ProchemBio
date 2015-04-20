@@ -25,8 +25,10 @@
 					<th>Nombre de Materia Prima</th>
 					<th>Es Principio Activo</th>
 					<th>Porcentaje</th>
-					<th>Solo %</th>
+					<!--<th>Solo %</th>-->
 					<th>Usa Lote</th>
+					<th>Orden</th>
+					<th colspan="2">Opciones</th>
 				</tr>
 				{% for receta in recetas %}
 				<tr>
@@ -46,18 +48,22 @@
 						{% endif %}
 					{% endfor %}
 					<td>{{ receta.porce }}</td>
-					{% if receta.soloporce == 1 %}
+					<!--{% if receta.soloporce == 1 %}
 						<td><span>Si</span></td>
 					{% else %}
 						<td><span>No</span></td>
-					{% endif %}
+					{% endif %}-->
 					{% if receta.usalote == 1 %}
 						<td><span>Si</span></td>
 					{% else %}
 						<td><span>No</span></td>
 					{% endif %}
+					<td>{{ receta.orden }}</td>
 					<td>
 						<a href='/recetaborrar/{{ receta.id }}' onclick="if (!confirm('¿Seguro desea eliminar?')) return false;"><button type="button" class="btn btn-danger">Eliminar</button><a/>
+					</td>
+					<td>
+						<a href="/recetamodificar/{{ receta.id }}"><button type="button" class="btn btn-warning">Modificar</button></a>
 					</td>
 				</tr>
 				{% endfor %}	 
