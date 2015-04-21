@@ -7,12 +7,12 @@
 {% block content %}
 <link href="/css/prog1alta.css" rel="stylesheet">
 <h2>{{ pagename }}</h2>
-<div class="panel panel-default">
-	<form method="post" id="formalta" action="/prog1alta">
+<form method="post" id="formalta" action="/prog1alta" class="form-inline">
+	<div class="panel panel-default">
 		<table align="center" class="table table-striped" id="tabla1">
 			<tr>
 				<td>Fecha:</td>
-				<td><input type="text" id="fecha" name="fecha" class="datepicker" required readonly></td>
+				<td><input type="text" id="fecha" name="fecha" class="datepicker form-control" placeholder="Seleccione una fecha" required readonly></td>
 			</tr>
 			<tr>
 				<td>Turno:</td>
@@ -44,65 +44,83 @@
 			</tr>
 			<tr>
 				<td>Principio Activo del Formulado:</td>
-				<td>ID M.P.: <input type="text" id="iddelpa" readonly style="width:30px"> Nombre: <input type="text" id="padelform" readonly></td>
+				<td>
+					ID M.P.: <input type="text" id="iddelpa" readonly> 
+					Nombre: <input type="text" id="padelform" readonly class="form-control">
+				</td>
 			</tr>
 			<tr>
 				<td><input type="button" value="Atras" id="btnAtras" onclick="history.back()"></td>
-				<td><input type="button" id="btnOK" value="OK"></td>
+				<td><input type="button" id="btnOK" value="Siguiente"></td>
 			</tr>
 		</table>
-</div>
-<div class="panel panel-default">
-	<table align="center" class="table table-striped" id="tabla2" style="display: none">
-		<tr>
-			<td>Remito del Principio Activo:</td>
-			<td>
-				<select name="cmbRemito" id="cmbRemito" class="form-control">
-					<option>Seleccione un Remito</option>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>Formulador Inicial:</td>
-			<td>
-				<select name="formulador" id="cmbFormulador" class="form-control">
-					{% for empleado in empleados %}
-					<option value="{{ empleado.codigo }}">{{ empleado.nombre }}</option>
-					{% endfor %}
-				</select>	
-			</td>
-		</tr>
-		<tr>
-			<td>Equipo (Mezc/Reac):</td>
-			<td>
-				<select name="equipo" id="equipo" class="form-control">
-					{% for equipo in equipos %}
-						<option value="{{ equipo.id }}">{{ equipo.nombre }}</option>
-					{% endfor %}
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>Tanque Destino:</td>
-			<td>
-				<select name="tanquedestino" id="tanquedestino" class="form-control">
-					{% for tanque in tanques %}
-						<option value="{{ tanque.id }}">{{ tanque.nombre }}</option>
-					{% endfor %}
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>Lote:</td>
-			<td><input type="text" name="txtAbLote" id="txtAbLote" readonly  style="width:40px"><input type="text" name="anio" id="txtAnio" readonly  style="width:40px"><input type="text" name="codigo" id="txtCodigo" style="width:40px"> <button type="button" id="btnAutoCalculo">Auto-Calculo</button></td>
-		</tr>
-		<tr>
-			<td><input type="button" value="Atras" onclick="history.back()"></td>
-			<td><input type="submit" id="btnAgregar" value="Agregar"></td>
-		</tr>
-	</table>
-</div>
-	</form>
+	</div>
+	<div class="panel panel-default">
+		<table align="center" class="table table-striped" id="tabla2" style="display: none">
+			<tr>
+				<td>Remito del Principio Activo:</td>
+				<td>
+					<select name="cmbRemito" id="cmbRemito" class="form-control">
+						<option>Seleccione un Remito</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Formulador Inicial:</td>
+				<td>
+					<select name="formulador" id="cmbFormulador" class="form-control">
+						{% for empleado in empleados %}
+						<option value="{{ empleado.codigo }}">{{ empleado.nombre }}</option>
+						{% endfor %}
+					</select>	
+				</td>
+			</tr>
+			<tr>
+				<td>Equipo (Mezc/Reac):</td>
+				<td>
+					<select name="equipo" id="equipo" class="form-control">
+						{% for equipo in equipos %}
+							<option value="{{ equipo.id }}">{{ equipo.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Tanque Destino:</td>
+				<td>
+					<select name="tanquedestino" id="tanquedestino" class="form-control">
+						{% for tanque in tanques %}
+							<option value="{{ tanque.id }}">{{ tanque.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Envase a utilizar en el Fraccionado:</td>
+				<td>
+					<select name="envase" id="envase" class="form-control">
+						{% for envase in envases %}
+							<option value="{{ envase.id }}">{{ envase.nombre }}</option>
+						{% endfor %}
+					</select>	
+				</td>
+			</tr>
+			<tr>
+				<td>Lote:</td>
+				<td>
+					<input type="text" name="txtAbLote" id="txtAbLote" readonly>
+					<input type="text" name="anio" id="txtAnio" readonly>
+					<input type="text" name="codigo" id="txtCodigo"> 
+					<button type="button" class="btn btn-default" id="btnAutoCalculo">Auto-Calculo</button>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Anterior" id="btnAnterior"></td>
+				<td><input type="submit" id="btnAgregar" value="Agregar"></td>
+			</tr>
+		</table>
+	</div>
+</form>
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript">
@@ -219,6 +237,13 @@
 		}else{
 			alert('Faltan completar datos.')
 		}
+	});
+
+	$('#btnAnterior').on("click", function(){
+		$('#tabla1').css('display', 'inline-table');
+		$('#tabla2').css('display', 'none');
+		$('#btnOK').prop('disabled', false);
+		$('#btnAtras').prop('disabled', false);
 	});
 
 	function validacion(){

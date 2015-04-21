@@ -12,6 +12,8 @@ var mFormEnReactor = require('../models/mFormEnReactor');
 var mRemitos = require('../models/mRemitos');
 var mMatep = require('../models/mMatep');
 var mReceta = require('../models/mReceta');
+var mEnvase = require('../models/mEnvases');
+var mUmed = require('../models/mUmed');
 
 module.exports = {
 	getAll: getAll,
@@ -53,13 +55,16 @@ function getAlta(req, res){
     	mEmple.getAllActivos(function (empleados){
       		mReacto.getAllActivos(function (reactores){
         		mTanques.getAllActivos(function (tanques){
-          			res.render('prog1alta',{
-			            pagename:"Alta de Programacion Parte 1",
-			            tanques: tanques,
-			            equipos: reactores,
-			            empleados: empleados,
-			            clientes: clientes
-          			})
+        			mEnvase.getAllActivos(function (envases){
+        				res.render('prog1alta',{
+				            pagename:"Alta de Programacion Parte 1",
+				            tanques: tanques,
+				            equipos: reactores,
+				            empleados: empleados,
+				            clientes: clientes,
+				            envases: envases
+	          			});
+        			});
         		});
       		});
     	});    
@@ -77,6 +82,8 @@ function postAlta(req, res){
 	equipo = params.equipo;
 	tanquedestino = params.tanquedestino;
 	idremito = params.cmbRemito;
+	idenvase = params.envase;
+
 	var currentTime = new Date();
 	if (currentTime.getDate()<10){
 		day = "0"+currentTime.getDate();
@@ -101,7 +108,7 @@ function postAlta(req, res){
 				concepla = remito[0].concepla;
 				mFormulados.getFormuladoPorId(formulado, function (form){
 					concepf = form[0].concentracion;
-					mProgramacion.insert(fechap, fechar, turno, idcliente, formulado, formulador, equipo, tanquedestino, lote, maximo, concepla, concepf, function(){
+					mProgramacion.insert(fechap, fechar, turno, idcliente, formulado, formulador, equipo, tanquedestino, lote, idenvase, maximo, concepla, concepf, function(){
 					res.redirect('prog1lista');
 				});
 				});
@@ -128,13 +135,30 @@ function getAlta2(req, res){
   	mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
   		mProgramacion.getProgPorId(id, function (prog){
   			mFormEnReactor.getFORMENREACTORporIDREACTOyIDFORM(prog[0].reactoid, prog[0].formuladoid, function (formenreactor){
-  				//console.log(prog)
-	  			res.render('prog1alta2',{
-					pagename:"Programacion Parte 2 - Producir",
-					ayuda: ayuda[0],
-					prog: prog[0],
-					formenreactor: formenreactor[0]
-				});
+  				mEnvase.getEnvasePorId(prog[0].id_envase_fk, function (envase){
+  					if (envase[0] != null){
+  						mUmed.getUmedPorId(envase[0].umed, function (umed){
+	  						if (umed[0] != null){
+								res.render('prog1alta2',{
+									pagename:"Programacion Parte 2 - Producir",
+									ayuda: ayuda[0],
+									prog: prog[0],
+									formenreactor: formenreactor[0],
+									envase: envase[0],
+									umed: umed[0]
+								});
+	  						}else{
+	  							res.render("error",{
+	  								error: "umed"
+	  							})
+	  						}
+	  					});  
+  					}else{
+  						res.render("error", {
+  							error: "Falta agregar el Envase a esta Programación. Elimine la Programacion Vieja y cree una Nueva Programacion en el menú Programacion 1."
+  						});
+  					}
+  				});
   			});  				
   		});			
 	});
