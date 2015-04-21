@@ -52,7 +52,7 @@
 			<tr>
 				<td>Volumen Final:</td>
 				<td><input type="text" id="volfinal" name="volfinal" readonly class="form-control"> <!--<button type="button" id="btnAutoCalculo">Re</button>--></td>
-			</tr>			
+			</tr>
 			<tr>
 				<td><input type="button" value="Atras" onclick="history.back()"></td>
 				{% if prog.resultado == 0 %}
@@ -67,6 +67,33 @@
 		</table>
 	</form>
 </div>
+	<br>
+	<div class="panel panel-primary">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">Datos de Envase</h3>
+	  </div>
+	  <div class="panel-body">
+	    <table align="center" class="table table-striped">
+			<tr>
+				<td>Envase seleccionado para Fraccionado:</td>
+				<td><input type="text" class="form-control" id="envase" aria-describedby="basic-addon2" readonly value="{{ prog.nombreenvase }}"></td>
+			</tr>
+			<tr>
+				<td>Capacidad de Envase:</td>
+				<td><input type="text" class="form-control" id="capacidadenvase" name="capacidadenvase" readonly value="{{ envase.capacidad }}"></td>
+			</tr>
+			<tr>
+				<td>Unidad de Medida del Envase:</td>
+				<td><input type="text" class="form-control" id="umedenvase" name="umedenvase" readonly value="{{ umed.nombre }}"></td>
+			</tr>
+			<tr>
+				<td>Volumen Final redondeado al Envase:</td>
+				<td><input type="text" class="form-control" id="volredondeado" name="volredondeado" readonly></td>
+			</tr>
+		</table>
+	  </div>
+	</div>
+
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript">
@@ -91,6 +118,15 @@
 		porce = $('#porce').val();
 		volfinal = (cant*titulo)/porce;
 		$('#volfinal').val(volfinal.toFixed(2));
+
+		capacidad = $('#capacidadenvase').val();
+		volred = Math.ceil(volfinal/capacidad);
+		console.log("volfinal "+volfinal)
+		console.log("capacidad "+capacidad)
+		console.log("volred "+volred)
+		volredfinal = volred*capacidad;
+		console.log("volredfinal "+volredfinal)
+		$('#volredondeado').val(volredfinal);
 	});
 
 	$(function(){
@@ -100,6 +136,15 @@
 		volfinal = (cant*titulo)/porce;
 		$('#volfinal').val(volfinal.toFixed(2));
 		$('#cant').focus();
+
+		capacidad = $('#capacidadenvase').val();
+		volred = Math.ceil(volfinal/capacidad);
+		console.log("volfinal "+volfinal)
+		console.log("capacidad "+capacidad)
+		console.log("volred "+volred)
+		volredfinal = volred*capacidad;
+		console.log("volredfinal "+volredfinal)
+		$('#volredondeado').val(volredfinal);
 	});
 
 </script>

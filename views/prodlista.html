@@ -21,7 +21,7 @@
 			<div class="col-xs-12">
 			  <table class="table table-striped">
 				<tr>
-					<th width="290px">Opciones</th>
+					<th colspan="3">Opciones</th>
 					<th>ID</th>
 					<th>Codigo de Cliente</th>
 					<th>Codigo de Producto</th>
@@ -36,7 +36,11 @@
 				<tr>
 					<td>
 						<a href="/prodmodificar/{{ prod.id }}"><button class="btn btn-warning">Modificar</button></a>
+					</td>
+					<td>
 						<a href='/prodborrar/{{ prod.id }}' onclick="if (!confirm('¿Seguro desea eliminar?')) return false;"><button type="button" class="btn btn-danger">Eliminar</button><a/>
+					</td>
+					<td>
 						<a href="/consumibleslista/{{ prod.id }}"><button class="btn btn-default">Consumibles</button> </a>
 					</td>
 					<td>{{ prod.id }}</td>
