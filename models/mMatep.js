@@ -12,7 +12,8 @@ module.exports = {
 	delMatep: delMatep,
 	getAllActivas: getAllActivas,
 	getAllActivasPorIdCliente: getAllActivasPorIdCliente,
-	verificacionCodigos: verificacionCodigos
+	verificacionCodigos: verificacionCodigos,
+	getAllActivasYPA: getAllActivasYPA
 }
 
 function getAllMatepPorCliente(cdcliente, cb){
@@ -21,6 +22,10 @@ function getAllMatepPorCliente(cdcliente, cb){
 
 function getAllActivasPorCliente(cdcliente, cb){
 	conn("select * from matep where activa = 1 and cdcliente=" + cdcliente + " order by nombre", cb);
+}//repetido
+
+function getAllActivasYPA(cb){
+	conn("select * from matep where activa = 1 and pactivo = 1", cb);
 }
 
 function getAllActivas(cb){

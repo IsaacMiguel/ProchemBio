@@ -108,7 +108,7 @@ function postAlta(req, res){
 				concepla = remito[0].concepla;
 				mFormulados.getFormuladoPorId(formulado, function (form){
 					concepf = form[0].concentracion;
-					mProgramacion.insert(fechap, fechar, turno, idcliente, formulado, formulador, equipo, tanquedestino, lote, idenvase, maximo, concepla, concepf, function(){
+					mProgramacion.insert(fechap, fechar, turno, idcliente, formulado, formulador, equipo, tanquedestino, lote, idenvase, maximo, concepla, concepf, idremito, function(){
 					res.redirect('prog1lista');
 				});
 				});
@@ -137,7 +137,7 @@ function getAlta2(req, res){
   			mFormEnReactor.getFORMENREACTORporIDREACTOyIDFORM(prog[0].reactoid, prog[0].formuladoid, function (formenreactor){
   				mEnvase.getEnvasePorId(prog[0].id_envase_fk, function (envase){
   					if (envase[0] != null){
-  						mUmed.getUmedPorId(envase[0].umed, function (umed){
+						mUmed.getUmedPorId(envase[0].umed, function (umed){
 	  						if (umed[0] != null){
 								res.render('prog1alta2',{
 									pagename:"Programacion Parte 2 - Producir",
@@ -150,9 +150,9 @@ function getAlta2(req, res){
 	  						}else{
 	  							res.render("error",{
 	  								error: "umed"
-	  							})
+	  							});
 	  						}
-	  					});  
+  						});
   					}else{
   						res.render("error", {
   							error: "Falta agregar el Envase a esta Programación. Elimine la Programacion Vieja y cree una Nueva Programacion en el menú Programacion 1."
@@ -185,18 +185,26 @@ function postAlta2(req, res){
 				mProgramacion.postResultado(id, resultado, function (){
 					//busco la receta de ese formulado, me devuelve un objeto "receta" 
 					idformulado = prog[0].formuladoid;
-					mReceta.getRecetaPorIdFormulado(idformulado, function (receta){
+					mReceta.getRecetaPorIdFormuladoLeftJoinMatep(idformulado, function (receta){
 						//para cada "matep" de "receta", calcular "porce" x "resultado"
-						mProgramacion.limpiarp2(id, function(){
-							receta.forEach(function (matep){
-								peso_obj = (matep.porce*resultado)/100;
-								//console.log(matep.porce+'*'+resultado+'='+peso_obj);
-								mProgramacion.postp2(id, matep.matepid, peso_obj, function(){
-									//se agregaron los datos a program2
+						mRemitos.getRemitoPorId(prog[0].id_remito_fk, function (remito){
+							mProgramacion.limpiarp2(id, function(){
+								receta.forEach(function (matep){
+									peso_obj = (matep.porce*resultado)/100;
+									//console.log(matep.porce+'*'+resultado+'='+peso_obj);
+									if (matep.pactivo == 1){
+										lote = remito[0].lote;
+									}else{
+										lote= "";
+									}
+									mProgramacion.postp2(id, matep.matepid, peso_obj, lote, function(){
+										//se agregaron los datos a program2
+									});	
 								});
-							});
-						});					
-						res.redirect('prog2lista');
+							});					
+							res.redirect('prog2lista');
+						})
+						
 					});								
 				});
 			});	

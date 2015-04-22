@@ -5,6 +5,9 @@ var mAyuda = require('../models/mAyuda');
 var mMatep = require('../models/mMatep');
 var mProgram1 = require('../models/mProgramacion');
 var mEmple = require('../models/mEmple');
+var mRemitos = require('../models/mRemitos');
+var mReceta = require('../models/mReceta');
+var mForm = require('../models/mFormulados');
 
 module.exports = {
   getLista: getLista,
@@ -49,17 +52,27 @@ function getVerFormulado(req, res){
   params = req.params;
   id = params.id;
   mProduccion.getFormulado(id, function (form){
+    //console.log(form)
     mEmple.getAllActivos(function (emple){
       mProgram1.getProgPorId(id, function (prog1){
-        console.log(emple)
-        res.render('produccionver',{
-          pagename: 'Ver Datos Formulado',
-          form: form,
-          emple: emple,
-          prog1: prog1[0]
+        //console.log(prog1)
+        mForm.getFormuladoPorId(prog1[0].formuladoid, function (formulado){
+          mRemitos.getRemitoPorIdLeftJoinCinta1(prog1[0].id_remito_fk, function (cinta1){
+            mRemitos.getRemitoPorIdLeftJoinCinta2(prog1[0].id_remito_fk, function (cinta2){
+              res.render('produccionver',{
+                pagename: 'Ver Datos de Formulacion de',
+                form: form,
+                emple: emple,
+                prog1: prog1[0],
+                formulado: formulado[0],
+                cinta1: cinta1[0],
+                cinta2: cinta2[0]
+              });
+            });            
+          });
         });
       });
-    });    
+    });
   });
 }
 
@@ -114,7 +127,7 @@ function getImprimir(req, res){
     //console.log(program1)
     mProduccion.getFormulado(id, function (forms){
       mProduccion.getSuma(id, function (suma){
-        console.log(suma)
+        //console.log(suma)
         res.render('produccionimprimirform',{
           pagename: 'Imprimir Orden de Formulacion de Agroquímicos',
           program1: program1[0],

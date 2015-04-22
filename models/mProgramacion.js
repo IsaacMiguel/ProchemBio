@@ -38,8 +38,8 @@ function postResultado(id, resul, cb){
 	conn("UPDATE `program1` SET `resultado`="+resul+" WHERE id="+id, cb)
 }
 
-function insert(fecha, fechar, turno, idcliente, formulado, formulador, equipo, tanquedestino, lote, envase, maximo, concepla, concepf, cb){
-	conn("INSERT INTO program1(fechap, fechar, turno, clienteid, formuladoid, formulador, reactoid, tanqueid, lote, id_envase_fk, maximo, concepla, concepf) VALUES('"+fecha+"', '"+fechar+"', '"+turno+"', "+idcliente+", "+formulado+", "+formulador+", "+equipo+", "+tanquedestino+", '"+lote+"', "+envase+", "+maximo+", "+concepla+", "+concepf+")", cb);
+function insert(fecha, fechar, turno, idcliente, formulado, formulador, equipo, tanquedestino, lote, envase, maximo, concepla, concepf, idremito, cb){
+	conn("INSERT INTO program1(fechap, fechar, turno, clienteid, formuladoid, formulador, reactoid, tanqueid, lote, id_envase_fk, maximo, concepla, concepf, id_remito_fk) VALUES('"+fecha+"', '"+fechar+"', '"+turno+"', "+idcliente+", "+formulado+", "+formulador+", "+equipo+", "+tanquedestino+", '"+lote+"', "+envase+", "+maximo+", "+concepla+", "+concepf+", "+idremito+")", cb);
 }
 
 function getProgPorId(id, cb){
@@ -62,8 +62,8 @@ function getPA(idform, cb){
 	conn("select receta.*, matep.nombre as mpnombre from receta left join matep on matep.id = receta.matepid where receta.producid = "+idform+" and matep.pactivo = 1" , cb);
 }
 
-function postp2(idprog, matepid, peso_obj, cb){
-	conn("insert into program2(id_p1_fk, id_matep_fk, lote_mp, peso_obj, pulso_obj, pulso_real, hora_inicio, hora_fin, t_inicio, t_fin, ph_inicio, ph_fin) values("+idprog+", "+matepid+", '', "+peso_obj+", 0, 0, '00:00', '00:00', 0, 0, 0, 0)", cb);
+function postp2(idprog, matepid, peso_obj, lote, cb){
+	conn("insert into program2(id_p1_fk, id_matep_fk, lote_mp, peso_obj, pulso_obj, pulso_real, hora_inicio, hora_fin, t_inicio, t_fin, ph_inicio, ph_fin) values("+idprog+", "+matepid+", '"+lote+"', "+peso_obj+", 0, 0, '00:00', '00:00', 0, 0, 0, 0)", cb);
 }
 
 function limpiarp2(idprog1, cb){

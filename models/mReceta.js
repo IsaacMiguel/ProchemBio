@@ -6,11 +6,16 @@ module.exports = {
 	getFormuladoIdPorIdReceta: getFormuladoIdPorIdReceta,
 	getRecetaPorId: getRecetaPorId,
 	del: del,
-	updatePorceYUsaLote: updatePorceYUsaLote
+	updatePorceYUsaLote: updatePorceYUsaLote,
+	getRecetaPorIdFormuladoLeftJoinMatep: getRecetaPorIdFormuladoLeftJoinMatep
 }
 
 function getRecetaPorIdFormulado(id, cb){
 	conn("select * from receta where producid=" + id+" order by orden", cb);
+}
+
+function getRecetaPorIdFormuladoLeftJoinMatep(id, cb){
+	conn("select receta.*, matep.pactivo from receta left join matep on matep.id = receta.matepid where producid=" + id+" order by orden", cb);
 }
 
 function insert(idproducto, matep, porcentaje, formula, soloporce, usalote, orden, cb){

@@ -1,0 +1,15 @@
+#fecha, #turno, #cmbCliente, #cmbForm, #padelform, #cmbRemito, #cmbFormulador, #equipo, #tanquedestino, #envase {
+	width: 60%;
+}
+
+#iddelpa {
+	width: 45px;
+}
+
+#txtAbLote {
+	width: 55px;
+}
+
+#txtAnio, #txtCodigo {
+	width: 50px;
+}
