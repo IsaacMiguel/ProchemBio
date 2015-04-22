@@ -6,7 +6,7 @@
 
 {% block content %}
 <link href="/css/produccionver.css" rel="stylesheet">
-<h2>{{ pagename }}</h2>
+<h2>{{ pagename }} <b>{{ formulado.nombre }}</b></h2>
 <div class="panel panel-default">
 	<form method="POST" action="/produccionver">
 		<div class="panel panel-default">
@@ -30,20 +30,20 @@
 									<th>PH Fin</th>
 								</tr>
 								{% for f in form %}
-								<tr>
-									<td hidden><input type="text" name="id" value="{{ f.id }}"></input></td>
-									<td>{{f.mpnombre}}</td>
-									<td><input type="text" class="lotemp" id="lotemp" name="lotemp" value="{{ f.lote_mp }}"></td>
-									<td><input type="text" class="pesoobj" id="pesoobj" name="pesoobj" value="{{ f.peso_obj }}"  onkeyup="checkDec(this);"></td>
-									<td><input type="text" class="pulsoobj" id="pulsoobj" name="pulsoobj" value="{{ f.pulso_obj }}" onkeypress="return Numy1Punto(event, this)"></td>
-									<td><input type="text" class="pulsoreal" id="pulsoreal" name="pulsoreal" value="{{ f.pulso_real }}" onkeypress="return Numy1Punto(event, this)"></td>
-									<td><input type="time" class="hri" id="hri" name="hri" value="{{ f.hora_inicio }}"></td>
-									<td><input type="time" class="hrf" id="hrf" name="hrf" value="{{ f.hora_fin }}"></td>
-									<td><input type="text" class="tempi" id="tempi" name="tempi" value="{{ f.t_inicio }}" onkeypress="return Numy1Punto(event, this)"></td>
-									<td><input type="text" class="tempf" id="tempf" name="tempf" value="{{ f.t_fin }}" onkeypress="return Numy1Punto(event, this)"></td>
-									<td><input type="text" class="phi" id="phi" name="phi" value="{{ f.ph_inicio }}" onkeypress="return Numy1Punto(event, this)"></td>
-									<td><input type="text" class="phf" id="phf" name="phf" value="{{ f.ph_fin }}" onkeypress="return Numy1Punto(event, this)"></td>
-								</tr>
+									<tr>
+										<td hidden><input type="text" name="id" value="{{ f.id }}"></input></td>
+										<td>{{f.mpnombre}}</td>
+										<td><input type="text" class="lotemp" id="lotemp" name="lotemp" value="{{ f.lote_mp }}"></td>
+										<td><input type="text" class="pesoobj" id="pesoobj" name="pesoobj" value="{{ f.peso_obj }}"  onkeyup="checkDec(this);"></td>
+										<td><input type="text" class="pulsoobj" id="pulsoobj" name="pulsoobj" value="{{ f.pulso_obj }}" onkeypress="return Numy1Punto(event, this)"></td>
+										<td><input type="text" class="pulsoreal" id="pulsoreal" name="pulsoreal" value="{{ f.pulso_real }}" onkeypress="return Numy1Punto(event, this)"></td>
+										<td><input type="time" class="hri" id="hri" name="hri" value="{{ f.hora_inicio }}"></td>
+										<td><input type="time" class="hrf" id="hrf" name="hrf" value="{{ f.hora_fin }}"></td>
+										<td><input type="text" class="tempi" id="tempi" name="tempi" value="{{ f.t_inicio }}" onkeypress="return Numy1Punto(event, this)"></td>
+										<td><input type="text" class="tempf" id="tempf" name="tempf" value="{{ f.t_fin }}" onkeypress="return Numy1Punto(event, this)"></td>
+										<td><input type="text" class="phi" id="phi" name="phi" value="{{ f.ph_inicio }}" onkeypress="return Numy1Punto(event, this)"></td>
+										<td><input type="text" class="phf" id="phf" name="phf" value="{{ f.ph_fin }}" onkeypress="return Numy1Punto(event, this)"></td>
+									</tr>
 								{% endfor %}
 								<tr>
 									<td>Formulador Final:</td>
@@ -58,6 +58,10 @@
 											{% endfor %}
 										</select>	
 									</td>	
+								</tr>
+								<tr>
+									<td colspan="12">Colores de Cinta del Principio Activo:
+									Cinta 1: {{ cinta1.color }} ; Cinta 2: {{ cinta2.color }}</td>
 								</tr>
 								<tr>
 									<td><h4><b>Opciones:</b></h4></td>

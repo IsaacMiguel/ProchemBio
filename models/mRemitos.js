@@ -6,7 +6,9 @@ module.exports = {
 	getRemitoPorId: getRemitoPorId,
 	update: update,
 	del: del,
-	getRemitosEntreFechas: getRemitosEntreFechas
+	getRemitosEntreFechas: getRemitosEntreFechas,
+	getRemitoPorIdLeftJoinCinta1: getRemitoPorIdLeftJoinCinta1,
+	getRemitoPorIdLeftJoinCinta2: getRemitoPorIdLeftJoinCinta2
 }
 
 function getAll(cb){
@@ -21,6 +23,14 @@ function insert(tipo, fechar, fecham, nroremito, cliente, matep, lote, envase, c
 
 function getRemitoPorId(id, cb){
 	conn("select * from remitomp where id ="+id, cb);
+}
+
+function getRemitoPorIdLeftJoinCinta1(id, cb){
+	conn("select remitomp.*, colores.color from remitomp left join colores on colores.id = remitomp.cinta1 where remitomp.id="+id, cb);
+}
+
+function getRemitoPorIdLeftJoinCinta2(id, cb){
+	conn("select remitomp.*, colores.color from remitomp left join colores on colores.id = remitomp.cinta2 where remitomp.id="+id, cb);
 }
 
 function update(tipo, fechar, fecham, nroremito, cliente, matep, lote, envase, cantidad, neto, conceori, concepla, ubicacion, cinta1, cinta2, observaciones, cb){
