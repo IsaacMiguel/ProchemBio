@@ -134,32 +134,74 @@ function getAlta2(req, res){
 	id = params.idprog;
   	mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
   		mProgramacion.getProgPorId(id, function (prog){
-  			mFormEnReactor.getFORMENREACTORporIDREACTOyIDFORM(prog[0].reactoid, prog[0].formuladoid, function (formenreactor){
-  				mEnvase.getEnvasePorId(prog[0].id_envase_fk, function (envase){
-  					if (envase[0] != null){
-						mUmed.getUmedPorId(envase[0].umed, function (umed){
-	  						if (umed[0] != null){
-								res.render('prog1alta2',{
-									pagename:"Programacion Parte 2 - Producir",
-									ayuda: ayuda[0],
-									prog: prog[0],
-									formenreactor: formenreactor[0],
-									envase: envase[0],
-									umed: umed[0]
-								});
-	  						}else{
-	  							res.render("error",{
-	  								error: "umed"
-	  							});
-	  						}
-  						});
+  			if (prog[0].resultado != 0){
+  				//id //id de prog1
+  				//prog[0].id_matep.fk //id de la matep de prog1
+  				mProgramacion.getProg2Poridp1JoinMatepPA(id, function (p2){
+  					if (p2[0] != null){
+  						console.log("p2: "+p2[0].peso_obj)
+  						mFormEnReactor.getFORMENREACTORporIDREACTOyIDFORM(prog[0].reactoid, prog[0].formuladoid, function (formenreactor){
+	  						console.log(formenreactor)
+			  				mEnvase.getEnvasePorId(prog[0].id_envase_fk, function (envase){
+			  					if (envase[0] != null){
+									mUmed.getUmedPorId(envase[0].umed, function (umed){
+				  						if (umed[0] != null){
+											res.render('prog1alta2',{
+												pagename:"Programacion Parte 2 - Producir",
+												ayuda: ayuda[0],
+												prog: prog[0],
+												formenreactor: formenreactor[0],
+												envase: envase[0],
+												umed: umed[0],
+												p2: p2[0]
+											});
+				  						}else{
+				  							res.render("error",{
+				  								error: "umed"
+				  							});
+				  						}
+			  						});
+			  					}else{
+			  						res.render("error", {
+			  							error: "Falta agregar el Envase a esta Programación. Elimine la Programacion Vieja y cree una Nueva Programacion en el menú Programacion 1."
+			  						});
+			  					}
+			  				});
+			  			});
   					}else{
   						res.render("error", {
-  							error: "Falta agregar el Envase a esta Programación. Elimine la Programacion Vieja y cree una Nueva Programacion en el menú Programacion 1."
+  							error: "p2"
   						});
-  					}
+  					}  					
   				});
-  			});  				
+  			}else{
+  				mFormEnReactor.getFORMENREACTORporIDREACTOyIDFORM(prog[0].reactoid, prog[0].formuladoid, function (formenreactor){
+	  				mEnvase.getEnvasePorId(prog[0].id_envase_fk, function (envase){
+	  					if (envase[0] != null){
+							mUmed.getUmedPorId(envase[0].umed, function (umed){
+		  						if (umed[0] != null){
+									res.render('prog1alta2',{
+										pagename:"Programacion Parte 2 - Producir",
+										ayuda: ayuda[0],
+										prog: prog[0],
+										formenreactor: formenreactor[0],
+										envase: envase[0],
+										umed: umed[0]
+									});
+		  						}else{
+		  							res.render("error",{
+		  								error: "umed"
+		  							});
+		  						}
+	  						});
+	  					}else{
+	  						res.render("error", {
+	  							error: "Falta agregar el Envase a esta Programación. Elimine la Programacion Vieja y cree una Nueva Programacion en el menú Programacion 1."
+	  						});
+	  					}
+	  				});
+	  			});
+  			}
   		});			
 	});
 }
@@ -176,12 +218,7 @@ function postAlta2(req, res){
 	mProgramacion.getProgPorId(id, function (prog){
 		//console.log(prog)
 		if (cantidad <= prog[0].maximo){
-			//if(prog[0].resultado!=0){
-			//	res.render('error',{
-			//		error: "Esta Programacion ya tiene un Resultado guardado."
-			//	});
-			//}else{
-			mProgramacion.updateMaximo(id, cantidad, function(){
+			//mProgramacion.updateMaximo(id, cantidad, function(){
 				mProgramacion.postResultado(id, resultado, function (){
 					//busco la receta de ese formulado, me devuelve un objeto "receta" 
 					idformulado = prog[0].formuladoid;
@@ -191,15 +228,18 @@ function postAlta2(req, res){
 							mProgramacion.limpiarp2(id, function(){
 								receta.forEach(function (matep){
 									peso_obj = (matep.porce*resultado)/100;
-									//console.log(matep.porce+'*'+resultado+'='+peso_obj);
+									peso_obj = Math.round(peso_obj);
 									if (matep.pactivo == 1){
 										lote = remito[0].lote;
+										mProgramacion.postp2(id, matep.matepid, cantidad, lote, function(){
+											//se agregaron los datos a program2
+										});	
 									}else{
 										lote= "";
+										mProgramacion.postp2(id, matep.matepid, peso_obj, lote, function(){
+											//se agregaron los datos a program2
+										});	
 									}
-									mProgramacion.postp2(id, matep.matepid, peso_obj, lote, function(){
-										//se agregaron los datos a program2
-									});	
 								});
 							});					
 							res.redirect('prog2lista');
@@ -207,8 +247,7 @@ function postAlta2(req, res){
 						
 					});								
 				});
-			});	
-			//}
+			//});
 		}else{
 			res.render('error',{
 				error: "La cantidad de Principio Activo no puede superar el máximo seteado para ese Reactor/Mezclador."

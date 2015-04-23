@@ -14,7 +14,8 @@ module.exports = {
 	limpiarp2: limpiarp2,
 	getProgramaciones: getProgramaciones,
 	updateMaximo: updateMaximo,
-	updateFormuladorFinal: updateFormuladorFinal
+	updateFormuladorFinal: updateFormuladorFinal,
+	getProg2Poridp1JoinMatepPA: getProg2Poridp1JoinMatepPA
 }
 
 function getAll(cb){
@@ -72,4 +73,8 @@ function limpiarp2(idprog1, cb){
 
 function getProgramaciones(fecha, cb){
 	conn("select program1.*, DATE_FORMAT(program1.fechaP, '%d/%m/%Y') as fechapf, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque from program1 left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid left join reacto on reacto.id = program1.reactoid where program1.fechaP = '"+ fecha +"'", cb);
+}
+
+function getProg2Poridp1JoinMatepPA(idp1, cb){
+	conn("select program2.* from program2 left join matep on matep.id = program2.id_matep_fk where program2.id_p1_fk = "+idp1+" and matep.pactivo = 1", cb);
 }

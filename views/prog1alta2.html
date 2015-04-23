@@ -38,8 +38,12 @@
 		<table align="center" class="table table-striped" >
 			<input type="hidden" id="id" name="id" value="{{ id }}">
 			<tr>
-				<td>Cantidad de Principio Activo:<br><small>Ingrese la cantidad de P.A.<br><b>Máximo: {{formenreactor.maximo}}</b></small></td>
-				<td><input type="text" id="cant" name="cant" value="{{ prog.maximo }}" class="form-control"></td>
+				<td>Cantidad de Principio Activo:<br><small>Ingrese la cantidad de P.A.<br><b>Máximo: {{ formenreactor.maximo }}</b></small></td>
+				{% if prog.resultado != 0 %}
+					<td><input type="text" id="cant" name="cant" value="{{ p2.peso_obj }}" class="form-control"></td>
+				{% else %}
+					<td><input type="text" id="cant" name="cant" value="{{ prog.maximo }}" class="form-control"></td>
+				{% endif %}
 			</tr>
 			<tr>
 				<td>Titulo del Principio Activo:</td>
@@ -121,11 +125,11 @@
 
 		capacidad = $('#capacidadenvase').val();
 		volred = Math.ceil(volfinal/capacidad);
-		console.log("volfinal "+volfinal)
-		console.log("capacidad "+capacidad)
-		console.log("volred "+volred)
+		//console.log("volfinal "+volfinal)
+		//console.log("capacidad "+capacidad)
+		//console.log("volred "+volred)
 		volredfinal = volred*capacidad;
-		console.log("volredfinal "+volredfinal)
+		//console.log("volredfinal "+volredfinal)
 		$('#volredondeado').val(volredfinal);
 	});
 
@@ -139,11 +143,11 @@
 
 		capacidad = $('#capacidadenvase').val();
 		volred = Math.ceil(volfinal/capacidad);
-		console.log("volfinal "+volfinal)
-		console.log("capacidad "+capacidad)
-		console.log("volred "+volred)
+		//console.log("volfinal "+volfinal)
+		//console.log("capacidad "+capacidad)
+		//console.log("volred "+volred)
 		volredfinal = volred*capacidad;
-		console.log("volredfinal "+volredfinal)
+		//console.log("volredfinal "+volredfinal)
 		$('#volredondeado').val(volredfinal);
 	});
 

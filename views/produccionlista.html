@@ -141,7 +141,7 @@
 		var fi  = encodeURIComponent(document.getElementById('fechainicio').value);
 		var ff = encodeURIComponent(document.getElementById('fechafin').value);
 		$.getJSON('/buscarprogramaciones2/'+ fi+"/"+ff, function (data){
-			console.log(data);
+			//console.log(data);
 			$('#tbodyprogramacioneslisto > tr').remove();
 			var template = $('#tablaprogramaciones').html();
 			Mustache.tags =['[[',']]'];
