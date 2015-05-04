@@ -46,6 +46,7 @@
 							<th>Nombre</th>
 							<th>Unidad de Medida</th>
 							<th>Capacidad</th>
+							<th>Unidades Por Pallet</th>
 							<th>Activo</th>
 							<th>Opciones</th>
 						</tr>
@@ -64,6 +65,7 @@
 									{% endfor %}
 								</td>
 								<td>{{ envase.capacidad }}</td>
+								<td>{{ envase.uxpallet }}</td>
 								{% if envase.activa == 1 %}
 									<td><span>Activo</span></td>
 								{% else %}
