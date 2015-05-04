@@ -47,9 +47,10 @@ function postAlta(req, res){
 	nombre = params.nombre;
 	umed = params.umed;
 	capacidad = params.capacidad;
+	uxpallet = params.uxpallet;
 	activo = 1;
 
-	mEnvases.insert(codigo, nombre, umed, capacidad, activo, function(){
+	mEnvases.insert(codigo, nombre, umed, capacidad, uxpallet, activo, function(){
 		res.redirect('envaseslista');
 	})
 
@@ -76,13 +77,15 @@ function postModificar(req, res){
 	nombre = params.nombre;
 	umed = params.umed;
 	capacidad = params.capacidad;
+	uxpallet = params.uxpallet;
 	activo = params.activa;
+
 	if (activo=="on")
 		activo= 1;
 	else
 		activo=0;
 
-	mEnvases.update(id, codigo, nombre, umed, capacidad, activo, function(){
+	mEnvases.update(id, codigo, nombre, umed, capacidad, uxpallet, activo, function(){
 		res.redirect('/envaseslista');
 	});
 }

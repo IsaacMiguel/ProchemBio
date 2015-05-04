@@ -33,6 +33,10 @@
 				<td><input type="text" id="capacidad" name="capacidad" required ></td>
 			</tr>
 			<tr>
+				<td>Unidades Por Pallet:</td>
+				<td><input type="text" id="uxpallet" name="uxpallet" required onkeypress="return numbersonly(event);"></td>
+			</tr>
+			<tr>
 				<td><input type="button" value="Atras" onclick="history.back()"></td>
 				<td><input type="submit" value="Agregar"></td>
 			</tr>
@@ -44,6 +48,16 @@
 <script src="/js/jquery.limit-1.2.js"></script>
 <script type="text/javascript">
 	$('#nombre').limit('10','#charsLeftNombre');
+	$("#uxpallet").limit('4');
+	function numbersonly(e)  {
+        var unicode = e.charCode ? e.charCode : e.keyCode
+        if (unicode != 8 && unicode != 44) {
+            if (unicode < 48 || unicode > 57) //if not a number
+            {
+                return false
+            } //disable key press    
+        }
+    } 
 </script>
 
 {% endblock %}
