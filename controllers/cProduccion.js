@@ -31,7 +31,7 @@ function getLista(req, res){
   req.session.nromenu = 13;
   mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
     res.render('produccionlista',{
-      pagename: 'Lista de Produciones',
+      pagename: 'Lista de Producciones',
       ayuda: ayuda[0]
     });
   });

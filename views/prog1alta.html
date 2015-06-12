@@ -42,11 +42,11 @@
 					</select>
 				</td>
 			</tr>
-			<tr>
+			<!-- <tr>
 				<td>Principio Activo del Formulado:</td>
 				<td>
-					ID M.P.: <input type="text" id="iddelpa" readonly> 
-					Nombre: <input type="text" id="padelform" readonly class="form-control">
+					ID M.P.: --> <input id="iddelpa" name="iddelpa" hidden> 
+					<!-- Nombre: --> <input id="padelform" name="padelform" hidden>
 				</td>
 			</tr>
 			<tr>
@@ -153,7 +153,7 @@
 
 	function setCodigo(value1, value2, value3, value4){
 		$.getJSON('/prog1/'+value1+'/'+value2+'/'+value3+'/'+value4, function (data){
-			console.log(data.maxlote)
+			//console.log(data.maxlote)
 			if(data.maxlote==null)
 				$('#txtCodigo').val('0001');
 			else
@@ -161,7 +161,7 @@
 				ad = n.substring(5,9); 
 				ad = parseInt(ad) + 1;
 				ad = CompletarCeros(ad);
-				console.log(ad)
+				//console.log(ad)
 				$('#txtCodigo').val(ad);
 		});
 	}
@@ -203,6 +203,7 @@
 
 	function RefrescaRemito(idcliente){
 		$('#cmbRemito').empty();
+		console.log($('#iddelpa').val());
 		idmatep = $('#iddelpa').val();
 		$.getJSON('/refrescaremito/'+idcliente+'/'+idmatep, function (data){
 			$('#cmbRemito').append("<option value='0' >Seleccione un Remito</option>");
@@ -216,6 +217,8 @@
 		$('#iddelpa').val('')
 		$('#padelform').val('');
 		$.getJSON('traerpa/'+idform, function (data){
+			console.log("traer pa")
+		    console.log(data)
 		    if (data[0]!=null){
 		        $('#iddelpa').val(data[0].matepid)
 		        $('#padelform').val(data[0].mpnombre);

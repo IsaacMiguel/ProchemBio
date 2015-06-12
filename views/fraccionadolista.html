@@ -49,7 +49,6 @@
 							<th>Turno</th>
 							<th>Cliente</th>
 							<th>Producto</th>
-							<th>Lote</th>
 							<th>Equipo</th>
 							<th>Resultado</th>
 							<th>Tanque Destino</th>
@@ -62,13 +61,13 @@
 			  				[[#.]]
 			  				<tr>
 			  					<td>
-			  						<a href="/produccionver/[[id]]" class="btn btn-success">Ver Formulado</a>
+			  						<a href="/fraccionadoalta/[[id]]" class="btn btn-success">Fraccionar</a>
 			  					</td>
 			  					<td>
-			  						<a href="/produccionborrar/[[id]]" class="btn btn-danger" onclick="if (!confirm('¿Seguro desea eliminar?')) return false;">Borrar</a>
+			  						<a href="/fraccionadomodificar/[[id]]" class="btn btn-warning">Modificar</a>
 			  					</td>
 			  					<td>
-			  						<a href="/produccionimprimir/[[id]]" class="btn btn-info"><span class="glyphicon glyphicon-print"></span></a>
+			  						<a href="/fraccionadoimprimir/[[id]]" class="btn btn-info"><span class="glyphicon glyphicon-print"></span></a>
 			  					</td>
 			  					<td>
 			  						[[id]]
@@ -84,9 +83,6 @@
 			  					</td>
 			  					<td>
 			  						[[nombreformulado]]
-			  					</td>
-			  					<td>
-			  						[[lote]]
 			  					</td>
 			  					<td>
 			  						[[nombrereacto]]
@@ -139,14 +135,27 @@
 			month = "0" + month;
 		fechar =  day+ '/' + month + '/' +  date.getFullYear();
 		$('#fechafin').val(fechar);
+
+		var fi  = encodeURIComponent(fechaI);
+		var ff = encodeURIComponent(fechar);
+
+		$.getJSON('/buscarprogramaciones2/'+fi+"/"+ff, function (data){
+			//console.log(data);
+			$('#tbodyprogramacioneslisto > tr').remove();
+			var template = $('#tablaprogramaciones').html();
+			Mustache.tags =['[[',']]'];
+			var html = Mustache.to_html(template, data);
+			//console.log(html);
+			$('#tbodyprogramacioneslisto').html(html);
+		});
+		console.log("fin")
 	});
 
 	$("#ok").on("click", function() {
 		var fi  = encodeURIComponent(document.getElementById('fechainicio').value);
 		var ff = encodeURIComponent(document.getElementById('fechafin').value);
 		$.getJSON('/buscarprogramaciones2/'+ fi+"/"+ff, function (data){
-			console.log(data);
-
+			//console.log(data);
 			$('#tbodyprogramacioneslisto > tr').remove();
 			var template = $('#tablaprogramaciones').html();
 			Mustache.tags =['[[',']]'];

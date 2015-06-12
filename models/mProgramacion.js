@@ -44,7 +44,7 @@ function insert(fecha, fechar, turno, idcliente, formulado, formulador, equipo, 
 }
 
 function getProgPorId(id, cb){
-	conn("select program1.*, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque, envases.nombre as nombreenvase from program1 left join envases on envases.id = program1.id_envase_fk left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid left join reacto on reacto.id = program1.reactoid where program1.id = "+ id, cb);
+	conn("select program1.*, DATE_FORMAT(program1.fechafinalf, '%d/%m/%Y') as fechaff, DATE_FORMAT(program1.fechainicialf, '%d/%m/%Y') as fechaif, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque, envases.nombre as nombreenvase from program1 left join envases on envases.id = program1.id_envase_fk left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid left join reacto on reacto.id = program1.reactoid where program1.id = "+ id, cb);
 }
 
 function getProg1PorId_joined_w_Clientes_Reacto_Formulado_Tanque_and_Empleados(id, cb){

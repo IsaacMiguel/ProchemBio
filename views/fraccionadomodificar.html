@@ -1,0 +1,170 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+{% block content %}
+<link href="/css/fraccionadoalta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="post" id="formalta" action="/fraccionadoalta">
+		<table align="center" class="table table-striped">
+			<input type="hidden" name="idprog1" id="idprog1" value="{{ prog1.id }}">
+			<tr>
+				<td>Nro de Orden de Fraccionamiento:</td>
+				<td><input type="text" id="ofn" name="ofn" class="form-control" value="{{ prog1.ofn }}"></td>
+			</tr>
+			<tr>
+				<td>Linea de Fraccionado:</td>
+				<td>
+					<select id="linea" name="linea" class="form-control">
+					{% for linea in lineas %}
+						{% if prog1.id_lineafraccionado_fk == linea.id %}
+							<option value="{{ linea.id }}" selected>{{ linea.nombre }}</option>
+						{% else %}
+							<option value="{{ linea.id }}">{{ linea.nombre }}</option>
+						{% endif %}
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Fraccionador Inicial:</td>
+				<td>
+					<select id="finicial" name="finicial" class="form-control">
+						{% for emple in emples %}
+							{% if prog1.id_fraccionadorinicial_fk == emple.id %}
+								<option value="{{ emple.codigo }}" selected>{{ emple.nombre }}</option>
+							{% else %}
+								<option value="{{ emple.codigo }}">{{ emple.nombre }}</option>
+							{% endif %}
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Fraccionador Final:</td>
+				<td>
+					<select id="ffinal" name="ffinal" class="form-control">
+						{% for emple in emples %}
+							{% if prog1.id_fraccionadorfinal_fk == emple.id %}
+								<option value="{{ emple.codigo }}" selected>{{ emple.nombre }}</option>
+							{% else %}
+								<option value="{{ emple.codigo }}">{{ emple.nombre }}</option>
+							{% endif %}
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Lote:</td>
+				<td><input type="text" id="lote" name="lote" class="form-control" value="{{ prog1.lotef }}"></td>
+			</tr>
+			<tr>
+				<td>Tiempo total de lote:</td>
+				<td><input type="text" id="tiempototal" name="tiempototal" class="form-control" value="{{ prog1.tiempototallote }}"></td>
+			</tr>
+			<tr>
+				<td>Peso Neto:</td>
+				<td><input type="text" id="pesoneto" name="pesoneto" class="form-control" value="{{ prog1.pesoneto }}"></td>
+			</tr>
+			<tr>
+				<td>Peso Minimo:</td>
+				<td><input type="text" id="pesomin" name="pesomin" class="form-control" value="{{ prog1.pesomin }}"></td>
+			</tr>
+			<tr>
+				<td>Peso Maximo:</td>
+				<td><input type="text" id="pesomax" name="pesomax" class="form-control" value="{{ prog1.pesomax }}"></td>
+			</tr>
+			<tr>
+				<td>Cantidad de Pallets:</td>
+				<td><input type="text" id="cantpallets" name="cantpallets" class="form-control" value="{{ prog1.cantpallets }}"></td>
+			</tr>
+			<tr>
+				<td>Cantidad de Bidones:</td>
+				<td><input type="text" id="cantbidones" name="cantbidones" class="form-control" value="{{ prog1.cantbidones }}"></td>
+			</tr>
+			<tr>
+				<td>Bidones por Pallet:</td>
+				<td><input type="text" id="bidxpallet" name="bidxpallet" class="form-control" value="{{ prog1.bidonesxpallet }}"></td>
+			</tr>
+			<tr>
+				<td>Bidones Sobrantes:</td>
+				<td><input type="text" id="bidsobra" name="bidsobra" class="form-control" value="{{ prog1.bidonessobrantes }}"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>Otra categoria</b></td>
+			</tr>
+			<tr>
+				<td>Fecha Inicial de Fraccionado:</td>
+				<td><input type="text" id="fechainicialf" name="fechainicialf" class="datepicker form-control" value="{{ prog1.fechaif }}"></td>
+			</tr>
+			<tr>
+				<td>Fecha Final de Fraccionado:</td>
+				<td><input type="text" id="fechafinalf" name="fechafinalf" class="datepicker form-control" value="{{ prog1.fechaff }}"></td>
+			</tr>
+			<tr>
+				<td>Hora Inicial de Fraccionado:</td>
+				<td><input type="text" id="horainicialf" name="horainicialf" class="form-control" value="{{ prog1.horainicialf }}"></td>
+			</tr>
+			<tr>
+				<td>Hora Final de Fraccionado:</td>
+				<td><input type="text" id="horafinalf" name="horafinalf" class="form-control" value="{{ prog1.horafinalf }}"></td>
+			</tr>
+			<tr>
+				<td>Pallets Producidos:</td>
+				<td><input type="text" id="palletsprod" name="palletsprod" class="form-control" value="{{ prog1.palletsprod }}"></td>
+			</tr>
+			<tr>
+				<td>Bidones Producidos:</td>
+				<td><input type="text" id="bidonesprod" name="bidonesprod" class="form-control" value="{{ prog1.bidonesprod }}"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>Extraccion de Muestras</b></td>
+			</tr>
+			<tr>
+				<td>Pallet - Primero</td>
+				<td><input type="text" id="muestrap" name="muestrap" class="form-control" value="{{ prog1.muestrap }}"></td>
+			</tr>
+			<tr>
+				<td>Pallet - Medio</td>
+				<td><input type="text" id="muestram" name="muestram" class="form-control" value="{{ prog1.muestram }}"></td>
+			</tr>
+			<tr>
+				<td>Pallet - Ultimo</td>
+				<td><input type="text" id="muestrau" name="muestrau" class="form-control" value="{{ prog1.muestrau }}"></td>
+			</tr>
+			<tr>
+				<td colspan="2"><b>Control Induccion / Impresion:</b></td>
+			</tr>
+			<tr>
+				<td>Control - Primero</td>
+				<td><input type="text" id="controlp" name="controlp" class="form-control" value="{{ prog1.controlp }}"></td>
+			</tr>
+			<tr>
+				<td>Control - Medio</td>
+				<td><input type="text" id="controlm" name="controlm" class="form-control" value="{{ prog1.controlm }}"></td>
+			</tr>
+			<tr>
+				<td>Control - Ultimo</td>
+				<td><input type="text" id="controlu" name="controlu" class="form-control" value="{{ prog1.controlu }}"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Guardar"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$(".datepicker").datepicker({
+		format: 'dd/mm/yyyy',
+		autoclose: true,
+		language: 'es'
+	});
+</script>
+
+{% endblock %}
