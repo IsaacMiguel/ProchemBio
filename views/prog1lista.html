@@ -42,7 +42,8 @@
 			  		<thead>
 			  			<tr> 
 							<th>ID</th>
-							<th>Fecha Prog.</th>
+							<th>Programado el día</th>
+							<th>Fecha Prog.<br><small>(Programado para..)</small></th>
 							<th>Turno</th>
 							<th>Cliente</th>
 							<th>Formulado</th>
@@ -55,6 +56,7 @@
 			  			{% for prog in progs %}
 							<tr>
 								<td>{{ prog.id }}</td>
+								<td>{{ prog.fecharf }}</td>
 								<td>{{ prog.fechapf }}</td>
 								<td>{{ prog.turno }}</td>
 								<td>{{ prog.nombrecliente }}</td>		
