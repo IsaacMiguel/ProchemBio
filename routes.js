@@ -23,6 +23,7 @@ var moment = require("moment");
 var mEventos = require('./models/mEventos');
 var consuController = require('./controllers/cConsumibles');
 var produccionController = require('./controllers/cProduccion');
+var fraccionadoController = require('./controllers/cFraccionado');
 
 function logout (req, res) {
 	fecha = new Date();
@@ -209,6 +210,13 @@ module.exports = function(app) {
 	app.get('/produccionver/:id', auth, produccionController.getVerFormulado);
 	app.post('/produccionver', auth, produccionController.postDatosFormulado);
 	app.get('/produccionimprimir/:id', auth, produccionController.getImprimir);
+	//borrar
+	//fraccionado
+	app.get('/fraccionadolista', auth, fraccionadoController.getLista);
+	app.get('/fraccionadoalta/:id', auth, fraccionadoController.getAlta);
+	app.post('/fraccionadoalta', auth, fraccionadoController.postAlta);
+	app.get('/fraccionadomodificar/:id', auth, fraccionadoController.getModificar);
+	app.post('/fraccionadomodificar', auth, fraccionadoController.postModificar);
+	//borrar?
 
-	
 }; 

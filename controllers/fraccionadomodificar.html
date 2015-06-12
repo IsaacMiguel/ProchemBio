@@ -1,0 +1,158 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+{% block content %}
+<link href="/css/fraccionadomodificar.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="post" id="formalta" action="/fraccionadoalta">
+		<table align="center" class="table table-striped">
+			<input type="hidden" name="idprog1" id="idprog1" value="{{ idprog1 }}">
+			<tr>
+				<td>Nro de Orden de Fraccionamiento:</td>
+				<td><input type="text" id="ofn" name="ofn" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Linea de Fraccionado:</td>
+				<td>
+					<select id="linea" name="linea" class="form-control">
+						{% for linea in lineas %}
+							<option value="{{ linea.id }}">{{ linea.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Fraccionador Inicial:</td>
+				<td>
+					<select id="finicial" name="finicial" class="form-control">
+						{% for emple in emples %}
+							<option value="{{ emple.codigo }}">{{ emple.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Fraccionador Final:</td>
+				<td>
+					<select id="ffinal" name="ffinal" class="form-control">
+						{% for emple in emples %}
+							<option value="{{ emple.codigo }}">{{ emple.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Lote:</td>
+				<td><input type="text" id="lote" name="lote" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Tiempo total de lote:</td>
+				<td><input type="text" id="tiempototal" name="tiempototal" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Peso Neto:</td>
+				<td><input type="text" id="pesoneto" name="pesoneto" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Peso Minimo:</td>
+				<td><input type="text" id="pesomin" name="pesomin" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Peso Maximo:</td>
+				<td><input type="text" id="pesomax" name="pesomax" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Cantidad de Pallets:</td>
+				<td><input type="text" id="cantpallets" name="cantpallets" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Cantidad de Bidones:</td>
+				<td><input type="text" id="cantbidones" name="cantbidones" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Bidones por Pallet:</td>
+				<td><input type="text" id="bidxpallet" name="bidxpallet" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Bidones Sobrantes:</td>
+				<td><input type="text" id="bidsobra" name="bidsobra" class="form-control"></td>
+			</tr>
+			<tr bgcolor="blue">
+				<td colspan="2">Otra categoria</td>
+			</tr>
+			<tr>
+				<td>Fecha Inicial de Fraccionado:</td>
+				<td><input type="text" id="fechainicialf" name="fechainicialf" class="datepicker form-control"></td>
+			</tr>
+			<tr>
+				<td>Fecha Final de Fraccionado:</td>
+				<td><input type="text" id="fechafinalf" name="fechafinalf" class="datepicker form-control"></td>
+			</tr>
+			<tr>
+				<td>Hora Inicial de Fraccionado:</td>
+				<td><input type="text" id="horainicialf" name="horainicialf" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Hora Final de Fraccionado:</td>
+				<td><input type="text" id="horafinalf" name="horafinalf" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Pallets Producidos:</td>
+				<td><input type="text" id="palletsprod" name="palletsprod" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Bidones Producidos:</td>
+				<td><input type="text" id="bidonesprod" name="bidonesprod" class="form-control"></td>
+			</tr>
+			<tr bgcolor="blue">
+				<td colspan="2">Extraccion de Muestras</td>
+			</tr>
+			<tr>
+				<td>Pallet - Primero</td>
+				<td><input type="text" id="muestrap" name="muestrap" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Pallet - Medio</td>
+				<td><input type="text" id="muestram" name="muestram" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Pallet - Ultimo</td>
+				<td><input type="text" id="muestrau" name="muestrau" class="form-control"></td>
+			</tr>
+			<tr bgcolor="blue">
+				<td colspan="2">Control Induccion / Impresion:</td>
+			</tr>
+			<tr>
+				<td>Control - Primero</td>
+				<td><input type="text" id="controlp" name="controlp" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Control - Medio</td>
+				<td><input type="text" id="controlm" name="controlm" class="form-control"></td>
+			</tr>
+			<tr>
+				<td>Control - Ultimo</td>
+				<td><input type="text" id="controlu" name="controlu" class="form-control"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Guardar"></td>
+			</tr>
+		</table>
+	</form>
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$(".datepicker").datepicker({
+		format: 'dd/mm/yyyy',
+		autoclose: true,
+		language: 'es'
+	});
+</script>
+
+{% endblock %}
