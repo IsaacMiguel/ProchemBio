@@ -124,8 +124,9 @@ function getImprimir(req, res){
   id = params.id;
 
   mProgram1.getProg1PorId_joined_w_Clientes_Reacto_Formulado_Tanque_and_Empleados(id, function (program1){
-    //console.log(program1)
+    //console.log(program1[0])
     mProduccion.getFormulado(id, function (forms){
+      //console.log(forms)
       mProduccion.getSuma(id, function (suma){
         //console.log(suma)
         res.render('produccionimprimirform',{

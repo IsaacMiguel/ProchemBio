@@ -19,7 +19,7 @@ module.exports = {
 }
 
 function getAll(cb){
-	conn("select program1.*, DATE_FORMAT(program1.fechaP, '%d/%m/%Y') as fechapf, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque from program1 left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid left join reacto on reacto.id = program1.reactoid", cb);
+	conn("select program1.*, DATE_FORMAT(program1.fechaP, '%d/%m/%Y') as fechapf, DATE_FORMAT(program1.fechaR, '%d/%m/%Y') as fecharf, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque from program1 left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid left join reacto on reacto.id = program1.reactoid", cb);
 }
 
 function getCodigo(lote, anio, clienteid, formid, cb){
@@ -48,7 +48,7 @@ function getProgPorId(id, cb){
 }
 
 function getProg1PorId_joined_w_Clientes_Reacto_Formulado_Tanque_and_Empleados(id, cb){
-	conn("select program1.*, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque, emple.nombre as nombreemple from program1 left join emple on emple.codigo = program1.formulador left join reacto on reacto.id = program1.reactoid left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid where program1.id = "+ id, cb);
+	conn("select program1.*, DATE_FORMAT(program1.fechaP, '%d/%m/%Y') as fechapf, DATE_FORMAT(program1.fechaR, '%d/%m/%Y') as fecharf, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque, emple.nombre as nombreemple from program1 left join emple on emple.codigo = program1.formulador left join reacto on reacto.id = program1.reactoid left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid where program1.id = "+ id, cb);
 }
 
 function del(id, cb){

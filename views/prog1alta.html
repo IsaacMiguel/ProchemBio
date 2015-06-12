@@ -11,7 +11,11 @@
 	<div class="panel panel-default">
 		<table align="center" class="table table-striped" id="tabla1">
 			<tr>
-				<td>Fecha:</td>
+				<td>Programada el dia:</td>
+				<td><input type="text" readonly name="fechar" id="fechar" class="form-control"></td>
+			</tr>	
+			<tr>
+				<td>Fecha:<br><small>Programado Para..</small></td>
 				<td><input type="text" id="fecha" name="fecha" class="datepicker form-control" placeholder="Seleccione una fecha" required readonly></td>
 			</tr>
 			<tr>
@@ -132,6 +136,22 @@
 	
 	$(function() {
 		RefrescaCombo($('#cmbCliente').val());
+		// Return today's date and time
+		var currentTime = new Date();
+		// returns the month (from 0 to 11)
+		var month = currentTime.getMonth() + 1;
+		// returns the day of the month (from 1 to 31)
+		var day = currentTime.getDate();
+		// returns the year (four digits)
+		var year = currentTime.getFullYear()
+		if (month<10){
+			month = "0" + month
+		}
+		if (day<10){
+			day = "0" + day
+		}
+		fecha = day+'/'+month+'/'+year;
+		$('#fechar').val(fecha);
 	});
 	
 	$('#cmbCliente').on('change', function() {

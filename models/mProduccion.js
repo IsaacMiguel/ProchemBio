@@ -8,7 +8,7 @@ module.exports = {
 }
 
 function getProgramaciones(fi, ff, cb){
-	conn("SELECT program1.*, DATE_FORMAT(program1.fechap, '%d/%m/%Y') as fechapf, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque from program1 left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid left join reacto on reacto.id = program1.reactoid where fechaP >='"+fi+"' and fechaP<='"+ff+"' and resultado <> 0",cb)
+	conn("SELECT program1.*, DATE_FORMAT(program1.fechap, '%d/%m/%Y') as fechapf, DATE_FORMAT(program1.fechar, '%d/%m/%Y') as fecharf, clientes.nombre as nombrecliente, reacto.nombre as nombrereacto, formulados.nombre as nombreformulado, tanques.nombre as nombretanque from program1 left join clientes on clientes.codigo = program1.clienteid left join formulados on formulados.id = program1.formuladoid left join tanques on tanques.id = program1.tanqueid left join reacto on reacto.id = program1.reactoid where fechaP >='"+fi+"' and fechaP<='"+ff+"' and resultado <> 0",cb)
 }
 
 function getFormulado(id, cb){
