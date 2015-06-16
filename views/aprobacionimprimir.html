@@ -1,0 +1,173 @@
+<html>
+<head>
+	<title>{{ pagename }}</title>
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/jquery-ui.min.css">
+</head>
+<body>
+<link href="/css/aprobacionimprimir.css" rel="stylesheet">
+<div class="container">
+	<h2>{{ pagename }}</b></h2>
+	<div class="panel panel-default">
+		<div class="panel panel-default">
+			<div class="row">
+				<div class="col-xs-12">
+					<form method="post" id="formdatos" action="/apver">
+						<input hidden name="idap" id="idap" value="{{ ap.id }}">
+						<input hidden name="idp2" id="idp2" value="{{ ap.id_program2_fk }}">
+						<input hidden name="id_prog2" id="id_prog2" value="{{ id_prog2 }}">
+						<table align="center" class="table table-striped">
+							<tr>
+								<th></th>
+								<th style="width: 150px;">Extracc</th>
+								<th>Recibida</th>
+								<th>Analizada</th>
+								<th>Ajustes</th>
+								<th>Ph</th>
+								<th>Dens.</th>
+							</tr>
+							<tr>
+								<td>1° Muestra</td>
+								<td><input type="text" class="extrac" name="extrac1" id="extrac1" value="{{ ap.extrac1 }}" readonly> hs.</td>
+								<td><input type="text" class="recibida" name="recibida1" id="recibida1" value="{{ ap.recibida1 }}" readonly> hs.</td>
+								<td><input type="text" class="analizada" name="analizada1" id="analizada1" value="{{ ap.analizada1 }}" readonly> hs.</td>
+								<td><input type="text" class="ajustes" name="ajustes1" id="ajustes1" value="{{ ap.ajustes1 }}" readonly></td>
+								<td><input type="text" class="ph" name="ph1" id="ph1" onkeypress="return Numy1Punto(event, this)" value="{{ ap.ph1 }}" readonly></td>
+								<td><input type="text" class="dens" name="dens1" id="dens1" onkeypress="return Numy1Punto(event, this)" value="{{ ap.dens1 }}" readonly></td>
+							</tr>
+							<tr>
+								<td>2° Muestra</td>
+								<td><input type="text" class="extrac" name="extrac2" id="extrac2" value="{{ ap.extrac2 }}" readonly> hs.</td>
+								<td><input type="text" class="recibida" name="recibida2" id="recibida2" value="{{ ap.recibida2 }}" readonly> hs.</td>
+								<td><input type="text" class="analizada" name="analizada2" id="analizada2" value="{{ ap.analizada2 }}" readonly> hs.</td>
+								<td><input type="text" class="ajustes" name="ajustes2" id="ajustes2" value="{{ ap.ajustes2 }}" readonly></td>
+								<td><input type="text" class="ph" name="ph2" id="ph2" onkeypress="return Numy1Punto(event, this)" value="{{ ap.ph2 }}" readonly></td>
+								<td><input type="text" class="dens" name="dens2" id="dens2" onkeypress="return Numy1Punto(event, this)" value="{{ ap.dens2 }}" readonly></td>
+							</tr>
+							<tr>
+								<td>3° Muestra</td>
+								<td><input type="text" class="extrac" name="extrac3" id="extrac3" value="{{ ap.extrac3 }}" readonly> hs.</td>
+								<td><input type="text" class="recibida" name="recibida3" id="recibida3" value="{{ ap.recibida3 }}" readonly> hs.</td>
+								<td><input type="text" class="analizada" name="analizada3" id="analizada3" value="{{ ap.analizada3 }}" readonly> hs.</td>
+								<td><input type="text" class="ajustes" name="ajustes3" id="ajustes3" value="{{ ap.ajustes3 }}" readonly></td>
+								<td><input type="text" class="ph" name="ph3" id="ph3" onkeypress="return Numy1Punto(event, this)" value="{{ ap.ph3 }}" readonly></td>
+								<td><input type="text" class="dens" name="dens3" id="dens3" onkeypress="return Numy1Punto(event, this)" value="{{ ap.dens3 }}" readonly></td>
+							</tr>
+							<tr>
+								<td>4° Muestra</td>
+								<td><input type="text" class="extrac" name="extrac4" id="extrac4" value="{{ ap.extrac4 }}" readonly> hs.</td>
+								<td><input type="text" class="recibida" name="recibida4" id="recibida4" value="{{ ap.recibida4 }}" readonly> hs.</td>
+								<td><input type="text" class="analizada" name="analizada4" id="analizada4" value="{{ ap.analizada4 }}" readonly> hs.</td>
+								<td><input type="text" class="ajustes" name="ajustes4" id="ajustes4" value="{{ ap.ajustes4 }}" readonly></td>
+								<td><input type="text" class="ph" name="ph4" id="ph4" onkeypress="return Numy1Punto(event, this)" value="{{ ap.ph4 }}" readonly></td>
+								<td><input type="text" class="dens" name="dens4" id="dens4" onkeypress="return Numy1Punto(event, this)" value="{{ ap.dens4 }}" readonly></td>
+							</tr>
+							<tr>
+								<td>5° Muestra</td>
+								<td><input type="text" class="extrac" name="extrac5" id="extrac5" value="{{ ap.extrac5 }}" readonly> hs.</td>
+								<td><input type="text" class="recibida" name="recibida5" id="recibida5" value="{{ ap.recibida5 }}" readonly> hs.</td>
+								<td><input type="text" class="analizada" name="analizada5" id="analizada5" value="{{ ap.analizada5 }}" readonly> hs.</td>
+								<td><input type="text" class="ajustes" name="ajustes5" id="ajustes5" value="{{ ap.ajustes5 }}" readonly></td>
+								<td><input type="text" class="ph" name="ph5" id="ph5" onkeypress="return Numy1Punto(event, this)" value="{{ ap.ph5 }}" readonly></td>
+								<td><input type="text" class="dens" name="dens5" id="dens5" onkeypress="return Numy1Punto(event, this)" value="{{ ap.dens5 }}" readonly></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+							<tr>
+								<td colspan="4">Aprobacion Final de Laboratorio: <input type="text" name="ap_final" id="ap_final" value="{{ ap.aprobacion_final }}"  readonly> hs.</td>
+								<td></td>
+								<td><input type="text" name="ph_final" id="ph_final" onkeypress="return Numy1Punto(event, this)" value="{{ ap.ph_final }}" readonly></td>
+								<td><input type="text" name="dens_final" id="dens_final" onkeypress="return Numy1Punto(event, this)" value="{{ ap.dens_final }}" readonly></td>
+							</tr>
+							<tr>
+								<td>Laboratorista:</td>	
+								<td>
+									{% if ap.laboratorista_id_emple_fk == 0 %}
+										<input type="text" readonly id="laboratorista" name="laboratorista" value="-Sin Empleado">
+									{% else %}
+										{% for e in emples %}
+											{% if ap.laboratorista_id_emple_fk == e.codigo %}
+												<input type="text" readonly id="laboratorista" name="laboratorista" value="{{ e.nombre }}">	
+											{% endif %}
+										{% endfor %}
+									{% endif %}
+								</td>	
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+						
+						<h3>Trasvase a Tanque de Almacenamiento:</h3>
+						<table align="center" class="table table-striped">
+							<tr>
+								<td>Tanque N°:
+									{% for t in tanques %}
+										{% if ap.tanque_nro == t.id %}
+											<input  name="tanquenro" id="tanquenro" type="text" value="{{ t.nombre }}" readonly>
+										{% endif %}
+									{% endfor %}
+								</td>
+								<td>Hora Inicial: <input type="text" name="hr_inicial" id="hr_final" value="{{ ap.hora_inicial }}" readonly> hs.</td>
+								<td>Hora Final: <input type="text" name="hr_final" id="hr_final" value="{{ ap.hora_final }}" readonly> hs.</td>
+							</tr>
+						</table>
+						<table align="center" class="table table-striped">
+							<tr>
+								<td>Controlado: 
+									{% if ap.controlado_id_emple_fk == 0 %}
+										<input type="text" name="controlado" id="controlado" value="-Sin empleado" readonly>
+									{% else %}
+										{% for e in emples %}
+											{% if ap.controlado_id_emple_fk == e.codigo %}
+												<input type="text" name="controlado" id="controlado" value="{{ e.nombre }}" readonly>
+											{% endif %}
+										{% endfor %}
+									{% endif %}
+								</td>
+								<td>Formulador Final: 
+									{% if ap.formulador_final_id_emple_fk == 0 %}
+										<input type="text" name="formulador_final" id="formulador_final" value="-Sin empleado" readonly>
+									{% else %}
+										{% for e in emples %}
+											{% if ap.formulador_final_id_emple_fk == e.codigo %}
+												<input type="text" name="formulador_final" id="formulador_final" value="{{ e.nombre }}" readonly>
+											{% endif %}
+										{% endfor %}
+									{% endif %}
+								</td>
+								<td>Tiempo Total del lote: <input type="text" name="tiempo_total" id="tiempo_total" value="{{ ap.tiempo_total }}" readonly></td>
+								<td>Refrigerio?: 
+									{% if ap.refrigerio == 1 %}
+										<input type="text" readonly name="refrigerio" id="refrigerio" value="Si">
+									{% else %}
+										<input type="text" readonly name="refrigerio" id="refrigerio" value="No">
+									{% endif %}
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4">
+									<b><u>Observaciones:</b></u><textarea name="observaciones" id="observaciones" readonly> {{ ap.observaciones }}</textarea>
+								</td>
+							</tr>
+						</table>
+					</form>
+					<div class="panel-footer">
+						<button class="btn btn-info" onclick="window.print()"><span class="glyphicon glyphicon-print"></span></button> Report Powered By <a href="http://www.leandrodapello.com" target="_blank">LeandroDapello.com</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

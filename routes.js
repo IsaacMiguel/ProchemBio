@@ -24,6 +24,7 @@ var mEventos = require('./models/mEventos');
 var consuController = require('./controllers/cConsumibles');
 var produccionController = require('./controllers/cProduccion');
 var fraccionadoController = require('./controllers/cFraccionado');
+var aprobacionController = require('./controllers/cAprobacion');
 
 function logout (req, res) {
 	fecha = new Date();
@@ -218,5 +219,9 @@ module.exports = function(app) {
 	app.get('/fraccionadomodificar/:id', auth, fraccionadoController.getModificar);
 	app.post('/fraccionadomodificar', auth, fraccionadoController.postModificar);
 	//borrar?
-
+	//aprobacion
+	app.get('/aprobacionlista', auth, aprobacionController.getLista);
+	app.get('/aprobacionver/:id', auth, aprobacionController.getVer);
+	app.post('/aprobacionver', auth, aprobacionController.postVer);
+	app.get('/aprobacionimprimir/:id', auth, aprobacionController.getImprimir);
 }; 

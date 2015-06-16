@@ -1,0 +1,19 @@
+var conn = require('../config/db').conn;
+
+module.exports = {
+	getByP2Id: getByP2Id,
+	updateall: updateall,
+	insert: insert
+}
+
+function getByP2Id(id_prog2, cb){
+	conn("select * from aprobacion where id_program2_fk="+id_prog2, cb);
+}
+
+function updateall(idaprobacion, idp2, extrac1, recibida1, analizada1, ajustes1, ph1, dens1, extrac2, recibida2, analizada2, ajustes2, ph2, dens2, extrac3, recibida3, analizada3, ajustes3, ph3, dens3, extrac4, recibida4, analizada4, ajustes4, ph4, dens4, extrac5, recibida5, analizada5, ajustes5, ph5, dens5, aprobacion_final, ph_final, dens_final, laboratorista, tanque_nro, hr_inicial, hr_final, controlado, formulador_final, tiempo_total, refrigerio, observaciones, cb){
+	conn("UPDATE `aprobacion` SET `extrac1`='"+extrac1+"',`recibida1`='"+recibida1+"',`analizada1`='"+analizada1+"',`ajustes1`='"+ajustes1+"',`ph1`="+ph1+",`dens1`="+dens1+",`extrac2`='"+extrac2+"',`recibida2`='"+recibida2+"',`analizada2`='"+analizada2+"',`ajustes2`='"+ajustes2+"',`ph2`="+ph2+",`dens2`="+dens2+",`extrac3`='"+extrac3+"',`recibida3`='"+recibida3+"',`analizada3`='"+analizada3+"',`ajustes3`='"+ajustes3+"',`ph3`="+ph3+",`dens3`="+dens3+",`extrac4`='"+extrac4+"',`recibida4`='"+recibida4+"',`analizada4`='"+analizada4+"',`ajustes4`='"+ajustes4+"',`ph4`="+ph4+",`dens4`="+dens4+",`extrac5`='"+extrac5+"',`recibida5`='"+recibida5+"',`analizada5`='"+analizada5+"',`ajustes5`='"+ajustes5+"',`ph5`="+ph5+",`dens5`="+dens5+",`aprobacion_final`='"+aprobacion_final+"',`ph_final`="+ph_final+",`dens_final`="+dens_final+",`laboratorista_id_emple_fk`="+laboratorista+",`tanque_nro`="+tanque_nro+",`hora_inicial`='"+hr_inicial+"',`hora_final`='"+hr_final+"',`controlado_id_emple_fk`="+controlado+",`formulador_final_id_emple_fk`="+formulador_final+",`tiempo_total`='"+tiempo_total+"',`refrigerio`="+refrigerio+",`observaciones`='"+observaciones+"',`id_program2_fk`="+idp2+" WHERE id="+idaprobacion, cb);
+}
+
+function insert(id_prog2, extrac1, recibida1, analizada1, ajustes1, ph1, dens1, extrac2, recibida2, analizada2, ajustes2, ph2, dens2, extrac3, recibida3, analizada3, ajustes3, ph3, dens3, extrac4, recibida4, analizada4, ajustes4, ph4, dens4, extrac5, recibida5, analizada5, ajustes5, ph5, dens5, aprobacion_final, ph_final, dens_final, laboratorista, tanque_nro, hr_inicial, hr_final, controlado, formulador_final, tiempo_total, refrigerio, observaciones, cb){
+	conn("insert into aprobacion(`extrac1`, `recibida1`, `analizada1`, `ajustes1`, `ph1`, `dens1`, `extrac2`, `recibida2`, `analizada2`, `ajustes2`, `ph2`, `dens2`, `extrac3`, `recibida3`, `analizada3`, `ajustes3`, `ph3`, `dens3`, `extrac4`, `recibida4`, `analizada4`, `ajustes4`, `ph4`, `dens4`, `extrac5`, `recibida5`, `analizada5`, `ajustes5`, `ph5`, `dens5`, `aprobacion_final`, `ph_final`, `dens_final`, `laboratorista_id_emple_fk`, `tanque_nro`, `hora_inicial`, `hora_final`, `controlado_id_emple_fk`, `formulador_final_id_emple_fk`, `tiempo_total`, `refrigerio`, `observaciones`, `id_program2_fk`) values('"+extrac1+"', '"+recibida1+"', '"+analizada1+"', '"+ajustes1+"', "+ph1+", "+dens1+", '"+extrac2+"', '"+recibida2+"', '"+analizada2+"', '"+ajustes2+"', "+ph2+", "+dens2+", '"+extrac3+"', '"+recibida3+"', '"+analizada3+"', '"+ajustes3+"', "+ph3+", "+dens3+", '"+extrac4+"', '"+recibida4+"', '"+analizada4+"', '"+ajustes4+"', "+ph4+", "+dens4+", '"+extrac5+"', '"+recibida5+"', '"+analizada5+"', '"+ajustes5+"', "+ph5+", "+dens5+", '"+aprobacion_final+"', "+ph_final+", "+dens_final+", "+laboratorista+", "+tanque_nro+", '"+hr_inicial+"', '"+hr_final+"', "+controlado+", "+formulador_final+", '"+tiempo_total+"', "+refrigerio+", '"+observaciones+"', "+id_prog2+")", cb);
+}

@@ -8,11 +8,11 @@
 <link href="/css/produccionver.css" rel="stylesheet">
 <h2>{{ pagename }} <b>{{ formulado.nombre }}</b></h2>
 <div class="panel panel-default">
-	<form method="POST" action="/produccionver">
+	<!-- <form method="POST" action="/produccionver"> -->
 		<div class="panel panel-default">
 			<div class="row">
 				<div class="col-xs-12">
-					<div style="overflow: scroll;">
+					<!-- <div style="overflow: scroll;"> -->
 						<form method="post" id="formdatos" action="/produccionver">
 							<table align="center" class="table table-striped">
 								<tr>
@@ -49,6 +49,7 @@
 									<td>Formulador Final:</td>
 									<td colspan="12">
 										<select class="form-control" id="formuladorfinal" name="formuladorfinal">
+											<option value="0">-Sin Empleado</option>
 											{% for e in emple %}
 												{% if prog1.formuladorfinal == e.codigo %}
 													<option value="{{ e.codigo }}" selected>{{ e.nombre }}</option>	
@@ -79,11 +80,11 @@
 								</tr>
 							</table>
 						</form>
-					</div>
+					<!-- </div> -->
 				</div>
 			</div>
 		</div>
-	</form>
+	<!-- </form> -->
 </div>
 	<script src="/js/jquery.min.js"></script>
 	<script type="text/javascript">

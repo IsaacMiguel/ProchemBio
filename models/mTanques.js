@@ -8,7 +8,7 @@ module.exports = {
 	del: del,
 	getTanquePorNombre: getTanquePorNombre,
 	getAllActivos: getAllActivos
-	}
+}
 
 function getAll(cb){
 	conn('select * from Tanques', cb);

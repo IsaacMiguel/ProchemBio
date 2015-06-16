@@ -1,0 +1,232 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/aprobacionver.css" rel="stylesheet">
+<h2>{{ pagename }}</b></h2>
+<div class="panel panel-default">
+	<!-- <form method="POST" action="/produccionver"> -->
+		<div class="panel panel-default">
+			<div class="row">
+				<div class="col-xs-12">
+					<!-- <div style="overflow: scroll;"> -->
+						<form method="post" id="formdatos" action="/aprobacionver">
+							<input hidden name="idaprobacion" id="idaprobacion" value="{{ aprobacion.id }}">
+							<input hidden name="idp2" id="idp2" value="{{ aprobacion.id_program2_fk }}">
+							<input hidden name="id_prog2" id="id_prog2" value="{{ id_prog2 }}">
+							<table align="center" class="table table-striped">
+								<tr>
+									<th></th>
+									<th>Extracc</th>
+									<th>Recibida</th>
+									<th>Analizada</th>
+									<th>Ajustes</th>
+									<th>Ph</th>
+									<th>Dens.</th>
+								</tr>
+								<tr>
+									<td>1° Muestra</td>
+									<td><input type="time" class="extrac" name="extrac1" id="extrac1" value="{{ aprobacion.extrac1 }}"> hs.</td>
+									<td><input type="time" class="recibida" name="recibida1" id="recibida1" value="{{ aprobacion.recibida1 }}"> hs.</td>
+									<td><input type="time" class="analizada" name="analizada1" id="analizada1" value="{{ aprobacion.analizada1 }}"> hs.</td>
+									<td><input type="text" class="ajustes" name="ajustes1" id="ajustes1" value="{{ aprobacion.ajustes1 }}"></td>
+									<td><input type="text" class="ph" name="ph1" id="ph1" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.ph1 }}"></td>
+									<td><input type="text" class="dens" name="dens1" id="dens1" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.dens1 }}"></td>
+								</tr>
+								<tr>
+									<td>2° Muestra</td>
+									<td><input type="time" class="extrac" name="extrac2" id="extrac2" value="{{ aprobacion.extrac2 }}"> hs.</td>
+									<td><input type="time" class="recibida" name="recibida2" id="recibida2" value="{{ aprobacion.recibida2 }}"> hs.</td>
+									<td><input type="time" class="analizada" name="analizada2" id="analizada2" value="{{ aprobacion.analizada2 }}"> hs.</td>
+									<td><input type="text" class="ajustes" name="ajustes2" id="ajustes2" value="{{ aprobacion.ajustes2 }}"></td>
+									<td><input type="text" class="ph" name="ph2" id="ph2" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.ph2 }}"></td>
+									<td><input type="text" class="dens" name="dens2" id="dens2" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.dens2 }}"></td>
+								</tr>
+								<tr>
+									<td>3° Muestra</td>
+									<td><input type="time" class="extrac" name="extrac3" id="extrac3" value="{{ aprobacion.extrac3 }}"> hs.</td>
+									<td><input type="time" class="recibida" name="recibida3" id="recibida3" value="{{ aprobacion.recibida3 }}"> hs.</td>
+									<td><input type="time" class="analizada" name="analizada3" id="analizada3" value="{{ aprobacion.analizada3 }}"> hs.</td>
+									<td><input type="text" class="ajustes" name="ajustes3" id="ajustes3" value="{{ aprobacion.ajustes3 }}"></td>
+									<td><input type="text" class="ph" name="ph3" id="ph3" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.ph3 }}"></td>
+									<td><input type="text" class="dens" name="dens3" id="dens3" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.dens3 }}"></td>
+								</tr>
+								<tr>
+									<td>4° Muestra</td>
+									<td><input type="time" class="extrac" name="extrac4" id="extrac4" value="{{ aprobacion.extrac4 }}"> hs.</td>
+									<td><input type="time" class="recibida" name="recibida4" id="recibida4" value="{{ aprobacion.recibida4 }}"> hs.</td>
+									<td><input type="time" class="analizada" name="analizada4" id="analizada4" value="{{ aprobacion.analizada4 }}"> hs.</td>
+									<td><input type="text" class="ajustes" name="ajustes4" id="ajustes4" value="{{ aprobacion.ajustes4 }}"></td>
+									<td><input type="text" class="ph" name="ph4" id="ph4" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.ph4 }}"></td>
+									<td><input type="text" class="dens" name="dens4" id="dens4" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.dens4 }}"></td>
+								</tr>
+								<tr>
+									<td>5° Muestra</td>
+									<td><input type="time" class="extrac" name="extrac5" id="extrac5" value="{{ aprobacion.extrac5 }}"> hs.</td>
+									<td><input type="time" class="recibida" name="recibida5" id="recibida5" value="{{ aprobacion.recibida5 }}"> hs.</td>
+									<td><input type="time" class="analizada" name="analizada5" id="analizada5" value="{{ aprobacion.analizada5 }}"> hs.</td>
+									<td><input type="text" class="ajustes" name="ajustes5" id="ajustes5" value="{{ aprobacion.ajustes5 }}"></td>
+									<td><input type="text" class="ph" name="ph5" id="ph5" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.ph5 }}"></td>
+									<td><input type="text" class="dens" name="dens5" id="dens5" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.dens5 }}"></td>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+								<tr>
+									<td colspan="4">Aprobacion Final de Laboratorio: <input type="time" name="aprobacion_final" id="aprobacion_final" value="{{ aprobacion.aprobacion_final }}"> hs.</td>
+									<td></td>
+									<td><input type="text" name="ph_final" id="ph_final" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.ph_final }}"></td>
+									<td><input type="text" name="dens_final" id="dens_final" onkeypress="return Numy1Punto(event, this)" value="{{ aprobacion.dens_final }}"></td>
+								</tr>
+								<tr>
+									<td>Laboratorista:</td>	
+									<td>
+										<select id="laboratorista" name="laboratorista">
+											<option value="0">-Sin Empleado</option>
+											{% for e in emples %}
+												{% if aprobacion.laboratorista_id_emple_fk == e.codigo %}
+													<option value="{{ e.codigo }}" selected>{{ e.nombre }}</option>	
+												{% else %}
+													<option value="{{ e.codigo }}">{{ e.nombre }}</option>
+												{% endif %}
+											{% endfor %}
+										</select>	
+									</td>	
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</table>
+							
+							<h3>Trasvase a Tanque de Almacenamiento:</h3>
+							<table align="center" class="table table-striped">
+								<tr>
+									<td>Tanque N°:
+										<select name="tanquenro" id="tanquenro">
+											{% for t in tanques %}
+												{% if aprobacion.tanque_nro == t.id %}
+													<option value="{{ t.id }}" selected>{{ t.codigo }} - {{ t.nombre }}</option>
+												{% else %}
+													<option value="{{ t.id }}">{{ t.codigo }} - {{ t.nombre }}</option>
+												{% endif %}
+											{% endfor %}
+										</select>
+									</td>
+									<td>Hora Inicial: <input type="time" name="hr_inicial" id="hr_final" value="{{ aprobacion.hora_inicial }}"> hs.</td>
+									<td>Hora Final: <input type="time" name="hr_final" id="hr_final" value="{{ aprobacion.hora_final }}"> hs.</td>
+								</tr>
+							</table>
+							<table align="center" class="table table-striped">
+								<tr>
+									<td>Controlado: 
+										<select name="controlado" id="controlado">
+											{% if aprobacion.controlado_id_emple_fk == 0 %}
+												<option value="0" selected>-Sin empleado</option>
+												{% for e in emples %}
+													<option value="{{ e.codigo }}">{{ e.nombre }}</option>
+												{% endfor %}
+											{% else %}
+												<option value="0">-Sin empleado</option>
+												{% for e in emples %}
+													{% if aprobacion.controlado_id_emple_fk == e.codigo %}
+														<option value="{{ e.codigo }}" selected>{{ e.nombre }}</option>
+													{% else %}
+														<option value="{{ e.codigo }}">{{ e.nombre }}</option>
+													{% endif %}
+												{% endfor %}
+											{% endif %}
+										</select>
+									</td>
+									<td>Formulador Final: 
+										<select name="formulador_final" id="formulador_final">
+											{% if aprobacion.formulador_final_id_emple_fk == 0 %}
+												<option value="0" selected>-Sin empleado</option>
+												{% for e in emples %}
+													<option value="{{ e.codigo }}">{{ e.nombre }}</option>
+												{% endfor %}
+											{% else %}
+												<option value="0">-Sin empleado</option>
+												{% for e in emples %}
+													{% if aprobacion.formulador_final_id_emple_fk == e.codigo %}
+														<option value="{{ e.codigo }}" selected>{{ e.nombre }}</option>
+													{% else %}
+														<option value="{{ e.codigo }}">{{ e.nombre }}</option>
+													{% endif %}
+												{% endfor %}
+											{% endif %}
+										</select>
+									</td>
+									<td>Tiempo Total del lote: <input type="text" name="tiempo_total" id="tiempo_total" value="{{ aprobacion.tiempo_total }}" onkeypress="return Numy1Punto(event, this)"></td>
+									<td>Refrigerio?: 
+										<select name="refrigerio" id="refrigerio">
+											{% if aprobacion.refrigerio == 0 %}
+												<option value="1">Si</option>
+												<option value="0" selected>No</option>
+											{% else %}
+												<option value="1" selected>Si</option>
+												<option value="0">No</option>
+											{% endif %}
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="4">
+										Observaciones: <textarea name="observaciones" id="observaciones">{{ aprobacion.observaciones }}</textarea><div class="aviso">Quedan <span id="charsLeftObservaciones"></span> caraceteres.</div> 
+									</td>
+								</tr>
+								<tr>
+									<td><h4><b>Opciones:</b></h4></td>
+									<td><input type="button" value="Atras" onclick="history.back()"></td>
+									<td><input type="submit" value="Guardar"></td>
+								</tr>
+							</table>
+						</form>
+					<!-- </div> -->
+				</div>
+			</div>
+		</div>
+	<!-- </form> -->
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#observaciones').limit('400','#charsLeftObservaciones');
+	function Numy1Punto(e, field) {
+	  key = e.keyCode ? e.keyCode : e.which
+	  // backspace
+	  if (key == 8) return true
+	  // 0-9
+	  if (key > 47 && key < 58) {
+	    if (field.value == "") return true
+	    regexp = /.[0-9]{4}$/
+	    return !(regexp.test(field.value))
+	  }
+	  // .
+	  if (key == 46) {
+	    if (field.value == "") return false
+	    regexp = /^[0-9]+$/
+	    return regexp.test(field.value)
+	  }
+	  // other key
+	  return false
+	}
+	//onkeypress="return Numy1Punto(event, this)"
+	function checkDec(el){
+		var ex = /^[0-9]+\.?[0-9]*$/;
+		if(ex.test(el.value)==false){
+		   	el.value = el.value.substring(0,el.value.length - 1);
+		}
+	}
+</script>
+{% endblock %}
