@@ -15,7 +15,8 @@ module.exports = {
 	getProgramaciones: getProgramaciones,
 	updateMaximo: updateMaximo,
 	updateFormuladorFinal: updateFormuladorFinal,
-	getProg2Poridp1JoinMatepPA: getProg2Poridp1JoinMatepPA
+	getProg2Poridp1JoinMatepPA: getProg2Poridp1JoinMatepPA,
+	getProg2PorId: getProg2PorId
 }
 
 function getAll(cb){
@@ -77,4 +78,8 @@ function getProgramaciones(fecha, cb){
 
 function getProg2Poridp1JoinMatepPA(idp1, cb){
 	conn("select program2.* from program2 left join matep on matep.id = program2.id_matep_fk where program2.id_p1_fk = "+idp1+" and matep.pactivo = 1", cb);
+}
+
+function getProg2PorId(idp2, cb){
+	conn("select program2.* from program2 where id="+idp2, cb);
 }
