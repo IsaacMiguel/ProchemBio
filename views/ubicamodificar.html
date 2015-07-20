@@ -31,6 +31,52 @@
 				{% endif %}	
 			</tr>
 			<tr>
+				<td>Nave:</td>
+				<td>
+					<select class="form-control" name="nave" id="nave">
+						{% for n in naves %}
+							{% if n.id == ubica.id_nave_fk %}
+								<option selected value="{{ n.id }}">{{ n.nombre }}</option>
+							{% else %}
+								<option value="{{ n.id }}">{{ n.nombre }}</option>
+							{% endif %}
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Datos para el Mapa</b></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Alto:</td>
+				<td><input type="text" name="alto" id="alto" required class="form-control" onKeyPress="return soloNumeros(event)" value="{{ ubica.alto }}"></td>
+			</tr>
+			<tr>
+				<td>Ancho:</td>
+				<td><input type="text" name="ancho" id="ancho" required class="form-control" onKeyPress="return soloNumeros(event)" value="{{ ubica.ancho }}"></td>
+			</tr>
+			<tr>
+				<td>Coordenada X:</td>
+				<td><input type="text" name="coordx" id="coordx" required class="form-control" onKeyPress="return soloNumeros(event)" value="{{ ubica.coordx }}"></td>
+			</tr>
+			<tr>
+				<td>Coordenada Y:</td>
+				<td><input type="text" name="coordy" id="coordy" required class="form-control" onKeyPress="return soloNumeros(event)" value="{{ ubica.coordy }}"></td>
+			</tr>
+			<tr>
+				<td>Color "R":</td>
+				<td><input type="text" name="colorr" id="colorr" required class="form-control" onKeyPress="return soloNumeros(event)" value="{{ ubica.red }}"></td>
+			</tr>
+			<tr>
+				<td>Color "G":</td>
+				<td><input type="text" name="asdf" id="asdf" class="form-control" onKeyPress="return soloNumeros(event)" required value="{{ ubica.green }}"></td>
+			</tr>
+			<tr>
+				<td>Color "B":</td>
+				<td><input type="text" name="colorb" id="colorb" required class="form-control" onKeyPress="return soloNumeros(event)" value="{{ ubica.blue }}"></td>
+			</tr>
+			<tr>
 				<td><input type="button" value="Atras" onclick="history.back()"></td>
 				<td><input type="submit" value="Guardar"></td>
 			</tr>

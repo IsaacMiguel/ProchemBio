@@ -12,11 +12,53 @@
 		<table align="center" class="table table-striped">
 			<tr>
 				<td>Codigo:</td>
-				<td><input type="text" id="codigo" name="codigo" required><div class="aviso">Quedan <span id="charsLeftCodigo"></span> caracteres</div></td>
+				<td><input type="text" id="codigo" name="codigo" required class="form-control"><div class="aviso">Quedan <span id="charsLeftCodigo"></span> caracteres</div></td>
 			</tr>	
 			<tr>
 				<td>Nombre:</td>
-				<td><input type="text" id="nombre" name="nombre" required ><div class="aviso">Quedan <span id="charsLeftNombre"></span> caracteres</div></td>
+				<td><input type="text" id="nombre" name="nombre" required class="form-control" ><div class="aviso">Quedan <span id="charsLeftNombre"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Nave:</td>
+				<td>
+					<select class="form-control" name="nave" id="nave">
+						{% for n in naves %}
+							<option value="{{ n.id }}">{{ n.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Datos para el Mapa</b></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Alto:</td>
+				<td><input type="text" name="alto" id="alto" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
+			</tr>
+			<tr>
+				<td>Ancho:</td>
+				<td><input type="text" name="ancho" id="ancho" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
+			</tr>
+			<tr>
+				<td>Coordenada X:</td>
+				<td><input type="text" name="coordx" id="coordx" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
+			</tr>
+			<tr>
+				<td>Coordenada Y:</td>
+				<td><input type="text" name="coordy" id="coordy" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
+			</tr>
+			<tr>
+				<td>Color "R":</td>
+				<td><input type="text" name="colorr" id="colorr" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
+			</tr>
+			<tr>
+				<td>Color "G":</td>
+				<td><input type="text" name="asdf" id="asdf" class="form-control" onKeyPress="return soloNumeros(event)" required></td>
+			</tr>
+			<tr>
+				<td>Color "B":</td>
+				<td><input type="text" name="colorb" id="colorb" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
 			</tr>
 			<tr>
 				<td><input type="button" value="Atras" onclick="history.back()"></td>

@@ -55,18 +55,22 @@ function postAlta(req, res){
 	cdcliente = params.cdcliente;
 	nombre = params.nombre;
 	pactivo = params.pactivo;
+	cinta = params.cinta;
 
-	if (pactivo == "on")
+	if (pactivo == "on" )
 		pactivo = 1;
 	else
-		pactivo=0;
-
+		pactivo = 0;
+	if (cinta == "on")
+		cinta = 1;
+	else
+		cinta = 0;
 	mMatep.getMatepPorCodigoParaCadaCliente(codigo, cdcliente, function (docs){
     	if(docs[0]==null){
       		//si no hay coincidencias
       		mMatep.getMatepPorNombreParaCadaCliente(nombre, cdcliente, function (docs2){
       			if (docs2[0]==null){
-	      			mMatep.insertMatep(codigo, cdcliente, umed, nombre, pactivo, function(){
+	      			mMatep.insertMatep(codigo, cdcliente, umed, nombre, pactivo, cinta, function(){
 						res.redirect('mateplista/'+ cdcliente);
 					});
 	      		}
@@ -108,6 +112,7 @@ function postModificar(req, res){
 	activo = params.activo;
 	pactivo = params.pactivo;
 	umed = params.umed;
+	usacinta = params.usacinta; 
 
 	if (pactivo == "on")
 		pactivo = 1;
@@ -118,10 +123,15 @@ function postModificar(req, res){
 		activo = 1;
 	else
 		activo = 0;
+	
+	if (usacinta == "on") 
+		usacinta = 1;
+	else
+		usacinta = 0;
 
 	mMatep.verificacionCodigos(id, codigo, function (verificacion){
 		if (verificacion[0]==null){
-			mMatep.updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, umed, function(){
+			mMatep.updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, umed, usacinta, function(){
 				res.redirect('mateplista/'+ cdcliente);
 			});
 		}else{

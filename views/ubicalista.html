@@ -38,35 +38,51 @@
 
 	<div class="row">
 		<div class="col-xs-12">
-				<table class="table table-striped">
-			  		<thead>
-			  			<tr> 
-							<th>ID</th>
-							<th>Codigo</th>
-							<th>Nombre</th>
-							<th>Activo</th>
+			<table class="table table-striped">
+		  		<thead>
+		  			<tr> 
+						<th>ID</th>
+						<th>Codigo</th>
+						<th>Nombre</th>
+						<th>Activo</th>
+						<th>Nave</th>
+						<th>Alto</th>
+						<th>Ancho</th>
+						<th>Coord. X</th>
+						<th>Coord. Y</th>
+						<th>R</th>
+						<th>G</th>
+						<th>B</th>
+						<th colspan="2">Opciones</th>
+					</tr>
+		  		</thead>
+		  		<tbody>
+		  			{% for ubica in ubicas %}
+						<tr>
+							<td>{{ ubica.id }}</td>
+							<td>{{ ubica.codigo }}</td>
+							<td>{{ ubica.nombre }}</td>
+							{% if ubica.activa == 1 %}
+								<td><span>Activo</span></td>
+							{% else %}
+								<td><span>No activo</span></td>
+							{% endif %}
+							<td>{{ ubica.navetxt }}</td>
+							<td>{{ ubica.alto }}</td>
+							<td>{{ ubica.ancho }}</td>
+							<td>{{ ubica.coordx }}</td>
+							<td>{{ ubica.coordy }}</td>
+							<td>{{ ubica.red }}</td>
+							<td>{{ ubica.green }}</td>
+							<td>{{ ubica.blue }}</td>
+							<td><a href="/ubicamodificar/{{ ubica.id }}"><button class="btn btn-warning">Modificar</button></a></td>
+							<td><a href='/ubicaborrar/{{ ubica.id }}' onclick="if (!confirm('¿Seguro desea eliminar?')) return false;"><button type="button" class="btn btn-danger">Eliminar</button><a/></td>
 						</tr>
-			  		</thead>
-			  		<tbody>
-			  			{% for ubica in ubicas %}
-							<tr>
-								<td>{{ ubica.id }}</td>
-								<td>{{ ubica.codigo }}</td>
-								<td>{{ ubica.nombre }}</td>
-								{% if ubica.activa == 1 %}
-									<td><span>Activo</span></td>
-								{% else %}
-									<td><span>No activo</span></td>
-								{% endif %}
-								<td><a href="/ubicamodificar/{{ ubica.id }}"><button class="btn btn-warning">Modificar</button></a></td>
-								<td><a href='/ubicaborrar/{{ ubica.id }}' onclick="if (!confirm('¿Seguro desea eliminar?')) return false;"><button type="button" class="btn btn-danger">Eliminar</button><a/></td>
-							</tr>
-							{% endfor %}
-			  		</tbody>
-				  </table>				
+					{% endfor %}
+		  		</tbody>
+			</table>				
 		</div><!--div col xs12 -->
 	</div><!--div row -->
-
 </div>
 
 {% endblock %}

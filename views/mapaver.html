@@ -1,0 +1,134 @@
+{% extends 'template.html' %}
+
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/mapaver.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  	<div class="panel-heading">
+  	<!-- Table -->
+		<table>
+			<tr>	
+				<td><a href="/"> <button type="button" class="btn btn-primary">Atras</button></a></td>
+				<td><button type="button" id="generate" class="btn btn-success">Generar</button></td>
+			</tr>	
+		</table>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div style="overflow: scroll;">
+				<input hidden id="filas" value="{{ filas }}">
+				<input hidden id="cols" value="{{ cols }}">
+				{% for u in ubicas %}
+					<input hidden class="alto" id="alto" name="alto" value="{{ u.alto }}">
+					<input hidden class="ancho" id="ancho" name="ancho" value="{{ u.ancho }}">
+					<input hidden class="coordy" id="coordy" name="coordy" value="{{ u.coordy }}">
+					<input hidden class="coordx" id="coordx" name="coordx" value="{{ u.coordx }}">
+					<input hidden class="r" id="r" name="r" value="{{ u.red }}">
+					<input hidden class="g" id="g" name="g" value="{{ u.green }}">
+					<input hidden class="b" id="b" name="b" value="{{ u.blue }}">
+				{% endfor %}
+				<table id="tablamapa" class="table">
+				  	<tbody>
+				  	</tbody>
+				</table>
+			</div>				
+		</div><!--div col xs12 -->
+	</div><!--div row -->
+
+</div>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+	$(function(){
+		var filas = $('#filas').val();
+		var cols = $('#cols').val();
+
+		var id = 1;
+		txt = "";
+		for( var i = 0 ; i < filas ; i++ ){
+			txt = txt + "<tr class='tr' style='width: 1px'>";
+				for( var y = 0 ; y < cols ; y++ ){
+					txt = txt + "<td class='td' id='"+id+"' style='width: 1px'>"+id+"</td>";
+					id = id +1;
+				}
+			txt = txt + "</tr>";	
+		}
+			
+		var destino = $('#tablamapa');
+		var data = txt;
+		destino.html(data);
+		//hasta aca dibuja el mapa
+
+		var alto = document.getElementsByClassName('alto');
+		var ancho = document.getElementsByClassName('ancho');
+		var coordx = document.getElementsByClassName('coordx');
+		var coordy = document.getElementsByClassName('coordy');
+		var r = document.getElementsByClassName("r");
+		var g = document.getElementsByClassName("g");
+		var b = document.getElementsByClassName("b");
+		
+		console.log(alto.length)
+		//para cada ubicacion:
+		var u = 0;
+		if ( alto.length == ancho.length && ancho.length == coordx.length && coordx.length == coordy.length && coordy.length == r.length && r.length == g.length && g.length == b.length ){
+			//console.log("true")
+			for (u = 0 ; u <= alto.length ; u++){
+				console.log(u)
+
+				var alto = document.getElementsByClassName('alto')[u].value;
+				var ancho = document.getElementsByClassName('ancho')[u].value;
+				var coordx = document.getElementsByClassName('coordx')[u].value;
+				var coordy = document.getElementsByClassName('coordy')[u].value;
+				var r = document.getElementsByClassName("r")[u].value;
+				var g = document.getElementsByClassName("g")[u].value;
+				var b = document.getElementsByClassName("b")[u].value;
+
+				coordx = parseInt(coordx);
+				coordy = parseInt(coordy);
+				cols = parseInt(cols);
+
+				id_inicio = coordx + (coordy -1) * cols;
+				console.log("a "+id_inicio)
+
+				for ( var y = 0 ; y < alto ; y++ ){
+					for ( var x = 0 ; x < ancho ; x++){
+						$("#"+id_inicio).css("background-color","rgb("+r+", "+g+", "+b+")");
+						id_inicio = parseInt(id_inicio);
+						id_inicio = id_inicio + 1;
+						
+					}
+
+					id_inicio = parseInt(id_inicio);
+					ancho = parseInt(ancho);
+					id_inicio = id_inicio - ancho;
+					id_inicio = parseInt(id_inicio);
+					cols = parseInt(cols);
+					id_inicio = id_inicio + cols;
+				}
+			}
+			//fin para cada ubica
+		}
+
+		//marcos
+		// for ( var y = 1 ; y == alto ; y++ ){
+		// 	for ( var x = id_inicio ; x <= (id_inicio + ancho) ; x++){
+		// 		$("#"+x).css("background-color","red");
+		// 	}
+		// 	//antes eran filas
+		// 	id_inicio = id_inicio + cols;
+		// }
+
+		console.log("bye "+u)
+	});
+
+	$('#generate').on('click', function(){
+		console.log("done")
+	});
+
+</script>
+{% endblock %}

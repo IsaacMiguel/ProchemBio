@@ -12,19 +12,19 @@
 		<table align="center" class="table table-striped">
 			<tr>
 				<td>ID:</td>
-				<td><input type="text" id="id" name="id" value="{{ matep.id }}" required readonly></td>
+				<td><input class="form-control" type="text" id="id" name="id" value="{{ matep.id }}" required readonly></td>
 			</tr>
 			<tr>
 				<td>Codigo de Materia Prima:</td>
-				<td><input type="text" id="codigo" name="codigo" value="{{ matep.codigo }}" required><div class="aviso">Quedan <span id="charsLeftCodigo"></span> caraceteres.</div></td>
+				<td><input class="form-control" type="text" id="codigo" name="codigo" value="{{ matep.codigo }}" required><div class="aviso">Quedan <span id="charsLeftCodigo"></span> caraceteres.</div></td>
 			</tr>
 			<tr>
 				<td>Codigo de Cliente:</td>
-				<td><input type="text" id="cdcliente" name="cdcliente" value="{{ matep.cdcliente }}" required></td>
+				<td><input class="form-control" type="text" id="cdcliente" name="cdcliente" value="{{ matep.cdcliente }}" required readonly></td>
 			</tr>
 			<tr>
 				<td>Nombre de Materia Prima:</td>
-				<td><input type="text" id="nombre" name="nombre" value="{{ matep.nombre }}" required><div class="aviso">Quedan <span id="charsLeftNombre"></span> caraceteres.</div></td>
+				<td><input class="form-control" type="text" id="nombre" name="nombre" value="{{ matep.nombre }}" required><div class="aviso">Quedan <span id="charsLeftNombre"></span> caraceteres.</div></td>
 			</tr>
 			<tr>
 				<td>Unidad de Medida:</td>
@@ -54,6 +54,14 @@
 					<td><input type="checkbox" name="pactivo" checked></td>
 				{% else %}
 					<TD><input type="checkbox" name="pactivo"></TD>
+				{% endif %}
+			</tr>
+			<tr>
+				<td>Usa cinta:</td>
+				{% if matep.usacinta == 1 %}
+					<td><input type="checkbox" name="usacinta" checked></td>
+				{% else %}
+					<TD><input type="checkbox" name="usacinta"></TD>
 				{% endif %}
 			</tr>
 			<tr>
