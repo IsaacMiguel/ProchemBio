@@ -55,22 +55,22 @@ function postAlta(req, res){
 	cdcliente = params.cdcliente;
 	nombre = params.nombre;
 	pactivo = params.pactivo;
-	cinta = params.cinta;
+	usacinta = params.cinta;
 
 	if (pactivo == "on" )
 		pactivo = 1;
 	else
 		pactivo = 0;
-	if (cinta == "on")
-		cinta = 1;
+	if (usacinta == "on")
+		usacinta = 1;
 	else
-		cinta = 0;
+		usacinta = 0;
 	mMatep.getMatepPorCodigoParaCadaCliente(codigo, cdcliente, function (docs){
     	if(docs[0]==null){
       		//si no hay coincidencias
       		mMatep.getMatepPorNombreParaCadaCliente(nombre, cdcliente, function (docs2){
       			if (docs2[0]==null){
-	      			mMatep.insertMatep(codigo, cdcliente, umed, nombre, pactivo, cinta, function(){
+	      			mMatep.insertMatep(codigo, cdcliente, umed, nombre, pactivo, usacinta, function(){
 						res.redirect('mateplista/'+ cdcliente);
 					});
 	      		}
