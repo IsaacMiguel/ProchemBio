@@ -19,12 +19,13 @@ var progController = require('./controllers/cProgramacion');
 var FormEnReactorController = require('./controllers/cFormEnReactor');
 var labController = require('./controllers/cLab');
 var formController = require('./controllers/cFormulados');
-var moment = require("moment");
 var mEventos = require('./models/mEventos');
 var consuController = require('./controllers/cConsumibles');
 var produccionController = require('./controllers/cProduccion');
 var fraccionadoController = require('./controllers/cFraccionado');
 var aprobacionController = require('./controllers/cAprobacion');
+var navesController = require('./controllers/cNaves');
+var mapaController = require('./controllers/cMapa');
 
 function logout (req, res) {
 	fecha = new Date();
@@ -224,4 +225,8 @@ module.exports = function(app) {
 	app.get('/aprobacionver/:id', auth, aprobacionController.getVer);
 	app.post('/aprobacionver', auth, aprobacionController.postVer);
 	app.get('/aprobacionimprimir/:id', auth, aprobacionController.getImprimir);
+	//naves
+	app.get('/naveslista', auth, navesController.getLista);
+	//mapa
+	app.get('/mapaver', auth, mapaController.getMapa);
 }; 

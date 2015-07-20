@@ -12,15 +12,15 @@
 		<table align="center" class="table table-striped">
 			<tr>
 				<td>Codigo:</td>
-				<td><input type="text" id="codigo" name="codigo" required><div class="aviso">Quedan <span id="charsLeftCodigo"></span> caraceteres.</div></td>
+				<td><input class="form-control" type="text" id="codigo" name="codigo" required><div class="aviso">Quedan <span id="charsLeftCodigo"></span> caraceteres.</div></td>
 			</tr>
 			<tr>
 				<td>Codigo de Cliente:</td>
-				<td><input type="text" id="cdcliente" name="cdcliente" value="{{ cdcliente }}" required readonly></td>
+				<td><input class="form-control" type="text" id="cdcliente" name="cdcliente" value="{{ cdcliente }}" required readonly></td>
 			</tr>
 			<tr>
 				<td>Nombre:</td>
-				<td><input type="text" id="nombre" name="nombre" required><div class="aviso">Quedan <span id="charsLeftNombre"></span> caraceteres.</div></td>
+				<td><input class="form-control" type="text" id="nombre" name="nombre" required><div class="aviso">Quedan <span id="charsLeftNombre"></span> caraceteres.</div></td>
 			</tr>
 			<tr>
 				<td>Unidad de Medida:</td>
@@ -34,7 +34,11 @@
 			</tr>
 			<tr>
 				<td>Es Principio Activo:</td>
-				<td><input type="checkbox" id="pactivo" name="pactivo" onclick="ShowContent();"></td>
+				<td><input type="checkbox" id="pactivo" name="pactivo"></td>
+			</tr>
+			<tr>
+				<td>Usa cinta:</td>
+				<td><input type="checkbox" id="cinta" name="cinta"></td>
 			</tr>
 			<tr>
 				<td><input type="button" value="Atras" onclick="history.back()"></td>

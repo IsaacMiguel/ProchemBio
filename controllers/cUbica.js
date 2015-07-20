@@ -3,6 +3,7 @@ var mUbica = require('../models/mUbica');
 var mBorro = require('../models/mBorro');
 var mVerificacion = require('../models/mVerificacion');
 var mAyuda = require('../models/mAyuda');
+var mNaves = require('../models/mNaves');
 
 module.exports = {
 	getAll: getAll,
@@ -15,11 +16,11 @@ module.exports = {
 
 function getAll(req, res) {
 	req.session.nromenu = 6;
-  	mAyuda.getAyudaTexto(req.session.nromenu, function(ayuda){
-	  	mUbica.getAll(function(docs){
+  	mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
+	  	mUbica.getAll(function (ubicas){
 	  		res.render('ubicalista', {
 				pagename: 'Archivo de Ubicaciones de Planta',
-				ubicas: docs,
+				ubicas: ubicas,
 				ayuda: ayuda[0]
 			});
 	  	});
@@ -27,18 +28,30 @@ function getAll(req, res) {
 }
 
 function getAlta(req, res){
-	res.render('ubicaalta', {
-		pagename: 'Alta de Ubicaciones',
+	mNaves.getAll(function (naves){
+		res.render('ubicaalta', {
+			pagename: 'Alta de Ubicaciones',
+			naves: naves
+		});
 	});
 }
 
 function postAlta(req, res){
 	params = req.body;
+	//console.log(params)
 	nombre = params.nombre;
 	codigo = params.codigo;
 	activa = 1;
+	nave = params.nave;
+	alto = params.alto;
+	ancho = params.ancho;
+	coordx = params.coordx;
+	coordy = params.coordy;
+	red = params.colorr;
+	green = params.asdf;
+	blue = params.colorb;
 
-	mUbica.insert(codigo, nombre, activa, function(){
+	mUbica.insert(codigo, nombre, activa, nave, alto, ancho, coordx, coordy, red, green, blue, function(){
 		res.redirect('ubicalista');
 	})
 }
@@ -46,16 +59,20 @@ function postAlta(req, res){
 function getModificar(req, res){
 	params = req.params;
 	id = params.id;
-	mUbica.getUbicaPorId(id, function(docs){
-		res.render('ubicamodificar',{
-			pagename: 'Modificar Ubicacion',
-			ubica: docs[0]
+	mNaves.getAll(function (naves){
+		mUbica.getUbicaPorId(id, function (ubica){
+			res.render('ubicamodificar',{
+				pagename: 'Modificar Ubicacion',
+				ubica: ubica[0],
+				naves: naves
+			});
 		});
 	});
 }
 
 function postModificar(req, res){
 	params = req.body;
+	//console.log(params)
 	id = params.id;
 	codigo = params.codigo;
 	nombre = params.nombre;
@@ -64,8 +81,16 @@ function postModificar(req, res){
 		activa = 1;
 	else
 		activa = 0;
+	nave = params.nave;
+	alto = params.alto;
+	ancho = params.ancho;
+	coordx = params.coordx;
+	coordy = params.coordy;
+	red = params.colorr;
+	green = params.asdf;
+	blue = params.colorb;
 
-	mUbica.update(id, codigo, nombre, activa, function(){
+	mUbica.update(id, codigo, nombre, activa, nave, alto, ancho, coordx, coordy, red, green, blue, function(){
 		res.redirect('/ubicalista');
 	});
 }
