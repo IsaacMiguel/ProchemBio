@@ -168,8 +168,19 @@
 			console.log("if true")
 			$("#mytable > tbody > tr").eq(5).after("<tr><td>Color Cinta 1</td><td><select class='form-control' id='cinta1' name='cinta1'>{% for color in colores %}<option value='{{ color.id }}'>{{ color.color }}</option>{% endfor %}</select></td></tr><tr><td>Color Cinta 2</td><td><select class='form-control' id='cinta2' name='cinta2'>{% for color in colores %}<option value='{{ color.id }}'>{{ color.color }}</option>{% endfor %}</select></td></tr>");
 		}else{
-			$("#mytable > tbody > tr").eq(6).hide();
-			$("#mytable > tbody > tr").eq(7).hide();
+			var rowCount = $('#mytable tr').length;
+
+			switch(rowCount) {
+			    case 12:
+			        console.log("no hago nada porque son 12 tr nomas")
+			        break;
+			    case 14:
+			        $("#mytable > tbody > tr").eq(6).hide();
+					$("#mytable > tbody > tr").eq(7).hide();
+			        break;
+			    default:
+			        console.log("no hago nada porque no son ni 12 ni 14 D:");
+			}
 		}
 	});
 
