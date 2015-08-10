@@ -5,6 +5,7 @@ var mUmed = require('../models/mUmed');
 var mBorro = require('../models/mBorro');
 var mVerificacion = require('../models/mVerificacion');
 var mAyuda = require('../models/mAyuda');
+var mEnvases = require('../models/mEnvases');
 
 module.exports = {
 	getAllMatepPorCliente: getAllMatepPorCliente,
@@ -39,34 +40,41 @@ function getAlta(req, res){
 	params = req.params;
 	cdcliente = params.cdcliente;
 	mUmed.getAllActivas(function (unidadesdemedida){
-		res.render('matepalta', {
-			pagename: 'Alta de Materia Prima',
-			cdcliente: cdcliente,
-			umeds: unidadesdemedida
+		mEnvases.getAll(function (envases){
+				res.render('matepalta', {
+				pagename: 'Alta de Materia Prima',
+				cdcliente: cdcliente,
+				envases: envases,
+				umeds: unidadesdemedida
+			});
 		});
 	});
 }
 
 function postAlta(req, res){
 	params = req.body;
-	//console.log(params)
 	codigo = params.codigo;
 	umed = params.umed;
 	cdcliente = params.cdcliente;
 	nombre = params.nombre;
 	pactivo = params.pactivo;
+	usacinta = params.cinta;
+	envase = params.envase;
 
-	if (pactivo == "on")
+	if (pactivo == "on" )
 		pactivo = 1;
 	else
-		pactivo=0;
-
+		pactivo = 0;
+	if (usacinta == "on")
+		usacinta = 1;
+	else
+		usacinta = 0;
 	mMatep.getMatepPorCodigoParaCadaCliente(codigo, cdcliente, function (docs){
     	if(docs[0]==null){
       		//si no hay coincidencias
       		mMatep.getMatepPorNombreParaCadaCliente(nombre, cdcliente, function (docs2){
       			if (docs2[0]==null){
-	      			mMatep.insertMatep(codigo, cdcliente, umed, nombre, pactivo, function(){
+	      			mMatep.insertMatep(codigo, cdcliente, umed, nombre, pactivo, usacinta, envase, function(){
 						res.redirect('mateplista/'+ cdcliente);
 					});
 	      		}
@@ -90,10 +98,13 @@ function getModificar(req, res){
 	id = params.id;
 	mMatep.getMatepPorId(id, function (matep){
 		mUmed.getAllActivas(function (umeds){
-			res.render('matepmodificar',{
-				pagename: 'Modificar Materia Prima',
-				matep: matep[0],
-				umeds: umeds
+			mEnvases.getAll(function (envases){
+					res.render('matepmodificar',{
+					pagename: 'Modificar Materia Prima',
+					matep: matep[0],
+					umeds: umeds,
+					envases: envases
+				});
 			});
 		});
 	});
@@ -108,6 +119,8 @@ function postModificar(req, res){
 	activo = params.activo;
 	pactivo = params.pactivo;
 	umed = params.umed;
+	usacinta = params.usacinta; 
+	envase = params.envase;
 
 	if (pactivo == "on")
 		pactivo = 1;
@@ -118,10 +131,15 @@ function postModificar(req, res){
 		activo = 1;
 	else
 		activo = 0;
+	
+	if (usacinta == "on") 
+		usacinta = 1;
+	else
+		usacinta = 0;
 
 	mMatep.verificacionCodigos(id, codigo, function (verificacion){
 		if (verificacion[0]==null){
-			mMatep.updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, umed, function(){
+			mMatep.updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, umed, usacinta, envase, function(){
 				res.redirect('mateplista/'+ cdcliente);
 			});
 		}else{

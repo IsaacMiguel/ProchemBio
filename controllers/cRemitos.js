@@ -80,7 +80,7 @@ function getAlta(req, res){
 
 function postAlta(req, res){
 	params= req.body;
-	console.log(params)
+	//console.log(params)
 	tipo = params.tipo;
 	fechar = params.fechar;
 	fecham = params.fecham;
@@ -110,6 +110,11 @@ function postAlta(req, res){
 	fechar = changeDate(fechar);
 	fecham = changeDate(fecham);
 
+	if (cinta1 == null || cinta2 == null || cinta1 == 0 || cinta2 == 0 || cinta1 == undefined){
+		cinta1 = 19;
+		cinta2 = 19;
+	}
+
 	mMovi.add(fechahoy,req.session.user.unica, function(){
 		mMovi.getUltimo(function(docs){
 			nmovi = docs[0].id;
@@ -123,16 +128,18 @@ function postAlta(req, res){
 function getModificar(req, res){
 	params = req.params;
 	id = params.id;
-	mMatep.getAllActivas(function (mateps){
-		mClientes.getAllActivos(function (clientes){
-			mEnvases.getAllActivos(function (envases){
-				mUbica.getAllActivos(function (ubicaciones){
-					mRemitos.getRemitoPorId(id, function (remito){
-						mTipos.getAll(function (tipos){
-							mColores.getAll(function (colores){
+	mClientes.getAllActivos(function (clientes){
+		mEnvases.getAllActivos(function (envases){
+			mUbica.getAllActivos(function (ubicaciones){
+				mRemitos.getRemitoPorId(id, function (remito){
+					console.log(remito[0])
+					mTipos.getAll(function (tipos){
+						mColores.getAll(function (colores){
+							mMatep.getMatepPorId(remito[0].matepid, function (matep){
+								console.log(matep[0])
 								res.render('remitosmodificar', {
 									pagename: 'Modificar Remito',
-									mateps: mateps,
+									matep: matep[0],
 									clientes: clientes,
 									envases: envases,
 									ubicaciones: ubicaciones,
@@ -141,8 +148,8 @@ function getModificar(req, res){
 									colores: colores	
 								});
 							});
-						});						
-					});
+						});
+					});						
 				});
 			});
 		});
@@ -151,7 +158,7 @@ function getModificar(req, res){
 
 function postModificar(req, res){
 	params= req.body;
-	console.log(params)
+	//console.log(params)
 	tipo = params.tipo;
 	fechar = params.fechar;
 	fecham = params.fecham;
@@ -165,12 +172,22 @@ function postModificar(req, res){
 	conceori = params.conceori;
 	concepla = params.concepla;
 	ubicacion = params.ubicacion;
-	cinta1 = params.cinta1;
-	cinta2 = params.cinta2;
+
+	usacinta = params.usacinta;
+	if (usacinta == 1){
+		cinta1 = params.cinta1;
+		cinta2 = params.cinta2;	
+	}else{
+		cinta1 = 19;
+		cinta2 = 19;
+	}
 	observaciones = params.observaciones;
 	fechar = changeDate(fechar);
 	fecham = changeDate(fecham);
-	
+	console.log(cinta1)
+	console.log(cinta2)	
+
+
 	mRemitos.update(tipo, fechar, fecham, nroremito, cliente, matep, lote, envase, cantidad, neto, conceori, concepla, ubicacion, cinta1, cinta2, observaciones, function(){
 		res.redirect('/remitoslista');
 	});

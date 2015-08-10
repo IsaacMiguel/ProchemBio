@@ -13,6 +13,7 @@ module.exports = {
 function getAll(cb){
 	conn('select * from Cargos', cb);
 }
+
 function getAllActivos(cb){
 	conn('select * from cargos where activa = 1 order by descripcion', cb);
 }

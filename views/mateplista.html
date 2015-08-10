@@ -46,6 +46,8 @@
 					<th>Nombre</th>
 					<th>Unidad de Medida</th>
 					<th>Principio Activo</th>
+					<th>¿Usa envase?</th>
+					<th>¿Usa cinta?</th>					
 					<th>Activa</th>
 					<th colspan="2">Opciones</th>
 				</tr>
@@ -56,11 +58,25 @@
 					<td>{{ matep.codigo }}</td>
 					<td>{{ matep.nombre }}</td>
 					<td>{{ matep.umed }}</td>
+					<!-- Principio activo -->
 					{% if matep.pactivo == 1 %}
 						<td><span>Si</span></td>
 					{% else %}
 						<td><span>No</span></td>
 					{% endif %}
+					<!-- Usa envase -->
+					{% if matep.id_envase_fk != 0 %}
+						<td><span>Si</span></td>
+					{% else %}
+						<td><span></span></td>
+					{% endif %}
+					<!-- Usa cinta -->
+					{% if matep.usacinta == 1 %}
+						<td><span>Si</span></td>
+					{% else %}
+						<td><span>No</span></td>
+					{% endif %}					
+					<!-- Activa -->
 					{% if matep.activa == 1 %}
 						<td><span>Activo</span></td>
 					{% else %}
