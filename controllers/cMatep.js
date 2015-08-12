@@ -59,9 +59,14 @@ function postAlta(req, res){
 	nombre = params.nombre;
 	pactivo = params.pactivo;
 	usacinta = params.cinta;
+<<<<<<< HEAD
 	envase = params.envase;
 
 	if (pactivo == "on" ){
+=======
+
+	if (pactivo == "on" )
+>>>>>>> a8d09aced25bd8a7b271db0d50940cb8a5a067aa
 		pactivo = 1;
 		envase = 0;
 	}else{
@@ -70,13 +75,24 @@ function postAlta(req, res){
 	if (usacinta == "on")
 		usacinta = 1;
 	else
+<<<<<<< HEAD
+=======
+		pactivo = 0;
+	if (usacinta == "on")
+		usacinta = 1;
+	else
+>>>>>>> a8d09aced25bd8a7b271db0d50940cb8a5a067aa
 		usacinta = 0;
 	mMatep.getMatepPorCodigoParaCadaCliente(codigo, cdcliente, function (docs){
     	if(docs[0]==null){
       		//si no hay coincidencias
       		mMatep.getMatepPorNombreParaCadaCliente(nombre, cdcliente, function (docs2){
       			if (docs2[0]==null){
+<<<<<<< HEAD
 	      			mMatep.insertMatep(codigo, cdcliente, umed, nombre, pactivo, usacinta, envase, function(){
+=======
+	      			mMatep.insertMatep(codigo, cdcliente, umed, nombre, pactivo, usacinta, function(){
+>>>>>>> a8d09aced25bd8a7b271db0d50940cb8a5a067aa
 						res.redirect('mateplista/'+ cdcliente);
 					});
 	      		}
@@ -121,7 +137,7 @@ function postModificar(req, res){
 	activo = params.activo;
 	pactivo = params.pactivo;
 	umed = params.umed;
-	usacinta = params.usacinta; 
+	usacinta = params.usacinta;
 	envase = params.envase;
 
 	if (pactivo == "on"){
@@ -140,6 +156,7 @@ function postModificar(req, res){
 		usacinta = 1;
 	else
 		usacinta = 0;
+<<<<<<< HEAD
 
 
 
@@ -147,6 +164,12 @@ function postModificar(req, res){
 	mMatep.verificacionCodigos(id, codigo, function (verificacion){
 		if (verificacion[0]==null){
 			mMatep.updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, umed, usacinta, envase, function(){
+=======
+
+	mMatep.verificacionCodigos(id, codigo, function (verificacion){
+		if (verificacion[0]==null){
+			mMatep.updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, umed, usacinta, function(){
+>>>>>>> a8d09aced25bd8a7b271db0d50940cb8a5a067aa
 				res.redirect('mateplista/'+ cdcliente);
 			});
 		}else{

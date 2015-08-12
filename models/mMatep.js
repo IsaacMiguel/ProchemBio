@@ -36,8 +36,13 @@ function getUltimo(cdcliente, cb){
 	conn("select max(codigo) as max from matep where cdcliente="+ cdcliente, cb)
 }
 
+<<<<<<< HEAD
 function insertMatep(codigo, cdcliente, umed, nombre, pactivo, usacinta, envase, cb){
 	conn("insert into matep(codigo, cdcliente, umed, nombre, activa, pactivo, usacinta, id_envase_fk) values('"+codigo+"', "+cdcliente+", '"+umed+"', '"+nombre+"', 1, "+pactivo+", "+usacinta+", "+envase+") ", cb);
+=======
+function insertMatep(codigo, cdcliente, umed, nombre, pactivo, usacinta, cb){
+	conn("insert into matep(codigo, cdcliente, umed, nombre, activa, pactivo, usacinta) values('"+codigo+"', "+cdcliente+", '"+umed+"', '"+nombre+"', 1, "+pactivo+", "+usacinta+") ", cb);
+>>>>>>> a8d09aced25bd8a7b271db0d50940cb8a5a067aa
 }
 
 function getMatepPorCodigoParaCadaCliente(codigo, cdcliente, cb){
@@ -64,7 +69,7 @@ function updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, umed, usaci
 }
 
 function delMatep(id, cb){
-	conn("DELETE from matep where id="+id, cb);
+	conn("DELETE from matep where id="+id, cb);d
 }
 
 function getAllActivasPorIdCliente(idcliente, cb){

@@ -49,6 +49,7 @@
 					<th>¿Usa envase?</th>
 					<th>¿Usa cinta?</th>					
 					<th>Activa</th>
+					<th>¿Usa cinta?</th>
 					<th colspan="2">Opciones</th>
 				</tr>
 				{% for matep in mateps %}
@@ -81,6 +82,11 @@
 						<td><span>Activo</span></td>
 					{% else %}
 						<td><span>No activo</span></td>
+					{% endif %}
+					{% if matep.usacinta == 1 %}
+						<td><span>Si</span></td>
+					{% else %}
+						<td><span>No</span></td>
 					{% endif %}
 					<td>
 						<a href="/matepmodificar/{{ matep.id }}"><button class="btn btn-warning">Modificar</button></a>

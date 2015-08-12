@@ -86,6 +86,14 @@
 				</td>
 			</tr>
 			<tr>
+				<td>Usa cinta:</td>
+				{% if matep.usacinta == 1 %}
+					<td><input type="checkbox" name="usacinta" checked></td>
+				{% else %}
+					<TD><input type="checkbox" name="usacinta"></TD>
+				{% endif %}
+			</tr>
+			<tr>
 				<td><input type="button" value="Atras" onclick="history.back()"></td>
 				<td><input type="submit" value="Guardar"></td>
 			</tr>

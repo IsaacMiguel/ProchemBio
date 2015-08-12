@@ -1,0 +1,36 @@
+.extrac{
+	width: 100px;
+}
+
+.recibida{
+	width: 100px;
+}
+
+.analizada{
+	width: 100px;
+}
+
+.ajustes{
+	width: 350px;
+}
+
+.ph{
+	width: 50px;
+}
+
+.dens{
+	width: 50px;
+}
+
+#ph_final{
+	width: 50px;
+}
+
+#dens_final{
+	width: 50px;
+}
+
+#observaciones{
+	width: 100%;
+	height: 100px;
+}
