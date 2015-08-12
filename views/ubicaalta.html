@@ -1,53 +1,77 @@
-<HTML>
-<HEAD>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
-<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
+{% extends 'template.html' %}
 
-<TITLE>Ubicaciones de la nave</TITLE>
-<STYLE>
-	#nave{
-		position: absolute;
-		width: 1200px;
-		height: 600px;
-		background-color: #eee;
-	}
-	#agregar{
-		position: absolute;
-		top: 610px;
-	}
-</STYLE>
-</HEAD>
-<BODY>
-<section id="header">
-<p>Nave:</p>
-	<select id="naves">
-		{% for n in naves %}
-		<option value="{{ n.id }}">{{ n.nombre }}</option>
-		{% endfor %}
-	</select>
-	<h1>Crear ubicaciones</h1>
-	<p>Ingresar nombre de la ubicacion:</p>
-	<input type="text" id="nombre">
-	<input type="color" id="color">
-	<button id="click">Agregar</button>
-</section>
-<section id="nave">
-	
-</section>
-<form method="post" action="/ubicaalta">
-<input id="agregar" type="submit" value="Agregar">
-</form>
-</BODY>
-<SCRIPT>$(document).ready(function(){
-		$('#click').click(function(){
-		var nombre = $('[id=nombre]').val();
-		var color = $('[id=color]').val();
-		$('#nave').append('<div id='+nombre+'><p>'+nombre+'</p></div>');
-		$('#'+nombre).css("background-color", color);
-		$('#'+nombre).draggable({cursor:"move", containment:"parent"});
-		$('#'+nombre).resizable({autoHide:true});
-	});
-});
-</SCRIPT>
-</HTML>
+{% block title %}
+	{{ pagename }}
+{% endblock %}
+
+{% block content %}
+<link href="/css/ubicaalta.css" rel="stylesheet">
+<h2>{{ pagename }}</h2>
+<div class="panel panel-default">
+	<form method="post" id="formalta" action="/ubicaalta">
+		<table align="center" class="table table-striped">
+			<tr>
+				<td>Codigo:</td>
+				<td><input type="text" id="codigo" name="codigo" required class="form-control"><div class="aviso">Quedan <span id="charsLeftCodigo"></span> caracteres</div></td>
+			</tr>	
+			<tr>
+				<td>Nombre:</td>
+				<td><input type="text" id="nombre" name="nombre" required class="form-control" ><div class="aviso">Quedan <span id="charsLeftNombre"></span> caracteres</div></td>
+			</tr>
+			<tr>
+				<td>Nave:</td>
+				<td>
+					<select class="form-control" name="nave" id="nave">
+						{% for n in naves %}
+							<option value="{{ n.id }}">{{ n.nombre }}</option>
+						{% endfor %}
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><b>Datos para el Mapa</b></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Alto:</td>
+				<td><input type="text" name="alto" id="alto" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
+			</tr>
+			<tr>
+				<td>Ancho:</td>
+				<td><input type="text" name="ancho" id="ancho" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
+			</tr>
+			<tr>
+				<td>Coordenada X:</td>
+				<td><input type="text" name="coordx" id="coordx" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
+			</tr>
+			<tr>
+				<td>Coordenada Y:</td>
+				<td><input type="text" name="coordy" id="coordy" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
+			</tr>
+			<tr>
+				<td>Color "R":</td>
+				<td><input type="text" name="colorr" id="colorr" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
+			</tr>
+			<tr>
+				<td>Color "G":</td>
+				<td><input type="text" name="asdf" id="asdf" class="form-control" onKeyPress="return soloNumeros(event)" required></td>
+			</tr>
+			<tr>
+				<td>Color "B":</td>
+				<td><input type="text" name="colorb" id="colorb" required class="form-control" onKeyPress="return soloNumeros(event)"></td>
+			</tr>
+			<tr>
+				<td><input type="button" value="Atras" onclick="history.back()"></td>
+				<td><input type="submit" value="Agregar"></td>
+			</tr>
+		</table>
+	</form>
+</div>		
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery.limit-1.2.js"></script>
+<script type="text/javascript">
+	$('#codigo').limit('5','#charsLeftCodigo');
+	$('#nombre').limit('20','#charsLeftNombre');
+</script>
+
+{% endblock %}

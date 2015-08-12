@@ -10,15 +10,15 @@ module.exports = {
 }
 
 function getAll(cb){
-	conn('select * from naves', cb);
+	conn('select ubica.*, naves.nombre as navetxt from ubica left join naves on naves.id = ubica.id_nave_fk', cb);
 }
 
 function getAllActivos(cb){
 	conn("select * from ubica where activa = 1 order by nombre", cb);
 }
 
-function insert(nave, nombre, position, top, left, width, height, color, cb){
-	conn("insert into ubica( id_nave, nombre, posicion, top, left, ancho, alto, color) values("+nave+",'"+nombre+"','"+posicion+"',"+top+","+left+","+ancho+","+alto+",'"+color+"'", cb);
+function insert(codigo, nombre, activa, nave, alto, ancho, coordx, coordy, red, green, blue, cb){
+	conn("insert into ubica( codigo, nombre, activa, id_nave_fk, alto, ancho, coordx, coordy, red, green, blue) values('"+ codigo +"', '"+ nombre +"', "+ activa +", "+ nave +", "+ alto +", "+ ancho +", "+ coordx +", "+ coordy +", "+ red +", "+ green +", "+ blue +")", cb);
 }
 
 function getUbicaPorId(id, cb){

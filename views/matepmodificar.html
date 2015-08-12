@@ -68,12 +68,21 @@
 			<tr>
 				<td>¿Es envase?:</td>
 				<td>
+					{% if matep.pactivo == 1 %}
+					<select disabled id="envase" name="envase" class="form-control">
+						<option>No es envase</option>
+						{% for e in envases %}
+							<option value="{{ e.id }}">{{ e.nombre }}</option>
+						{% endfor %}
+					</select>
+					{% else %}
 					<select id="envase" name="envase" class="form-control">
 						<option>No es envase</option>
 						{% for e in envases %}
 							<option value="{{ e.id }}">{{ e.nombre }}</option>
 						{% endfor %}
 					</select>
+					{% endif %}
 				</td>
 			</tr>
 			<tr>

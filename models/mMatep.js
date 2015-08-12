@@ -64,7 +64,7 @@ function updateMatep(id, cdcliente, codigo, nombre, activo, pactivo, umed, usaci
 }
 
 function delMatep(id, cb){
-	conn("DELETE from matep where id="+id, cb);d
+	conn("DELETE from matep where id="+id, cb);
 }
 
 function getAllActivasPorIdCliente(idcliente, cb){

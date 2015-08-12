@@ -17,10 +17,10 @@ module.exports = {
 function getAll(req, res) {
 	req.session.nromenu = 6;
   	mAyuda.getAyudaTexto(req.session.nromenu, function (ayuda){
-	  	mNaves.getAll(function (naves){
+	  	mUbica.getAll(function (ubicas){
 	  		res.render('ubicalista', {
 				pagename: 'Archivo de Ubicaciones de Planta',
-				naves: naves,
+				ubicas: ubicas,
 				ayuda: ayuda[0]
 			});
 	  	});
@@ -38,28 +38,22 @@ function getAlta(req, res){
 
 function postAlta(req, res){
 	params = req.body;
-	console.log(params)
-	var nave = document.getElementById('naves').value;
+	//console.log(params)
+	nombre = params.nombre;
+	codigo = params.codigo;
+	activa = 1;
+	nave = params.nave;
+	alto = params.alto;
+	ancho = params.ancho;
+	coordx = params.coordx;
+	coordy = params.coordy;
+	red = params.colorr;
+	green = params.asdf;
+	blue = params.colorb;
 
-	var naveWidth = document.getElementById('nave').offsetWidth;
-	var naveHeight = document.getElementById('nave').offsetHeight;
-
-	console.log(nave)
-
-	var divs = document.getElementsByTagName('div');
-	for (var i = 0; i < divs.length; i++) {
-		var nombre = divs[i].getAttribute('id');
-		var position = divs[i].getAttribute('position');
-		var top = divs[i].getAttribute('top');
-		var left = divs[i].getAttribute('left');
-		var width = divs[i].getAttribute('width');
-		var height = divs[i].getAttribute('height');
-		var color = divs[i].getAttribute('background-color');
-
-		mUbica.insert(nave, nombre, position, top, left, width, height, color, function(){
-			res.redirect('ubicalista');
-		});
-	};
+	mUbica.insert(codigo, nombre, activa, nave, alto, ancho, coordx, coordy, red, green, blue, function(){
+		res.redirect('ubicalista');
+	})
 }
 
 function getModificar(req, res){

@@ -61,10 +61,12 @@ function postAlta(req, res){
 	usacinta = params.cinta;
 	envase = params.envase;
 
-	if (pactivo == "on" )
+	if (pactivo == "on" ){
 		pactivo = 1;
-	else
+		envase = 0;
+	}else{
 		pactivo = 0;
+	}
 	if (usacinta == "on")
 		usacinta = 1;
 	else
@@ -122,10 +124,12 @@ function postModificar(req, res){
 	usacinta = params.usacinta; 
 	envase = params.envase;
 
-	if (pactivo == "on")
+	if (pactivo == "on"){
 		pactivo = 1;
-	else
+		envase = 0;
+	}else{
 		pactivo = 0;
+	}
 
 	if (activo =="on")
 		activo = 1;
@@ -136,6 +140,9 @@ function postModificar(req, res){
 		usacinta = 1;
 	else
 		usacinta = 0;
+
+
+
 
 	mMatep.verificacionCodigos(id, codigo, function (verificacion){
 		if (verificacion[0]==null){
