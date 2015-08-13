@@ -70,14 +70,14 @@
 				<td>
 					{% if matep.pactivo == 1 %}
 					<select disabled id="envase" name="envase" class="form-control">
-						<option>No es envase</option>
+						<option value="0">No es envase</option>
 						{% for e in envases %}
 							<option value="{{ e.id }}">{{ e.nombre }}</option>
 						{% endfor %}
 					</select>
 					{% else %}
 					<select id="envase" name="envase" class="form-control">
-						<option>No es envase</option>
+						<option value="0">No es envase</option>
 						{% for e in envases %}
 							<option value="{{ e.id }}">{{ e.nombre }}</option>
 						{% endfor %}
@@ -99,9 +99,10 @@
 	$('#pactivo').click(function(){
 		if (this.checked) {
 			$('#envase').attr('disabled', 'disabled');
-			$('#envase').val('No es envase');
+			$('#envase').val('0');
 		}else{
 			$('#envase').removeAttr('disabled');
+			$('#envase option[value=0]').attr('selected', 'selected');
 		}
 	});
 

@@ -63,7 +63,6 @@ function postAlta(req, res){
 
 	if (pactivo == "on" ){
 		pactivo = 1;
-		envase = 0;
 	}else{
 		pactivo = 0;
 	}
@@ -126,7 +125,6 @@ function postModificar(req, res){
 
 	if (pactivo == "on"){
 		pactivo = 1;
-		envase = 0;
 	}else{
 		pactivo = 0;
 	}
@@ -140,7 +138,6 @@ function postModificar(req, res){
 		usacinta = 1;
 	else
 		usacinta = 0;
-
 
 
 
