@@ -65,7 +65,8 @@
 					<TD><input type="checkbox" name="usacinta"></TD>
 				{% endif %}
 			</tr>
-			<tr id="EsEnvase">
+			{% if matep.pactivo == 1 %}
+				<tr id="EsEnvase" style="display: none">
 				<td>¿Es envase?:</td>
 				<td>
 					{% if matep.pactivo == 1 %}
@@ -85,6 +86,29 @@
 					{% endif %}
 				</td>
 			</tr>
+			{% else %}
+				<tr id="EsEnvase">
+				<td>¿Es envase?:</td>
+				<td>
+					{% if matep.pactivo == 1 %}
+					<select id="envase" name="envase" class="form-control">
+						<option selected value="0">No es envase</option>
+							{% for e in envases %}
+								<option value="{{ e.id }}">{{ e.nombre }}</option>
+							{% endfor %}
+					</select>
+					{% else %}
+					<select id="envase" name="envase" class="form-control">
+						<option value="0">No es envase</option>
+							{% for e in envases %}
+								<option value="{{ e.id }}">{{ e.nombre }}</option>
+							{% endfor %}
+					</select>
+					{% endif %}
+				</td>
+			</tr>
+			{% endif %}
+			
 			<tr>
 				<td><input type="button" value="Atras" onclick="history.back()"></td>
 				<td><input type="submit" value="Guardar"></td>
@@ -97,6 +121,13 @@
 <script type="text/javascript">
 	$('#nombre').limit('40', '#charsLeftNombre');
 	$('#codigo').limit('12', '#charsLeftCodigo');
+
+	$('#formactualizar').load(function(){
+		if ($('#pactivo').checked) {
+			$('#EsEnvase').hide();
+			$('#envase').val('0');			
+		};
+	});
 
 	$('#pactivo').click(function(){
 			if (this.checked) {
