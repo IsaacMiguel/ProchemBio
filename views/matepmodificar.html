@@ -65,19 +65,17 @@
 					<TD><input type="checkbox" name="usacinta"></TD>
 				{% endif %}
 			</tr>
-			<tr>
+			<tr id="EsEnvase">
 				<td>¿Es envase?:</td>
 				<td>
-					{% if matep.pactivo == 1 %}
+					{% if matep.pactivo == '1' %}
 					<select disabled id="envase" name="envase" class="form-control">
-						<option value="0">No es envase</option>
 						{% for e in envases %}
 							<option value="{{ e.id }}">{{ e.nombre }}</option>
 						{% endfor %}
 					</select>
 					{% else %}
 					<select id="envase" name="envase" class="form-control">
-						<option value="0">No es envase</option>
 						{% for e in envases %}
 							<option value="{{ e.id }}">{{ e.nombre }}</option>
 						{% endfor %}
@@ -95,20 +93,17 @@
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.limit-1.2.js"></script>
 <script type="text/javascript">
-
-	$('#pactivo').click(function(){
-		if (this.checked) {
-			$('#envase').attr('disabled', 'disabled');
-			$('#envase').val('0');
-		}else{
-			$('#envase').removeAttr('disabled');
-			$('#envase option[value=0]').attr('selected', 'selected');
-		}
-	});
-
-
 	$('#nombre').limit('40', '#charsLeftNombre');
 	$('#codigo').limit('12', '#charsLeftCodigo');
+
+	$('#pactivo').click(function(){
+			if (this.checked) {
+				$('#EsEnvase').hide();
+				$('#envase').val('0');
+			}else{
+				$('#EsEnvase').show();
+			}
+	});
 
 	function Numy1Punto(e, field) {
 	  key = e.keyCode ? e.keyCode : e.which

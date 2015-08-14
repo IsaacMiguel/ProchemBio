@@ -5,6 +5,7 @@
 {% endblock %}
 
 {% block content %}
+<link href="/css/toastr.css" rel="stylesheet"/>
 <link href="/css/matepalta.css" rel="stylesheet">
 <h2>{{ pagename }}</h2>
 <div class="panel panel-default">
@@ -40,15 +41,19 @@
 				<td>Usa cinta:</td>
 				<td><input type="checkbox" id="cinta" name="cinta"></td>
 			</tr>
-			<tr>
+			<tr id="EsEnvase">
 				<td>¿Es envase?:</td>
 				<td>
 					<select id="envase" name="envase" class="form-control">
-						<option value="0">No es envase</option>
 						{% for e in envases %}
-							<option value="{{ e.id }}">{{ e.nombre }}</option>
+							{% if e.id == '0' %}
+								<option value="{{ e.id }}" selected>{{ e.nombre }}</option>
+							{% else %}
+								<option value="{{ e.id }}">{{ e.nombre }}</option>
+							{% endif %}
 						{% endfor %}
 					</select>
+					<span id="spanAlert"></span>
 				</td>
 			</tr>
 			<tr>
@@ -61,23 +66,20 @@
 	
 <script src="/js/jquery.min.js"></script>
 <script src="/js/jquery.limit-1.2.js"></script>
+<script src="/js/toastr.js"></script>
 <script type="text/javascript">
-
-	$('#pactivo').click(function(){
-		if (this.checked) {
-			$('#envase').attr('disabled', 'disabled');
-			$('#envase').val('0');
-		}else{
-			$('#envase').removeAttr('disabled');
-			$('#envase option[value=0]').attr('enabled', 'enabled');
-		}
-	});
-
-
 	$('#nombre').limit('40','#charsLeftNombre');
 	$('#codigo').limit('12', '#charsLeftCodigo');
 
-	
+	$('#pactivo').click(function(){
+			if (this.checked) {
+				$('#EsEnvase').hide();
+				$('#envase').val('0');
+			}else{
+				$('#EsEnvase').show();
+			}
+	});
+
     function Numy1Punto(e, field) {
 	  key = e.keyCode ? e.keyCode : e.which
 	  // backspace
