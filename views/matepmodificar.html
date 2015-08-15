@@ -69,42 +69,28 @@
 				<tr id="EsEnvase" style="display: none">
 				<td>¿Es envase?:</td>
 				<td>
-					{% if matep.pactivo == 1 %}
 					<select id="envase" name="envase" class="form-control">
 						<option selected value="0">No es envase</option>
 							{% for e in envases %}
 								<option value="{{ e.id }}">{{ e.nombre }}</option>
 							{% endfor %}
 					</select>
-					{% else %}
-					<select id="envase" name="envase" class="form-control">
-						<option value="0">No es envase</option>
-							{% for e in envases %}
-								<option value="{{ e.id }}">{{ e.nombre }}</option>
-							{% endfor %}
-					</select>
-					{% endif %}
 				</td>
 			</tr>
 			{% else %}
 				<tr id="EsEnvase">
 				<td>¿Es envase?:</td>
 				<td>
-					{% if matep.pactivo == 1 %}
-					<select id="envase" name="envase" class="form-control">
-						<option selected value="0">No es envase</option>
-							{% for e in envases %}
-								<option value="{{ e.id }}">{{ e.nombre }}</option>
-							{% endfor %}
-					</select>
-					{% else %}
 					<select id="envase" name="envase" class="form-control">
 						<option value="0">No es envase</option>
 							{% for e in envases %}
-								<option value="{{ e.id }}">{{ e.nombre }}</option>
+								{% if matep.id_envase_fk == e.id %}
+									<option selected value="{{ e.id }}">{{ e.nombre }}</option>
+								{% else %}
+									<option value="{{ e.id }}">{{ e.nombre }}</option>
+								{% endif %}
 							{% endfor %}
 					</select>
-					{% endif %}
 				</td>
 			</tr>
 			{% endif %}
